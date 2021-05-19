@@ -1,0 +1,635 @@
+<html><head>
+
+<title>Workspace Module for Python's Command Line Interpreter</title>
+
+</head>
+
+<body bgcolor="white">
+
+   <CENTER><H1>Workspace Module for Python's Command Line Interpreter</H1>
+   
+      <TABLE WIDTH="400" BORDER=1 BORDERCOLOR="red"><TR><TD>
+               A version of this workspace has been used twice in 
+          Hille Institute summer workshops for middle school teachers
+          at the Oklahoma School of Science and Math.  The lab sheet
+          used at the 2007 workship is 
+          <A HREF="lab2007.html">available here.</A>.
+      </TD></TR></TABLE>
+
+   </CENTER>
+
+
+
+
+
+<p>&nbsp;</p><p><b>Workspace</b></p>
+
+
+
+<p>
+
+
+
+Here's what the workspace module does for you:
+
+
+
+<ul>
+
+
+
+
+
+<P/><li>Lets you use a popup file chooser window to pick your current 
+
+folder.
+
+</li>
+
+
+
+
+
+
+
+<P/><li>Lets you use a popup text editor to enter and alter
+
+function and (small) class definitions.
+
+</li>
+
+
+
+
+
+
+
+<P/><li>Lets you save the current workspace today so you can restore
+
+it tomorrow.
+
+</li>
+
+
+
+
+
+</ul>
+
+
+
+</p><p>
+
+
+
+Unlike with (at least some) IDEs, editing is not module oriented.  This
+
+is an advantage when you are tinkering and a disadvantage when you
+
+are building something large.
+
+
+
+</p><p>
+
+
+
+This module requires version 2.4 or later of Python. The Tkinter module
+
+is required for full functionality. Python's Windows installer will
+
+arrange for both.
+
+
+
+</p>
+
+<p>&nbsp;</p><p><b>Download</b></p>
+
+
+
+<dl><dd><p>
+
+<a href="workspace-1.1.win32.exe">Windows Installer</a> (for my Python workspace, version 1.1)
+
+
+
+</p><p>
+
+
+
+<a href="workspace.py">Source Code</a> (for those of you who want to see how it works)
+</p><p>
+<a href="http://www.python.org/ftp/python/2.5.1/python-2.5.1.msi">Windows Installer</a> (for Python, version 2.5.1)
+
+<p>
+Zip file of the 
+<a href="K12Python2007.zip">2007 version</A> for K12 teachers.  Handed out at the Hille Institute workshop for middle school teachers, held at the Oklahoma School of Science and Mathematics, June 2007.  This is a complete distribution of Python 2.4 that has been modified to load the workspace module and to run from any (Windows) drive including a flash drive.
+
+
+</p></dd></dl>
+
+Copyright by J Adrian Zimmer, 2006,2007.  Released under the 
+
+<a href="http://www.opensource.org/licenses/osl.php">Open Source Software</a> license.
+Portions of K12Python are distributed under the Python Software Foundation License.
+
+
+<p>&nbsp;</p><p><b>Saving and Loading</b></p>
+
+<p>
+
+
+
+Saving the workspace means to place a memory of the current
+
+workspace in the current folder.  Do it this way
+
+
+
+<pre>
+
+
+
+>>> save()
+
+>>>
+
+</pre>
+
+
+
+
+
+</p><hr align="center" width="30%" /><p>
+
+
+
+What to do if you do not want to save all the variables in your
+
+current workspace?  Delete the ones you do not want.  For example,
+
+
+
+<pre>
+
+
+
+>>> z = -1
+
+>>> z
+
+-1
+
+>>> del z
+
+>>> z
+
+Traceback (most recent call last):
+
+  File "&lt;stdin&gt;", line 1, in ?
+
+NameError: name 'z' is not defined
+
+>>>
+
+</pre>
+
+
+
+
+
+</p><hr align="center" width="30%" /><p>
+
+
+
+How can you remember which variables are in the current workspace?
+
+If you are me, you cannot.  So ask
+
+
+
+<pre>
+
+
+
+>>> savable()
+
+
+
+Global Variables: ['x','y']
+
+Functions: []
+
+Classes: []
+
+Modules: []
+
+
+
+>>>
+
+</pre>
+
+
+
+
+
+In this case there are two savable variables, named &ldquo;x&rdquo; and &ldquo;y&rdquo;.  There are no savable functions, modules, or classes.  Here the rules
+
+for what is savable:
+
+
+
+</p><dl><dd><p>
+
+
+
+<strong>Variables</strong>
+
+
+
+<dl><dd>
+
+To be savable, a variable must refer to savable value.  Numeric and string primitives are savable values.  Other savable values are
+
+defined recursively:  lists and tuples of savable values are
+
+savable; dicts are savable if their keys are primitives and their
+
+values are savable.
+
+</dd></dl>
+
+</p><p>
+
+<strong>Functions</strong>
+
+<dl><dd>
+
+The only savable functions are those defined with <tt>edit()</tt>.
+
+</dd></dl>
+
+</p><p>
+
+<strong>Classes</strong>
+
+<dl><dd>
+
+The only savable classes are those defined with <tt>edit()</tt>.
+
+</dd></dl>
+
+</p><p>
+
+
+
+<strong>Modules</strong>
+
+<dl><dd>
+
+The only savable modules are those imported with <tt>import</tt> &lt;<i>module name</i>&gt;.
+
+</dd></dl>
+
+</p>
+
+</dd></dl>
+
+<p>
+
+</p><hr align="center" width="30%" /><p>
+
+
+
+Now suppose it is tomorrow and you want to start where you left
+
+off.  Assuming you entered the <tt>save()</tt> command before you closed
+
+the Python window, you can restart Python, import the
+
+workspace module, and then do this
+
+
+
+<pre>
+
+
+
+>>> load()
+
+Clear the existing workspace before loading? (answer y,
+
+n, or ?) n
+
+
+
+The following have been loaded from the unnamed_workspace workspace
+
+(If you cleared the current workspace, the following is all there is.)
+
+
+
+Global Variables: ['x','y']
+
+Functions: []
+
+Classes: []
+
+Modules: []
+
+
+
+>>>
+
+</pre>
+
+
+
+
+
+After you enter <tt>load()</tt>, the loading mechanism asks you if you want
+
+to clear out the current workspace before proceeding. Since you haven't
+
+done anything in the current workspace, it doesn't matter how you
+
+answer. I answered with &ldquo;n&rdquo;. (All I entered in the above example were
+
+<tt>load()</tt> and <tt>n</tt>.)
+
+
+
+</p><p>
+
+
+
+The load mechanism continues by telling you that it is working with an
+
+unnamed workspace and by listing the things it has loaded.  In this
+
+case, it is again the two variables named &ldquo;x&rdquo; an &ldquo;y&rdquo;.  They
+
+will also have the values you gave them yesterday.
+
+
+
+</p><hr align="center" width="30%" /><p>
+
+
+
+Both <tt>save()</tt> and <tt>load()</tt> can take an argument which names the workspace you are saving or loading.   Without this argument, the file
+
+containing workspace information is &ldquo;unnamed_workspace.pws&rdquo; in
+
+the current directory.  With the argument the file will be the one
+
+you named, but for an appended suffix of <tt>.pws</tt>.
+
+
+
+</p>
+
+<p>&nbsp;</p><p><b>Changing Directories</b></p>
+
+<p>
+
+
+
+Enter &ldquo;changeFolder()&rdquo; and you will see
+
+
+
+</p><p>
+
+<center><image src="changeFolder.gif" width="80%"></center>
+
+</p><p>
+
+
+
+The popup window is a file chooser window.   The current
+
+folder is highlighted in that window and you are given a chance
+
+to change it.  Changing it will change the current directory your
+
+interpreter is working in.
+
+
+
+</p><p>
+
+
+
+You can also see which directory is current with <tt>changeFolder()</tt>
+
+because it always highlights the current directory as it pops up
+
+the file chooser window.
+
+
+
+
+
+</p>
+
+<p>&nbsp;</p><p><b>Editing Functions and Classes</b></p>
+
+<p>
+
+
+
+Instead of typing <tt>def</tt> and <tt>class</tt> definitions directly
+
+into the command line interpreter, you can use the edit command.
+
+Execute
+
+
+
+<pre>
+
+
+
+>>> edit()
+
+</pre>
+
+
+
+
+
+What you will see is a new window something like this
+
+
+
+</p><p>
+
+
+
+<center><image src="editor.gif" width="80%"></center>
+
+
+
+</p><p>
+
+
+
+Enter a single function or class definition into the top part of
+
+this window. The <tt>check</tt> button compiles it and shows messages
+
+in the bottom part.  (If necessary, you can scroll with the arrow keys.)
+
+
+
+</p><p>
+
+
+
+Compiling from this window is required if you are to load your
+
+definition back into the Python interpreter. The window is modal, you
+
+cannot use the command line window until you are finished with it.
+
+(You can, however, use windows from other applications.)
+
+
+
+</p><p>
+
+
+
+Advantages:
+
+
+
+<ul>
+
+
+
+
+
+<P/><li>Compared with (at least some) IDEs, this method of entering functions
+
+and classes provides the advantage of letting you enter and reenter
+
+definitions as freely as you could by retyping the <tt>def</tt> and
+
+<tt>class</tt> commands.
+
+</li>
+
+
+
+
+
+
+
+
+
+<P/><li>Compared with retyping the <tt>def</tt> and <tt>class</tt> commands, this
+
+method of entering functions and classes avoids the need for retyping
+
+everything.
+
+</li>
+
+
+
+
+
+
+
+<P/><li>Definitions entered this way work with the <tt>save()</tt> and <tt>load()</tt>
+
+workspace commands.
+
+</li>
+
+
+
+
+
+</ul>
+
+
+
+To re-edit an existing definition of <tt>foo</tt>, enter
+
+
+
+<pre>
+
+
+
+>>> edit(foo)
+
+</pre>
+
+
+
+
+
+</p>
+
+<p>&nbsp;</p><p><b>Enjoy!</b></p>
+
+<p>
+
+
+
+Comments can be sent to me thru my home page
+
+
+
+<a href="http://jazimmer.net/">jazimmer.net</a>
+
+
+
+<dl><dd>
+
+&#151; J Adrian Zimmer
+
+</dd></dl>
+
+
+
+</p>
+
+
+
+
+
+<TABLE WIDTH="100%"><TR><TD WIDTH="50%" ALIGN="left">
+
+<B>Context:</B>
+
+<A HREF=http://jazimmer.net/prof.html>Teaching, Learning, and Practicing
+Computer Programming</A>
+
+</TD><TD WIDTH="50%" ALIGN="right">
+
+<B>Author:</B>
+
+<A HREF="http://jazimmer.net/">J Adrian Zimmer</A>
+
+</TD></TABLE></P>
+
+<CENTER><FONT SIZE="-1">
+
+
+
+      <I>Revised: July 17, 2007</I>
+</FONT></CENTER>
+
+</BODY></HTML>
+
+
+
+
+

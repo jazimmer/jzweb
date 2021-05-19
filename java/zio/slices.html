@@ -1,0 +1,234 @@
+<HTML><BODY BGCOLOR="#fafafa"><P><TABLE WIDTH="100%"><TR><TD ALIGN="left" WIDTH="15%"><FONT SIZE="+1"><A HREF="http://jazimmer.net/source_code/java/zio.html">context</A></FONT></TD><TD ALIGN="center" WIDTH="40%"><CENTER><H1>-  Slices & Suffixes  -</H1></CENTER></TD><TD ALIGN="right" WIDTH="15%"><FONT SIZE="+1"><A HREF="http://jazimmer.net/">author</A></FONT></TD></TR></TABLE><P><B>Slices:</B><P>Sliced windows may not be as life altering as sliced bread, but the technique
+of thinking in slices does give you, the programmer, better control over the
+layout of objects in your windows. Moreover, as I hope to show here, that
+better control extends over the lifetime of the window as the user resizes it.<P>I introduced slicing as a concept in
+<A HREF="http://www.mapfree.com/sbf/tcl/book/home.html">Tcl/Tk for
+Programmers</A> in 1998. At that time, slicing was useful but only in
+planning your window layouts. Today, Java programmers can have API
+support for slicing through the zio package described here. This
+package is layered on top of Swing's <CODE>BoxLayout</CODE> layout manager. The
+layering adds very little overhead and a lot of helpful structure.<P>First the concept.  Consider the following window that
+contains nine squares.<P><TABLE WIDTH="100%"><TR><TD ALIGN="center"><IMG VSPACE="20" SRC="Nines.gif"></TD></TR></TABLE><P>You can organize the squares into rows. That gives you three rows, the
+entire window is sliced horizontally. The three rows fit into one
+column. Your window is organized into four slices, one column
+containing three rows. Or you can organize the squares into three
+columns and put the three columns into one row. Again, four slices with
+one containing the other three.<P>Finally, you can organize this window into a grid of nine squares.
+Although it is much easier to say "organize this window into a grid of
+nine squares" than to speak of four slices, grids are usually more
+difficult to work with than slices. The reason is that you usually find
+yourself coalescing some grid elements into one entity. Consider this
+example involving a text entry area with a couple buttons.<P><TABLE WIDTH="100%"><TR><TD ALIGN="center"><IMG VSPACE="20" SRC="Textarea.gif"></TD></TR></TABLE><P>This window does not make a neat grid but it does slice quite easily: it
+was created as one row containing two columns.  Something like this:<P><TABLE WIDTH=100%><TR><TD WIDTH="50%" ALIGN="center"><IMG VSPACE="20" SRC="LeftHand.gif"></TD><TD WIDTH="50%" ALIGN="center"><IMG VSPACE="20" SRC="RightHand.gif"></TD></TR></TABLE><P>The left hand
+column contains two buttons. The right hand column contains three things
+of which the text area is only the largest.  The two smaller things are
+again slices.  They look like this<P><TABLE WIDTH="100%"><TR><TD ALIGN="center"><IMG VSPACE="20" SRC="Boxes.gif"></TD></TR></TABLE><P>This example was created with a total of five slices, an outer row, two
+inside columns, and&#151;within one of the columns&#151;two
+innermost rows. Rows are horizontal slices, columns are vertical. There
+is no essential difference between the two: any description of a row is
+also a description of a column if you transpose the horizontal and
+vertical directions. If we transpose rows with columns in the above
+example we get<P><TABLE WIDTH="100%"><TR><TD ALIGN="center"><IMG VSPACE="20" SRC="Transposed.gif"></TD></TR></TABLE><P><B>Expanding Slices:</B><P>The above windows look the same as the user expands the windows.
+They do not permit the user to shrink the windows to a point where
+they become useless.  Achieving such behavior in Swing is often
+quite difficult.  Making it easier was one of the goals behind
+the zio package.<P>Slicing is the key. Once you understand how a slice expands, you can
+build more complicated windows out of slices and understand them as
+well. This section will get you started. A newer feature, the gridded
+slice, is not explained here but enables rows and columns of a grid to
+behave in uniform ways. The next example of a row of boxes shows the
+normal way for a slice to expand.<P><TABLE WIDTH=100%><TR><TD WIDTH="50%" ALIGN="center"><IMG VSPACE="20" SRC="SmallBoxes.gif"></TD><TD WIDTH="50%" ALIGN="center"><IMG VSPACE="20" SRC="LargeBoxes.gif"></TD></TR></TABLE><P>Well, actually, that is one of two normal ways for a slice to expand.
+It is the kind of expansion you get when none of the objects in the
+slice expands. If one of the objects in the slice can expand in the
+direction of the slice, then the spaces remain rigid and the slice
+expands through its expanding objects something like this:<P><TABLE WIDTH=100%><TR><TD WIDTH="50%" ALIGN="center"><IMG VSPACE="20" SRC="SmallBoxes.gif"></TD><TD WIDTH="50%" ALIGN="center"><IMG VSPACE="20" SRC="ExpandingBoxes.gif"></TD></TR></TABLE><P>Normal expansion explains how the two innermost rows of boxes in the text
+entry example expand.  It also explains how the leftmost column expands.
+It almost explains how the other two slices expand but not quite.  The
+problem is that while a slice is mostly a one dimensional thing, it is not
+wholly a one dimensional thing.  Before discussing the difference let's
+consider the zio package.<P><B>The zio Package:</B><P>This package consists of <P><UL>
+<P>
+<LI> a potpourri class <CODE>Zio</CODE> that contains some useful static methods,<P>
+<LI> two classes <CODE>Input</CODE> and <CODE>Output</CODE> for text I/O, <P>
+<LI> one class <CODE>InOut</CODE> for whole file I/O.  (The <CODE>InOut</CODE> class can handle
+text or images.), and<P>
+<LI> several classes for GUI programming.<P>
+</UL><P>The GUI classes are of three kinds<P><UL>
+<P>
+<LI> A <CODE>ZWindow</CODE> class that creates windows, arranges for the
+program to stop when the user closes the last window, and performs 
+other window-related tasks.<P>
+<LI> Two slice classes <CODE>ZRow</CODE> and <CODE>ZCol</CODE><P>
+<LI> Several classes representing screen objects.  Examples of screen
+objects are the buttons and the text area shown above.  The zio
+package has a small collection of classes for defining such screen
+objects.  For kinds of screen object not supported, it has a 
+<CODE>ZComponent</CODE> class
+that can bring Swing objects into the zio system.
+See below in the section &#8220;Placing Swing Objects into ZComponents&#8221.<P>
+</UL><P>The package has two levels of documentation
+<A HREF="http://jazimmer.net/source_code/java/zio/basic_doc/index.html">basic</A> 
+for beginners and
+<A HREF="http://jazimmer.net/source_code/java/zio/flexible_doc/index.html">complete</A> 
+for the rest of us.  The beginners' version of the documentation leaves
+out some methods and classes and also simplifies some of the explanations.
+It will get you started just fine.  When you need more detail, switch
+to the complete documentation.<P>All the classes representing objects that appear on the screen are subclasses
+of <CODE>ZObject</CODE>.  So are the <CODE>ZRow</CODE> and <CODE>ZCol</CODE> classes.  Any of these
+things can be used in the zio package where a <CODE>ZObject</CODE> is required.
+Putting <CODE>ZObject</CODE>s into <CODE>ZRow</CODE>s and <CODE>ZCol</CODE>s is the way you build
+windows, slice by slice.<P>Here is a Java method that creates a row of squares as required above.<P><CODE>private&nbsp;static&nbsp;ZRow&nbsp;border(int&nbsp;n,&nbsp;Color&nbsp;boxColor)&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;ZBox&nbsp;[]&nbsp;zpary&nbsp;=&nbsp;new&nbsp;ZBox&nbsp;[n];<BR>&nbsp;&nbsp;&nbsp;&nbsp;for(int&nbsp;i=0;&nbsp;i&lt;zpary.length;&nbsp;i+=1)&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zpary[i]&nbsp;=&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new&nbsp;ZBox().size(new&nbsp;Dimension(6,6)).color(boxColor);<BR>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;new&nbsp;ZRow(&nbsp;zpary&nbsp;).atLeft().atRight();<BR>}<BR><BR>
+</CODE><P>This places <CODE>n</CODE> newly created <CODE>ZBox</CODE>s into a newly created
+<CODE>ZRow</CODE>. Along the way there are adjustments are made to the
+<CODE>ZBox</CODE>s and the <CODE>ZRow</CODE> as follows:<P><UL>
+<P>
+<LI> The newly created <CODE>ZBox</CODE>s have their default size and color modified
+with the two methods <CODE>size()</CODE> and <CODE>color()</CODE>.<P>
+<LI> The newly created <CODE>ZRow</CODE> has its margins on the left and right removed
+with the two methods <CODE>atLeft()</CODE> and <CODE>atRight()</CODE>.<P>
+</UL><P>A method which makes such a modification is called
+a <I>suffix</I>.<P>By the way, the size and color adjustments require parameters of
+type <CODE>Dimension</CODE> and <CODE>Color</CODE>.
+A <CODE>Dimension</CODE> consists of a width and a height (both measure in 
+pixels) and a <CODE>Color</CODE> consists of three numbers given its red, green,
+and blue content.  (These two classes are from Java's API.  You can read
+about them at
+<A HREF="http://java.sun.com/j2se/1.4.2/docs/api/java/awt/Dimension.html">Dimension
+</A> and
+<A HREF="http://java.sun.com/j2se/1.4.2/docs/api/java/awt/Color.html">Color</A>.)<P><P><B>Suffixes:</B><P>Suffixes are like adjectives that follow their nouns.  The nouns
+are <CODE>ZObjects</CODE>.  The adjectives can come in any order.  They
+can appear with any occurence of the noun <I>before</I> the window
+containing that <CODE>ZObject</CODE> is created.  This rule is enforced
+by zio's runtime system.<P>There are two places in the <CODE>border</CODE> method, where suffixes
+are used:<P><CODE>new&nbsp;ZBox().size(new&nbsp;Dimension(6,6)).color(boxColor);<BR>
+</CODE><P>and<P><CODE>new&nbsp;ZRow(&nbsp;zpary&nbsp;).atLeft().atRight();<BR>
+</CODE><P>The four suffixes: <CODE>size()</CODE>, <CODE>color()</CODE>, <CODE>atLeft()</CODE>,
+and <CODE>atRight()</CODE> are rather self-explanatory as good adjectives
+should be.  Possibly  <CODE>atLeft()</CODE> needs more
+explanation: it says the leftmost object in the row should appear
+at the very left of the row.  Of course, <CODE>atRight()</CODE> is similar
+but on the other side of the row.<P>These four suffixes define modifications to their <CODE>ZObjects</CODE> (a
+<CODE>ZBox</CODE> in the first instance and a <CODE>ZRow</CODE> in the second) that
+are carried out before the window containing the object is created.<P>The zio package has quite a few suffixes. Some of them like, <CODE>size()</CODE>
+and <CODE>color()</CODE>, take parameters; some, like <CODE>atLeft()</CODE> and
+<CODE>atRight()</CODE> do not. You can think of those suffixes that do take
+parameters as giving me a way to add optional parameters to a
+<CODE>ZObject</CODE>'s constructor. You can think of those suffixes that do not
+take parameters as a replacement for the flag parameters found in some
+other contexts. (A common place where such constructors are used is in
+opening files. Thinking in suffixes we would have <CODE>readonly()</CODE> and
+<CODE>writeonly()</CODE> suffixes. Instead, what is common is to think in flags
+and so have something like <CODE>READ_ONLY</CODE> and <CODE>WRITE_ONLY</CODE> static
+final ints that must be or'd together.)<P>Suffixes, therefore, are a way of adding flexibility to constructors
+that cuts down the need for overloading and removes the need for flags.
+Not surprisingly, the zio package makes no use of flags and very little
+use of overloading. <P>One useful zio suffix that is available for all kinds of <CODE>ZObject</CODE>s is
+<CODE>debug()</CODE>.   You make up a name for the <CODE>ZObject</CODE> and pass
+that name to <CODE>debug()</CODE>.  When the window is created, the command window
+will show some debug information about that object.  For example,<P><CODE>new&nbsp;ZBox().debug("default&nbsp;box");<BR>
+</CODE><P>Will show you the default size  and color of the box you have 
+identified as &#8220;default box&#8221.<P><FONT SIZE="-1"><B>Full Disclosure:</B>  <P><OL>
+
+
+<LI>
+Now that you know
+about suffixes, I can confess that in the above example where
+I transposed rows and columns, I also had to
+to replace <CODE>atLeft()</CODE> and <CODE>atRight()</CODE> suffixes with  <CODE>atTop()</CODE> and
+<CODE>atBottom()</CODE> suffixes.
+
+<LI>
+I have been able to implement suffixes for
+<CODE>ZObject</CODE>s because such objects are actually created when the
+window containing them is created.  For files, I have no such 
+mechansim.  The zio package avoids the <CODE>READ_ONLY</CODE> and
+<CODE>WRITE_ONLY</CODE> flags in a completely different and rather 
+uninteresting way.
+
+</OL>
+</FONT><P><B>Placing Swing Objects within ZObjects:</B><P>If you are a beginner, stop reading here, back up (or link to 
+<A HREF="http://jazimmer.net/source_code/java/zio.html">context</A>),
+and look at the educational examples.<P>If you are an expert, some of the objects you place into a <CODE>ZWindow</CODE> will be normal Swing objects.  This is because zio  provides a 
+quite limited set of classes for screen objects. The value of zio
+for you is primarily in layout management and only secondarily in the
+simplicity of using classes like <CODE>ZTextlines</CODE> or <CODE>ZKeyboard</CODE> over
+their Swing counterparts.  
+Let's continue the text entry
+example by showing how to bring a Swing <CODE>JComponent</CODE> into the zio
+system. <P>Note that this example was written before the zio package had a text
+area or a button object. It is no longer necessary to import Swing
+objects to use such things with zio. The example is still useful because
+it shows you how to bring almost any Swing <CODE>JComponent</CODE> into the zio
+package. Also, since it involves kinds of objects that exist both within
+Swing and zio, you can use it to compare Swing's way of doing things
+with zio's.<P>Here is code that creates a <CODE>JTextArea</CODE> object, puts that object into
+a <CODE>JScrollPane</CODE> (so that it will have scrollbars when needed), and
+puts that <CODE>JScrollPane</CODE> into a <CODE>ZComponent</CODE>.  Roughly speaking, what is
+happening is that we are converting a <CODE>JTextArea</CODE> into a <CODE>ZObject</CODE>.<P><CODE>JTextArea&nbsp;text&nbsp;=&nbsp;new&nbsp;JTextArea();<BR>ZComponent&nbsp;textComponent&nbsp;=&nbsp;new&nbsp;ZComponent(&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;new&nbsp;JScrollPane(&nbsp;text&nbsp;)<BR>).expandH().expandV().size(&nbsp;new&nbsp;Dimension(300,250)&nbsp;);<BR>
+</CODE><P>The newly created <CODE>ZComponent</CODE> is modified with suffixes that
+override Swing's notion of its size and override zio's default rigid
+size so that the underlying text area can expand in both horizontal and
+vertical directions.<P>Before converting a <CODE>JButton</CODE> into a <CODE>ZObject</CODE>, we will create an
+an easier-to-use subclass.  Our style involves creating a separate subclass
+for each button we need.  Here is the subclass for a print button.<P><CODE>private&nbsp;static&nbsp;class&nbsp;PrintButton&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;extends&nbsp;JButton&nbsp;implements&nbsp;ActionListener&nbsp;{<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;JTextArea&nbsp;text;<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;PrintButton(JTextArea&nbsp;text)&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super("print&nbsp;the&nbsp;text");<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.text&nbsp;=&nbsp;text;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addActionListener(this);<BR>&nbsp;&nbsp;&nbsp;&nbsp;}<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;actionPerformed(ActionEvent&nbsp;ignore)&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(text.getText());<BR>&nbsp;&nbsp;&nbsp;&nbsp;}<BR><BR>}<BR><BR>
+</CODE><P>There are Swing details here that go beyond our current scope. In
+English, this class defines a kind of button which responds to a
+mouse click by printing the contents of a <CODE>JTextarea</CODE>
+on the command window.  <P>The constructor creates the button, makes
+not of which <CODE>JTextarea</CODE> is involved, and arranges for Swing
+to call the <CODE>actionPerformed</CODE> method when the mouse's left
+button is clicked.  <P>The <CODE>actionPerformed</CODE> method fetches the contents of the
+<CODE>JTextArea</CODE> and prints it on the command window. Creating a
+separate button class for every button allows us to ignore
+the <CODE>ActionEvent</CODE> parameter that is passed to <CODE>actionPerformed</CODE>
+by the Swing system when a button is clicked.  Following a style
+of object-oriented design advocated by Bertrand Meyer, it also
+allows us to
+unnecessary branching in our <CODE>actionPerformed</CODE> method.<P>Converting a <CODE>PrintButton</CODE> to a <CODE>ZObject</CODE> is easy<P><CODE>ZComponent&nbsp;show&nbsp;=&nbsp;new&nbsp;ZComponent(&nbsp;new&nbsp;PrintButton(text)&nbsp;);<BR>
+</CODE><P>The other button needed by this example can be created in the
+same way.  <P><B>Two Dimensional Expansion of a Slice</B><P>You may have noticed that the <CODE>textComponent</CODE> object created
+above expands in two directions but is to be placed into a <CODE>ZCol</CODE>
+that normally expands only one direction.  Suppose the placement 
+is done this way<P><CODE>new&nbsp;ZCol(&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;border(8,Color.BLUE),&nbsp;text,&nbsp;border(8,Color.BLUE)<BR>);<BR>
+</CODE><P>This approach would create a fixed-width column. Even though all
+objects in the column can expand horizontally, they would not be
+permitted to do so. Well not much, the smaller ones would be
+permitted to expand to the width of the largest one.  Beyond that,
+there would be no horizontal expansions.  <CODE>ZCol</CODE>s do not do
+that unless you force them to.<P>To make a column capable of expanding horizontally, what is needed is
+an additional suffix, <CODE>unlock()</CODE>. This suffix <I>permits</I> a slice
+to expand in the direction it normally would not. It does not force a
+slice to expand that direction.  Expansion may happen only when the
+slice contains a <CODE>ZObject</CODE> that can do the expanding.  That, of course,
+is exactly the case for the right hand column of the text entry example.<P>Here is the code that creates a text entry <CODE>ZWindow</CODE> and populates
+it with the appropriate layout of <CODE>ZObject</CODE>s.<P><CODE>ZWindow&nbsp;w&nbsp;=&nbsp;new&nbsp;ZWindow(<BR>&nbsp;&nbsp;&nbsp;&nbsp;"Text&nbsp;Entry",<BR>&nbsp;&nbsp;&nbsp;&nbsp;new&nbsp;ZRow(&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new&nbsp;ZCol(&nbsp;show,&nbsp;clear&nbsp;),<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new&nbsp;ZCol(&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border(8,Color.BLUE),&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;textComponent,&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border(8,Color.BLUE)<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;).unlock()<BR>&nbsp;&nbsp;&nbsp;&nbsp;).unlock()<BR>);<BR>
+</CODE><P>Notice that both the right hand column and the outer row are unlocked.  <P><B>The Rest of the Story:</B><P>A later version of the zio package will make it easy to make a set of
+buttons (or almost anything else) the same size.  For now, it is a 
+bit of a hassle.  What I did for this example was to run the program
+without paying attention to button size but using a <CODE>debug</CODE> suffix
+on each <CODE>ZComponent</CODE> containing a button.  Then I knew the size
+I wanted and used the <CODE>size</CODE> suffix to get it.<P>You are now ready to see the complete code for the text entry example
+and think about how the zio package might be useful in your own work.
+Find the code <A HREF="ProgrammerExamples/FourthExample.java">here</A>.<P>I think the example demonstrates the simplicity of this way to do layout but
+I should mention a major limitation:  the system only works on windows whose
+objects are not replaced during execution.  I have ideas about how to overcome
+that limitation but may never get around to implementing them. If you have any
+ideas let me know.  I do confess though that I will find your ideas a lot more
+interesting if you are willing to do most of the work to see that they are
+implemented.<P>A final word about my purpose in creating this package. My goals were
+three: to have some classes useful in teaching, to have some classes
+that I myself would like to work with, and to simplify the work of
+making simple GUI's in Java. This mixture of goals shows in the
+<CODE>Textarea.java</CODE> example. You do not see <CODE>System.out.println</CODE>
+there. Instead you see <CODE>Zio.show()</CODE>. I did it that way simply so I
+could tie necessary beginner things up in a neat package.<P>Although accessibility for beginners is still a primary motivation, I believe
+the zio package has
+developed to the point where it will be useful for many professional programmers
+whose work accepts the package's limitations.  I tend to build rather
+robust software.  Let me know of any bugs and I will get on to them as soon as
+possible.  You can reach me at
+mmmyy@jazimmer.net where mmm is the current month in the form,  jan,feb,mar,...,
+and yy is the last two digits of the year.<P>I have released the zio package and its documentation under the 
+<A HREF="http://jazimmer.net/source_code/java/zio/opensource.html">Open Software License</A>,
+version 2.1.
+<P><PRE></PRE><P><TABLE WIDTH="100%"><TR><TD ALIGN="left" WIDTH="15%"><FONT SIZE="+1"><A HREF="http://jazimmer.net/source_code/java/zio.html">context</A></FONT></TD><TD ALIGN="center" WIDTH="40%"><FONT SIZE="-1">Jul 29, 2005</FONT></TD><TD ALIGN="right" WIDTH="15%"><FONT SIZE="+1"><A HREF="http://jazimmer.net/">author</A></FONT></TD></TR></TABLE></BODY></HTML>

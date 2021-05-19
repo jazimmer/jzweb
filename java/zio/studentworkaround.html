@@ -1,0 +1,19 @@
+<HTML><BODY BGCOLOR="#fafafa"><P><TABLE WIDTH="100%"><TR><TD ALIGN="left" WIDTH="15%"><FONT SIZE="+1"><A HREF="installation.html">context</A></FONT></TD><TD ALIGN="center" WIDTH="40%"><CENTER><H1>-  Avoiding Environment Variables  -</H1></CENTER></TD><TD ALIGN="right" WIDTH="15%"><FONT SIZE="+1"><A HREF="http://jazimmer.net/">author</A></FONT></TD></TR></TABLE><P>I do not encourage beginners to alter the environment variables on their
+machines.  Instead, I give them some shell files to execute.<P><TABLE BORDER WIDTH="100%"><TR><TD>
+In a file, <CODE>command.cmd</CODE>, on a Microsoft Windows machine:<P><CODE>javac&nbsp;-classpath&nbsp;".;the&nbsp;full&nbsp;path&nbsp;name&nbsp;of&nbsp;the&nbsp;folder&nbsp;containing&nbsp;zio"&nbsp;%1.java<BR>
+</CODE><P>In a file, <CODE>run.cmd</CODE>, on a Microsoft Windows machine:<P><CODE>java&nbsp;-cp&nbsp;".;the&nbsp;full&nbsp;path&nbsp;name&nbsp;of&nbsp;the&nbsp;folder&nbsp;containing&nbsp;zio"&nbsp;%1<BR>
+</CODE><P>My students place <CODE>command.cmd</CODE> and <CODE>run.cmd</CODE> in a folder with their
+Java programs. Alternately,
+these files could go into a folder on the existing <CODE>PATH</CODE>.
+</TD></TR><TR><TD>
+In a file, <CODE>command</CODE>, on a Linux machine:<P><CODE>javac&nbsp;-classpath&nbsp;".:the&nbsp;full&nbsp;path&nbsp;name&nbsp;of&nbsp;the&nbsp;directory&nbsp;containing&nbsp;zio"&nbsp;$1.java<BR>
+</CODE><P>In a file, <CODE>run</CODE>, on a Linux machine:<P><CODE>java&nbsp;-cp&nbsp;".:the&nbsp;full&nbsp;path&nbsp;name&nbsp;of&nbsp;the&nbsp;directory&nbsp;containing&nbsp;zio"&nbsp;$1<BR>
+</CODE><P>My students usually place <CODE>command</CODE> and <CODE>run</CODE> in a folder
+containing their java programs and make them executable.  Alternately,
+these files could go into a directory on the existing <CODE>PATH</CODE>.
+</TD></TR></TABLE><P>If their OS isn't finding their <CODE>javac</CODE> and <CODE>java</CODE> programs, students need
+to replace <CODE>javac</CODE> and <CODE>java</CODE> with their full path names.<P>If using the <CODE>zio.jar</CODE> file then the path name mentioned above should
+be the complete path name of this file rather than the path name of the
+<CODE>zio</CODE> directory.<P>When setup as described, students can compile and execute this way on either
+a Windows or a Linux machine.<P><CODE>compile&nbsp;ProgName<BR>run&nbsp;ProgName<BR>
+</CODE><P><P><PRE></PRE><P><TABLE WIDTH="100%"><TR><TD ALIGN="left" WIDTH="15%"><FONT SIZE="+1"><A HREF="installation.html">context</A></FONT></TD><TD ALIGN="center" WIDTH="40%"><FONT SIZE="-1">Jul 1, 2005</FONT></TD><TD ALIGN="right" WIDTH="15%"><FONT SIZE="+1"><A HREF="http://jazimmer.net/">author</A></FONT></TD></TR></TABLE></BODY></HTML>

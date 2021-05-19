@@ -1,0 +1,566 @@
+<!doctype html/><html>
+<head>
+<title>Ticker Lookups</title>
+<!-- see ticker4_install.sh for contents of these files -->
+<link rel="stylesheet" href="user/static.css" type="text/css"/>
+<script src="js/tools.js"></script>
+<script src="js/net.js"></script>
+<script src="user/active.js"></script>
+<script>
+
+// helper functions
+
+
+function url(stockref_str) {
+  
+   var stockref = new StockRef(stockref_str);   
+   if( stockref.source=='BL' ) {
+       return SiteURLs.blURL(stockref.ticker,stockref.exchange)
+   } else if( stockref.source=='GR' ) {
+       return SiteURLs.grURL(stockref.ticker,stockref.exchange)
+   } else if( stockref.source=='SA' ) {
+       return SiteURLs.saURL(stockref.ticker,stockref.exchange)
+   } else if( stockref.source=='MS' ) {
+       return SiteURLs.msURL(stockref.ticker,stockref.exchange)
+   } else {
+      error('UNKNOWN SOURCE: ' + stockref.source)
+   }
+}
+
+function hover_coloring() {
+   function addOrange( fileName ) {
+      pat = /([^\.\/]+)\.gif$/
+      function fn(a0,a1) { return a1 + 'Orange.gif' }
+      return fileName.replace( pat, fn)
+   }
+   function subOrange( fileName ) {
+      pat = /([^\.\/]+)Orange\.gif$/
+      function fn(a0,a1) { return a1 + '.gif' }
+      return fileName.replace( pat, fn)
+   }
+   function hoverIn() {
+      var obj = $(this)
+      if( obj.prop('tagName')=='IMG') {
+         var src = obj.attr('src')
+         obj.attr('src',addOrange(src))
+      } else {
+         obj.css("color","orange")
+      }
+   }
+   function hoverOut() {
+      var obj = $(this)
+      if( obj.prop('tagName')=='IMG') {
+         var src = obj.attr('src')
+         obj.attr('src',subOrange(src))
+      } else {
+         obj.css("color","black")
+      }
+   }
+   $(".hovering").hover(hoverIn,hoverOut)
+}
+
+
+
+// Display Functions
+
+
+function display( parent, a,b,c,d,e ) {
+   
+   // creates box with these elements per row
+   //       a
+   //       b        c
+   //       d        e
+   // appends the box to parent
+   // returns a function capable of replacing d
+
+   var box = $iblk().css( {
+           padding:'6px',
+           width:'500px',
+           height:'240px',
+           margin:'30px',
+           padding:'20px',
+           border: '2px solid black'
+   } );
+
+   c.css( { width:'150px',
+            border: '1px solid black'
+        } );
+
+   var row1 =
+      $div(a).
+        css({ width:'100%', marginBottom:'10px',textAlign:'left' })
+   
+   var row2 =
+      $hslice('%',[ [$cen(b),'50'], [$cen(c),'50'] ],'120px').
+         css({ width:'100%', marginBottom:'10px'});
+   
+   var row3 =
+      $hslice('%', [ [$left(d),'85'], [$right(e),'15'] ], '37px').
+         css({ width:'100%' });
+   
+   box.append(row1).append(row2).append(row3);
+   parent.append(box);
+
+   return function (new_d) { 
+      row3.remove();
+      var new_row3 = 
+         $hslice('%', [ [$left(new_d),'85'], [$right(e),'15'] ], '37px').
+            css({ width:'100%' });
+      box.append(new_row3);
+   }
+};
+
+
+// StockRef does conversions between a string and a 
+// (ticker,exchange,source) triple
+
+StockRef.splitPattern = /(\w+)\-\> (\w+) \@([A-Z][A-Z])/
+
+function StockRef(x,exchange,source) {
+   // This class represents a ticker,exchange,source triplet
+   // The constructor will accept the three strings or a single
+   // string in this form
+   //     ticker:exchange @source      (used for browser display)
+   // or a single stockref
+
+   if(arguments.length==0) {
+      $.extend(this,StockRef.default());
+   } else if( x instanceof StockRef) {
+      this.ticker=x.ticker; this.exchange=x.exchange; this.source=x.source
+   } else if(exchange && source) {
+      this.ticker=x; this.exchange=exchange; this.source=source
+   } else {
+       var ary = StockRef.splitPattern.exec(x);
+       if(ary==null) {
+         error("StokRef constructor cannot parse '" + x.str() + "'");
+         $.extend(this,StockRef.default());
+       } else {
+         this.exchange=ary[1];
+         this.ticker = ary[2];
+         this.source = ary[3];
+       }
+   }
+}
+
+StockRef.prototype.str = function() {   // reversible with the constructor
+   return "{1}-> {0} @{2}".fmt( this.ticker, this.exchange, this.source )
+}
+
+StockRef.prototype.dupName = function() {
+   // name for duplicate window/tab
+   return "{0}_{1}_{2}".
+          fmt( this.ticker.replace(/\./,'_'), this.exchange, this.source)
+}
+
+StockRef.default = function() {
+   return new StockRef('','US','BL') 
+}
+
+function setupEntryBox(
+   // Entry Box objects in order displayed
+      title, buttons, source, entry, exchange, 
+   // External objects
+      addToSaved   // function from Save Box
+) {
+  
+   var win = new AWindow('EntryTicker'); 
+   var ref = StockRef.default();
+    
+   entry.jQme.keyup( 
+       function() { ref.ticker = entry.jQme.val().toUpperCase() }
+   );
+
+   source.jQme.change(
+       function() { ref.source = dbg(source.radio.checked(),'radio checked') }
+   );
+
+   buttons.saveButton.click( 
+      function() { addToSaved( ref.str() ) } 
+   );
+
+   buttons.showButton.click( 
+      function() { 
+         var sel = ref.str() 
+         win.close();
+         win.open(sel,'Entry Ticker');
+      }
+   );
+
+   source.setVal( dbg(ref.source, 'source.setVal') )
+
+}
+
+function setupSaveBox( 
+   // Saved Box objects in order displayed
+      title, buttons, source, flexi, exchange, 
+   // External objects
+      server       // Ajax link to permanent storage 
+) {
+
+   var win = new AWindow('SavedWindow');
+   flexi.setCallbacks( displaySelected, removeSelect );
+   
+
+   source.jQme.change( alterSelectSource );
+
+   buttons.dupButton.click( function() {
+      window.open( url(title.title()), briefStr(title.title()) );
+   } )
+
+   function displaySelected(sel) {
+      win.close();
+      win.open(sel,'Saved Ticker');
+      title.title(sel);
+      source.radio.setChecked( new StockRef(sel).source )
+   }
+
+   function alterSelectSource() {
+      var oldstr = dbg(this.value,'saved source')
+      if( oldstr ) {
+        var oldref = new StockRef(oldstr);
+        if( new_source!=oldref.source ) { 
+           alert('changing the source to ' + new_source)
+           var newstr = 
+               new StockRef(
+                   oldref.ticker,
+                   oldref.exchange,
+                   new_source
+               ).str();
+           // change the source 
+              flexi.delLabel(oldstr);
+              flexi.addLabel(newstr);
+           updateServer();
+           displaySelected()
+        } 
+      }
+   }
+
+   function removeSelect(sel) {
+      server.save( flexi.sort().obtainList().join('\n') );
+      if( title.title()==sel ) {
+         title.title('');
+         win.close();
+      }
+   }
+
+
+   function updateServer() {
+      server.save( 
+            flexi.sort().obtainList().join('\n')
+      );
+   }
+
+   return {
+      
+      addToSaved: function(refstr) {
+          flexi.addLabel(refstr);
+          updateServer();
+          $blink(flexi.jQ)
+      },
+
+      load: function(doWhenLoaded) {
+         server.fetch(
+            function(tickers) { 
+               var tickerList =
+                   tickers.
+                      split('\n').
+                        filter( 
+                           function(s) { return /^\s*$/.exec(s)==null }
+                        )
+               flexi.loadList( tickerList );
+               doWhenLoaded();
+            }
+         )
+      }
+   }
+
+}
+
+// HTML GENERATING OBJECTS //
+
+function EntryButtons() {
+   this.saveButton = $("<button>Save</button>"),
+   this.showButton = $("<button>Show</button>"),
+   this.jQ = $iblk( this.showButton ).append(this.saveButton)
+}
+
+function SaveButtons() {
+   this.dupButton = $("<button>Duplicate</button>"),
+   this.jQ = $iblk( this.dupButton )
+}
+
+function Title() {
+   var theTitle = $("<span class='.theTitle'></span>");
+   this.jQ =
+       $("<div class='now-showing'><span>Now Showing: </span></div>").
+          append(theTitle)
+   this.title = function(newTitle) {
+      if(newTitle) {
+        theTitle.text(newTitle)
+      } else {
+        return theTitle.text()
+      }
+   }
+}
+
+function AWindow(itsTitle) {
+   var win = undefined;
+
+   this.close = function() { if(win) win.close() }
+   this.open = function(str) {
+      win = window.open(url(str),itsTitle)
+   }
+   this.title = itsTitle
+   
+}
+
+var WaitSelect = {
+   // shows until data is fetched for SaveSelect()
+   jQ : $("<div>\
+            <p>Saved Tickers</p><p class='border'>Waiting for Data</p>\
+        </div>")
+};
+
+
+function SaveSelect() {
+   this.flexi = new FlexiSelect('SavedTicks','14em');
+   this.jQme = this.flexi.jQme;
+   this.jQ = $("<div><p>Saved Tickers</p></div>").append(this.jQme)
+}
+
+ 
+function Entry(id) {
+// manages a text line entry of a ticker
+
+   this.jQme = $("<input id='{0}'\
+                 type='text' \
+                 value='' \
+                 class='input-area'\
+             />" );
+   this.jQ = $( "<span class='entry hovering'>\
+                 <p class='label'>Ticker</p>\
+                 <form> \
+                 </form>\
+                 </span>".fmt(id) );
+   this.jQ.children().eq(1).append(this.jQme)
+};
+
+
+function Exchange(id) {
+// manages a select list of country symbols
+// links to and updates a StockRef
+
+   this.jQ =
+      $("<span class='hovering'><p class='label'>Country</p></span>");
+   this.jQme =
+     $("<select id={0}>\
+           <option value='US' selected>US</option>\
+           <option value='LI'>LI</option>\
+           <option value='JP'>JP</option>\
+           <option value='CA'>CA</option>\
+           <option value='UK'>UK</option>\
+           <option value='HK'>HK</option>\
+           <option value='AU'>AU</option>\
+           <option value='FR'>FR</option>\
+           <option value='SP'>SP</option>\
+        </select>".
+           fmt(id) );
+    this.jQ.append(this.jQme);
+
+} // end
+
+Exchange.prototype.setVal = function( exch ) { this.jQme.val(exch) };
+
+
+function Source(name) {
+// manages radio buttons choosing info source
+   this.radio =
+      (new Radio(name)).
+         add('Seeking Alpha','SA').
+            add('Guru Focus','GR').
+               add('Bloomberg','BL').
+                  add('MSN Chart','MS');
+   this.jQme = this.radio.jQme;
+   this.jQ = this.radio.jQ;
+   this.jQ.name = name;
+}
+
+Source.prototype.setVal = function( src ) {
+   this.radio.setChecked(src)
+}
+
+// Ticker Lookup Stuff
+
+var SiteURLs = {
+
+/* Exchanges
+ *  my symmbol       guru focus        bloomberg         note
+ *                                        :US            composite
+ *     JP               TSE:              :JP            GR is tokyo
+ *     UK               LSE:              :LN            GR is composite
+ *     LI               LSE:              :LI            GR is composite
+ *     HK              HKSE:              :HK
+ *     CA               TSX:              :CN            GR is toronto
+ *     SP              XMCE:              :SM            madrid
+ *     FR              XPAR:              :FP            paris
+ *     AU               ASX:              :AU
+ */
+
+   blgSymbols : {  'US':':US',
+                   'JP':':JP',
+                   'UK':':LN',
+                   'LI':':LI',
+                   'HK':':HK',
+                   'CA':':CN',
+                   'SP':':SM',
+                   'FR':':FP',
+                   'AU':':AU',
+                   'TW':':TT',
+                   'GR':':FRA'
+                },
+
+   grSymbols :  {  'US':'',
+                   'JP':'TSE:',
+                   'UK':'LSE:',
+                   'LI':'LSE:',
+                   'HK':'HKSE:',
+                   'CA':'TSX:',
+                   'SP':'XMCE:',
+                   'FR':'XPAR:',
+                   'AU':'ASX:',
+                   'TW':'TPE',
+                   'FRA':'FRA'
+                },
+   
+   saSymbols : { 'US':'' },
+
+   blURL : function (ticker,exch) {
+      exch = exch || ''
+      var s = SiteURLs.blgSymbols[exch]
+      if(s==undefined) {
+         error('cannot find exchange ' + exch + ' for ' + ticker)
+         return undefined
+      }
+      return 'http://www.bloomberg.com/quote/' + ticker.toUpperCase() + s
+   },
+
+   grURL : function(ticker,exch) {
+      exch = exch || ''
+      var s = SiteURLs.grSymbols[exch]
+      if(s==undefined) {
+         error('cannot find exchange ' + exch + ' for ' + ticker)
+         return undefined
+      }
+      return 'http://www.gurufocus.com/stock/' + s + ticker.toUpperCase()
+   },
+
+   saURL : function(ticker,exch) {
+      exch = exch || ''
+      var s = SiteURLs.saSymbols[exch]
+      if(s==undefined) {
+         error('cannot find exchange ' + exch + ' for ' + ticker)
+         return undefined
+      }
+      return 'http://seekingalpha.com/symbol/' +
+             ticker.toUpperCase() + '?s=' + ticker.toLowerCase()
+   },
+   
+   msURL : function(ticker,exch) {
+      // exch is ignored -- ???
+      var p = 'http://investing.money.msn.com/investments/charts?symbol=US:{0}#{{"zRange":"4","startDate":"{1}-{2}-{4}","endDate":"{1}-{3}-{4}","chartStyle":"line","chartCursor":"1","scaleType":"0","yaxisAlign":"right","indicators":[["BBands",20,2]],"compare":"US:@CCO||29.10.@CCO","mode":"pan"}}';
+      var d = new Date();
+      return p.fmt(
+                ticker.toUpperCase(),
+                d.getFullYear(),
+                d.getMonth()-2,
+                d.getMonth()+1,
+                d.getDate());
+   }
+}
+
+$(function() { // ready actions
+
+// Creating Entities
+
+   var body = $('body');
+   var parent = body.children().eq(0);
+  
+   var entry_title = new Title();
+   var entry_buttons = new EntryButtons;
+   var entry_source = new Source('entry');
+   var entry = new Entry('entry');
+   var entry_exchange = new Exchange('entry-exchange');
+   var entry_win = new AWindow(); 
+
+   var save_title = new Title();
+   var save_buttons = new SaveButtons();
+   var save_source = new Source('saved');
+   var select = new SaveSelect();
+   var save_exchange = new Exchange('saved-exchange');
+
+   var server = new AjaxSave( 
+                      'tickers',
+                      'py/saveString.py',
+                      'py/sendString.py'
+                );
+
+// Setup
+
+   var saveBox =
+      setupSaveBox(
+         save_title,
+         save_buttons,
+         save_source,
+         select.flexi,
+         save_exchange,
+         server
+      );
+
+
+   setupEntryBox(
+     entry_title,
+     entry_buttons,
+     entry_source,
+     entry,
+     entry_exchange,
+     saveBox.addToSaved
+   )
+
+// Display
+
+   body.css({textAlign:'center',paddingTop:'20px'});
+   parent.css('display','inline-block');
+   save_exchange.jQme.prop('disabled',true);
+    
+   display(
+     parent,
+     entry_title.jQ,
+     entry_buttons.jQ,
+     entry_source.jQ,
+     entry.jQ,
+     entry_exchange.jQ);
+
+   var changeSelect =
+      display(
+        parent,
+        save_title.jQ,
+        save_buttons.jQ,
+        save_source.jQ,
+        WaitSelect.jQ,
+        save_exchange.jQ);
+   
+   hover_coloring();
+
+// Load and Display 
+
+   saveBox.load( function() { changeSelect(select.jQ) } );
+   entry_source.radio.setChecked('BL')  // needs to happen after
+   save_source.radio.setChecked('BL')   // the source is displayed
+})
+
+</script>
+</head>
+<body>
+<div></div>
+</body>
+</html>

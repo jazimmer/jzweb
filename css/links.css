@@ -1,0 +1,37 @@
+body {
+   background-color: #000000; 
+   color: FFFFD7;
+}   
+
+A:link {
+   color: #C7EAFF;
+}
+
+A:visited {
+   color: #88FF8B;
+}
+
+h1 {
+   padding-top:20px;
+   font-size: 220%;
+   text-align: center;
+}
+
+.left {
+   float: left;
+   margin-left:70px;
+   martin-top:35px;
+}
+
+.right {
+   float:right;
+   margin-right:70px;
+   martin-top:35px;
+}
+
+.footer {
+   clear:both;
+   text-align:center;
+   font-size:75%;
+}
+

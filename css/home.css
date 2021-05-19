@@ -1,0 +1,64 @@
+body {
+   background-color: #000000; 
+   color: FFFFD7;
+}   
+
+A:link {
+   color: #C7EAFF;
+}
+
+A:visited {
+   color: #88FF8B;
+}
+
+h1 {
+   padding-top:20px;
+   font-size: 220%;
+   text-align: center;
+}
+
+.pic { 
+   width:20%;
+   text-align:center; 
+   margin-top: 10px;
+   margin-bottom: 20px;
+   float:left;
+}
+
+.text {
+   margin-top:50px;
+   color: FFFFD7;
+   width: 70%;
+   padding-left:5%;
+   padding-right:5%; 
+   float:right;
+}
+
+.epilog {
+   padding-top: 50px;
+   margin-left:30px;
+   margin-right:20px;
+   clear: both;
+   font-size: 75%;
+   text-align: center;
+}
+
+.epilog A {
+   margin-left:20px;
+}
+
+.links {
+   padding:10px;
+}
+
+.contact {
+   float:right;
+}
+
+.date {
+   float:left;
+}
+
+`
+.
+

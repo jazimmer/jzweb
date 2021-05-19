@@ -1,0 +1,120 @@
+<HTML><BODY BGCOLOR="#fafafa"><P><TABLE WIDTH="100%"><TR><TD ALIGN="left" WIDTH="15%"><FONT SIZE="+1"><A HREF="teachers.html">context</A></FONT></TD><TD ALIGN="center" WIDTH="40%"><CENTER><H1>-  Comparison with ACM Graphics  -</H1></CENTER></TD><TD ALIGN="right" WIDTH="15%"><FONT SIZE="+1"><A HREF="http://jazimmer.net/">author</A></FONT></TD></TR></TABLE><P>Here is a comparison of the zio package with<P><A HREF="http://www-cs-faculty.stanford.edu/~eroberts//jtf/rationale/index.html">ACM Java Task Force Rationale, PRELIMINARY DRAFT -- December 10, 2004</A><P>written by the creator of zio.
+<P>&nbsp;<P><P><B>Some short comparisons:</B><P><UL>
+<P>
+<LI> The ACM document was drawn up by a committee and the zio package
+was created by an individual.<P>
+<LI> The ACM proposal includes some descriptions of software that does
+not seem to exist. The zio package exists.<P>
+<LI> The ACM proposal is more ambitious.  The zio package is <I>much</I>
+smaller but makes up for that by integrating with Swing and AWT.<P>
+<LI> Both systems recognize a value in console I/O for beginning
+students. Both provide class that simplify such I/O.<P>
+<LI> Both systems recognize a value in a classes for simple GUI
+dialogs. The ACM system (called IODialog) is similar to Java's dialog
+boxes. The zio system contains a DisplayWindow class for display of text
+and images and a DialogWindow class for single line text entry and
+response. (DialogWindow is something like the console window without the
+visible history.)<P>
+<LI> The ACM console I/O classes are just for console I/O.
+The zio console I/O classes use the same methods on text files
+(and strings and sockets for that matter). <P>
+<LI> The ACM console writing classes are overloaded to the hilt
+so that students do not have to stay aware of what data type
+they are working with.  The zio package forces students to
+do explicit conversions.  (A hassle, yes.  But better trained
+students come from it.)<P>
+<LI> Both were prepared with a transition to Java's own Swing and
+AWT in mind.  The ACM prepares for this transition by not straying too far from Java's way of doing things.  The zio package encourages
+transition by encouraging the integration of AWT and Swing classes with zio classes.<P>
+<LI> Both systems enable users to do I/O without knowing about I/O
+exceptions..
+<P>&nbsp;<P><P>
+</UL><P><B>Some longer comments:</B><P>My <I>first</I> comment is about the risk you take adopting the zio
+package.  Can a package supported by one person be as safe to adopt as
+one supported by many people and two institutions (ACM and Sun)?<P>NO and YES. <P>No, because one person cannot consider all ramifications of
+what he is creating or provide backup support for himself.  <P>Yes, because zio is a small, well-documented, open-source system.
+&#8220;Small&#8221 is the keyword here. That word means:<P><OL>
+<P>
+<LI> It wouldn't be that hard for another person to take zio
+over if necessary.  <P>
+<LI> Students will not be putting so much learning capital into
+zio as into the ACM system.  Remember <I>both</I> systems are intended
+to be set aside when the student gets more advanced.<P>
+<LI> You need spend less time away from your existing textbook.
+There are no texbooks for either system but the smaller zio package
+integrates with things taught in existing books about Swing and
+AWT.<P>
+</OL>
+<P>&nbsp;<P><P>My <I>second</I> comment concerns file I/O. Perhaps, I missed it but I
+haven't seen it in the ACM proposal. File I/O in Java is very flexible
+and very complicated. File I/O is also something with which beginners
+should have a little experience. The zio package offers it for text
+files in a form that is identical to the console I/O and it offers it
+(along with digital image I/O) with methods that perform whole file I/O.<P>Whole file I/O didn't use to be a common phenomenon. With the memory
+capacity of today's machines, it has become common in scripting
+languages.  There are also good pedagogical reasons for using it:
+once you get that file into memory you have to get it into a form 
+you can use and that usually means some kind of array.  The
+bottom line here is that if you use whole file I/O you need say
+very little about I/O and you have another excuse for emphasizing
+arrays.  I do think the ACM proposal was remiss in not including
+this feature.  Of course, they can still add it but remember the
+virtues of <I>small</I>?
+<P>&nbsp;<P><P>My <I>third</I> comment is that, even though I was unaware of the ACM
+proposal until today, it is interesting how similar my thinking was to
+the ACM committee's. The short comparisons above show this similarity
+and so does a look at the committee's concerns about the Java language.
+Here are the first two they list:<P>The ACM committee's first Java language concern, which they label L1, is
+that students are confused by what should be static and what should not.
+This was on my mind as I created zio. With my students, I distinguish
+between two kinds of classes: method defining (which exist only to
+define a set of actions that can be used independently of each other)
+and object defining (which exist only to define objects, that is data
+with a set of methods for manipulating that data). In method defining
+classes all methods are static. In object-defining classes all methods
+are not static. Instance variables, too, are static in method defining
+classes and nonstatic in object defining classes.  However, instance
+variables are very rare in method defining classes, mostly being
+limited to the definition of constants.<P>Clearly this dichotomy is not the way the Java API does things but it 
+is a convenient fiction and, as of July 13, 2005, the public and
+protected methods and variables in the zio package fit entirely
+into this fictional world.<P>When teaching Java the one time where I find I <I>must</I> talk about
+classes that have both method-defining and object-defining
+characteristics is with number formatting. Because the zio package
+supports formatted output on the console and on text files, I can put
+this awful day off to the end of the semester.  <P>The ACM committee's second Java language concern, which they label L2,
+is the way Java forces beginners to be aware of exceptions. Both the ACM
+committee and I judged this to be unacceptable.<P>The committee has other concerns but it was with the first two that
+I felt the greatest resonance.
+<P>&nbsp;<P><P>My <I>fourth</I> comment concerns the fact that the zio package does
+not encapsulate Swing and/or AWT.  This is the price that needs to
+be paid in order to get an incremental transition from zio to the
+Java API's way of doing things. It is a price that the designers
+of the ACM proposal were not willing to pay.<P>Personally, I think it is a small price. Encapsulation is a software
+maintenance issue and I am as concerned about maintenance issues as the
+rest of you. (Probably even more so, after all I did serve on the
+editorial board of the Journal of Software Maintenance for a decade.)
+But I believe we are starting to overdo encapsulation in our beginning
+courses.<P>We emphasize encapsulation in the hope that programmers trained with
+Good Practices from day one will take the time to design in fully
+encapsulated patterns when pressures for quick solutions are on them. It
+is probably a vain hope. Future programmers will remember how much of a
+hassle it was to encapsulate things and they will still start their
+careers without the kind of experience that shows why the encapsulation
+hassle pays off.<P>Furthermore, it is real questionable whether the hassle does pay
+off when the program is quite small and for individual use. Do remember,
+we are teaching beginners, not software engineers.  Most of those
+beginners will not become software engineers; they will write 
+small programs for individual use.
+<P>&nbsp;<P><P>My <I>fifth</I> comment is that the ACM system does nothing to help
+high school students compete in the USACO contests. My students have
+used zio's Input and Output classes in the online contests that occur
+monthly during the year. They have had to cut and paste the source code
+into their programs and mark the insertion as "not written during the
+contest". Still without some help from you, your students will not be
+able to do the I/O required in these contests. The zio package helps you
+give that help.<P>&nbsp;<P><P>I intend to get a comment mechanism built into these web pages some day.
+For now, you'll have to settle for writing me and hoping I'll be moved
+to incorporate your ideas (with or without attribution as you wish) into
+these web pages. Write to mmmyy@jazimmer.net where mmm=jan,feb,... and
+yy is the last two digits of the year.)<P><P><P><PRE></PRE><P><TABLE WIDTH="100%"><TR><TD ALIGN="left" WIDTH="15%"><FONT SIZE="+1"><A HREF="teachers.html">context</A></FONT></TD><TD ALIGN="center" WIDTH="40%"><FONT SIZE="-1">Jul 13, 2005</FONT></TD><TD ALIGN="right" WIDTH="15%"><FONT SIZE="+1"><A HREF="http://jazimmer.net/">author</A></FONT></TD></TR></TABLE></BODY></HTML>

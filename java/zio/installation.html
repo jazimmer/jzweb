@@ -1,0 +1,32 @@
+<HTML><BODY BGCOLOR="#fafafa"><P><TABLE WIDTH="100%"><TR><TD ALIGN="left" WIDTH="15%"><FONT SIZE="+1"><A HREF="http://jazimmer.net/source_code/java/zio.html">context</A></FONT></TD><TD ALIGN="center" WIDTH="40%"><CENTER><H1>-  Installing zio  -</H1></CENTER></TD><TD ALIGN="right" WIDTH="15%"><FONT SIZE="+1"><A HREF="http://jazimmer.net/">author</A></FONT></TD></TR></TABLE><P>Available under the 
+<A HREF="opensource.html">Open Software License</A>, Version 2.1,
+the zio package is provided in two forms<P><OL>
+
+
+<LI> a <A HREF="zio.jar">jar file</A>, copy this to your 
+Java system's <CODE>ext</CODE> folders, or
+
+<LI> a <A HREF="zio.zip">zip file</A> of the source code
+
+</OL><P>These links were updated on July 22, 2005.
+You need to have a Java development system (JDK version 1.4 or later) 
+installed first. <P><B>For the first method:</B> <P>This is the recommended way to do it.
+If you
+search through the folders used by your Java development system you will
+find at least one named <CODE>ext</CODE>. It may be easier to find these folders
+if you know that <CODE>ext</CODE> is included in another folder named <CODE>lib</CODE>. Not
+all <CODE>lib</CODE> folders contain an <CODE>ext</CODE> folder. The ones that do are
+of interest here.<P>One gotcha to watch out for is that many computers have had a Java
+virtual machine for web browser use installed before they had a Java
+development system installed. You may have to find the <CODE>ext</CODE> in this
+run-time system as well as any that came with the development system.
+(On the computer I am using at the moment, I found three <CODE>lib/ext</CODE>
+folder combinations to copy <CODE>zio.jar</CODE> into.)<P><B>For the second method:</B><P>Unzip these files into a directory (folder) named <CODE>zio</CODE>. To get the
+package mechanism working correctly this <CODE>zio</CODE> must be placed within
+a directory on the class path. Moreover, when you compile the zio
+classes you must do so from that containing directory.<P>You may or may not be need to alter the CLASSPATH environment variable.
+If you need to, you may or may not be able to.  
+<A HREF="studentworkaround.html">Here</A> is one work around that uses batch/shell
+files for compiling and executing Java programs.<P><B>With either method:</B><P>You can make use of the zio classes in your Java code by placing this
+statement at the beginning<P><CODE>import&nbsp;zio.*;<BR>
+</CODE><P><P><PRE></PRE><P><TABLE WIDTH="100%"><TR><TD ALIGN="left" WIDTH="15%"><FONT SIZE="+1"><A HREF="http://jazimmer.net/source_code/java/zio.html">context</A></FONT></TD><TD ALIGN="center" WIDTH="40%"><FONT SIZE="-1">Jul 22, 2005</FONT></TD><TD ALIGN="right" WIDTH="15%"><FONT SIZE="+1"><A HREF="http://jazimmer.net/">author</A></FONT></TD></TR></TABLE></BODY></HTML>

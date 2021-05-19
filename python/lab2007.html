@@ -1,0 +1,1030 @@
+<html><head>
+<title>Practicing Math by Playing with Python</title>
+</head>
+<body bgcolor="white"><center>
+<h1>Oklahoma School of Science and Math</h1>
+<h2>Practicing Math by Playing with Python</h2>
+Hille Institute, 2007
+edition
+<P><FONT SIZE="-1">Dr. <a href="http://jazimmer.net/">J Adrian
+      Zimmer</a></FONT></P>
+<TABLE WIDTH="400" BORDER=1 BORDERCOLOR="red"><TR><TD>
+         A self contained version of Python that automatically loads
+         the workspace described here is 
+         <A HREF="K12Python2007.zip">available.</A>.  You can
+         load it on any Windows disc drive, including a flash drive.
+      </TD></TR></TABLE>
+
+
+
+</CENTER>
+<p>&nbsp;</p><p><b>Installing the Software</b></p>
+
+<ol>
+
+
+<P/><li>Insert the CDROM.  When it has settled down, open (by
+double clicking the left button) &ldquo;My Computer&rdquo;. You should see something like this
+<P/>
+</p><center><image src="root.gif" width="40%"></center><p>
+</li>
+
+
+
+<P/><li>Copy and paste the K12Python folder to your local C: drive.   You
+have the right place when you see &ldquo;Local Drive (C:)&rdquo;.
+<FONT SIZE="-1">
+<UL>
+<LI> Find the DVD/CD player and double click on it.</LI>
+<LI> Find K12Python and right click on it.  From the menu that pops
+up choose "copy".</LI>
+<LI> Back out of the DVD/CD folder to what you saw above.</LI>
+<LI> Right click on &ldquo;Local Drive (C:)&rdquo; and choose "paste" from
+the menu that pops up.</LI>
+</UL></FONT>
+
+</li>
+
+
+<P/><li>Open the &ldquo;Local Drive (C:)&rdquo; folder (by double left clicking on
+it).  You should see the K12Python folder again.  (This time you are seeing a copy on your
+C: drive.)  Open the K12Python folder as well.
+</li>
+
+
+
+<P/><li>Look for the file named <nobr><tt>python</tt></nobr>  (<i>not</i> <nobr><tt>python24</tt></nobr> or
+<nobr><tt>pythonw</tt></nobr>; however <nobr><tt>python.exe</tt></nobr> is <i>ok</i>).
+Copy and paste that icon to your desktop (with right clicks the
+way you did before). You will be asked if you want to create a shortcut answer yes.
+</li>
+
+
+
+
+<P/><li>You can now run K12Python by clicking on the icon on your desktop.
+When you do, you should see the following
+<P/>
+</p><center><image src="k12python.jpg" width="60%"></center><p>
+</li>
+
+
+
+</ol>
+<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>
+<p>&nbsp;</p><p><b>Running the Software</b></p>
+
+<ol>
+
+
+<P/><li>The normal Python prompt is <nobr><tt>>>></tt></nobr>.  When you see this, the
+Python interpreter is waiting for your input.  You can
+
+<UL>
+<LI>Enter arithmetic expressions and have Python evaluate them.
+<LI>Change the way division works.
+<LI>Define functions to use in expressions.
+<LI>Enter list expressions and have Python evaluate them. 
+<LI>Load or save your workspace.
+<LI>Change folders.
+<LI>Import useful tools.
+</UL>
+
+Two such tools we will look at are called <nobr><tt>rational_numbers</tt></nobr>, for working
+with fractions, and <nobr><tt>graphing</tt></nobr> for drawing graphs.
+</li>
+
+
+</ol>
+Of course, there are lots of other things that can be done with Python.
+Reformatting text and creating dynamic web pages are two of the most
+popular.  There are whole books written on each of these topics as well
+as on object-oriented programming in Python.  All of that goes beyond
+what we can do in half a day.
+
+A very new book that combines Python with high school mathematics may
+interest you.  It is "Mathematics for the Digital Age and Programming in
+Python" by Maria and Gary Litvin.  Get it from the publisher at
+<nobr><tt>http://skylit.com</tt></nobr>.  The Litvin's agree with me that Python offers
+an opportunity to make mathematical abstractions seem more concrete and
+they included some of my ideas in their book.
+
+<p>&nbsp;</p><p><b>Arithmetic Expressions</b></p>
+Arithmetic expressions are related to the grade six curriculum.  Here
+are some things you can do with them.
+
+<ol>
+
+<P/><li>enter &ldquo;2+2&rdquo; (always without the quotes unless instructed otherwise).
+The screen will look like this<pre>
+>>> 2+2 
+4
+>>>
+</pre>You entered the &ldquo;2+2&rdquo;.  Python responded with &ldquo;4&rdquo; and told
+you it was ready for more input.</li>
+
+
+
+<P/><li>What you must remember when working with Python is that
+<i>your entire calculation must be entered on one line</i> and
+<i>that line cannot begin with any extra blanks</i>.
+<P/>
+If you do not follow these rules, you will get a syntax error.
+</li>
+
+
+
+<P/><li>To see what a syntax error looks like enter<pre>
+
+>>> 2+2%
+  File "&lt;stdin&gt;", line 1
+    2+2%
+      ^
+SyntaxError: invalid syntax
+
+</pre>There is no problem with making syntax errors.  When you make one,
+simply try again.</li>
+
+
+
+<P/><li>Here is what you will see if you put a space before the
+&ldquo;2+2&rdquo;<pre>
+
+>>>    2+2
+  File "&lt;stdin&gt;", line 1
+    2+2
+    ^
+SyntaxError: invalid syntax
+
+</pre></li>
+
+
+
+<P/><li>Spaces to separate the things you put on a line are allowed.  For
+example,<pre>
+
+>>> 2  +  2
+4
+
+</pre></li>
+
+
+
+<P/><li>Try calculating each of the following:<pre>
+3+4
+4+3
+3-4
+4-3
+3*4
+4*3
+3**4
+4**3
+
+</pre>Keep playing with these things until you can explain the meaning of
+<nobr><tt>*</tt></nobr> and <nobr><tt>**</tt></nobr>.</li>
+
+</ol>
+
+Have you seen some anomalies with real numbers?  These anomalies are
+a bit difficult to explain and you may want to stay with integers when
+in grade 6.
+
+<p>&nbsp;</p><p><b>Hardware Quirks and the Way Division Works</b></p>
+<ol>
+
+<P/><li>Because real numbers, such as 1/3 or 0.333333..., 
+often involve infinite expansions and because computers use
+binary numbers <i>which have different decimal expansions than we
+are used to</i>, you will find that arithmetic with real numbers provide
+some surprising results. For example, try <nobr><tt>1/5</tt></nobr>.  The weird result
+you get is close to the answer you expect but it is a bit off because
+<nobr><tt>1/5</tt></nobr> is an infinite decimal in the binary number system.
+<P/>
+So, <i>never expect exact answers when working with real numbers.</i>
+
+</li>
+
+
+
+<P/><li>Another hardware quirk is that computers have different circuitry
+for real number arithmetic than they have for integer arithmetic.
+Compare what you get for <nobr><tt>11.0/3.0</tt></nobr> with <nobr><tt>11/3</tt></nobr>.  In the latter
+case, the computer is telling you the whole number of 3's that can be
+in 11.
+</li>
+
+
+
+<P/><li>Try some more divisions.
+</li>
+
+
+
+<P/><li>Of course, one reason we have software is so we won't have to put
+up with all the hardware quirks.  To make Python divide in a more reasonable
+way do this<pre>
+>>> from __future__ import division
+>>>
+</pre>Now try other divisions with integers and with real numbers.</li>
+
+
+
+<P/><li>The ability to ask: &ldquo;What is the whole number of threes that
+go into eleven?&rdquo; is still there but now you have to write <nobr><tt>//</tt></nobr>
+instead of <nobr><tt>/</tt></nobr>, as in<pre>
+>>> 11//3
+3
+>>>
+</pre></li>
+
+
+
+<P/><li>You might want to know what the remainder is when you divide
+3 into 11.  Try <nobr><tt>11%3</tt></nobr>.
+</li>
+
+</ol>
+
+<p>&nbsp;</p><p><b>Parentheses and Order of Operands</b></p>
+These are also sixth grade topics.
+<ol>
+
+<P/><li>Try:<pre>
+>>> x = 5+2
+>>> y = 3-4
+>>> x-y
+8
+>>> (5+2)-(3-4)
+8
+</pre>Why do the latter two Python calculations produce the same answer?  Would 
+they be the same if the parentheses were removed?</li>
+
+
+
+<P/><li>Assign other values to <nobr><tt>x</tt></nobr>, <nobr><tt>y</tt></nobr>, and <nobr><tt>z</tt></nobr> and experiment 
+calculating things like
+<nobr><tt>x/y+z</tt></nobr> with different operators and parentheses.  Are the results 
+as you expect?
+<P/>
+What you are doing here is making up examples that illustrate the need
+for parentheses and why the order of the operands is often important.
+This leads to a nice introduction of the commutative property because
+we have seen that subtraction is not commutative but addition is.
+</li>
+
+
+
+<P/><li>Not only the order of the operands but also combination of
+operators makes a difference.  Some operators like <nobr><tt>*</tt></nobr>, <nobr><tt>/</tt></nobr>,
+<nobr><tt>//</tt></nobr>, and <nobr><tt>/</tt></nobr> take precedence over others like <nobr><tt>+</tt></nobr> and <nobr><tt>-</tt></nobr>.
+Which of the following are equal?<pre>
+
+5-3/2
+(5-3)/2
+5-(3/2)
+5+(-3/2)
+
+</pre></li>
+
+</ol>
+
+<p>&nbsp;</p><p><b>Variables</b></p>
+
+It takes some time to get used to the idea of a variable and grade 6 
+isn't too early to begin.
+
+<ol>
+
+
+<P/><li>Try this<pre>
+>>> x = 2
+>>>
+</pre>You have just told Python that, for the time being when you say
+&ldquo;x&rdquo; you mean &ldquo;2&rdquo;.</li>
+
+
+<P/><li>Try some arithmetic expressions with <nobr><tt>x</tt></nobr>: <nobr><tt>x+3</tt></nobr>, <nobr><tt>x-3</tt></nobr>,
+<nobr><tt>3**x</tt></nobr>, and so forth.
+</li>
+
+
+<P/><li>Now try this<pre>
+>>>y = x
+>>> x = 3
+>>>
+</pre>What do you expect <nobr><tt>x</tt></nobr> and <nobr><tt>y</tt></nobr> to represent now? Remember
+<nobr><tt>y</tt></nobr> is given the same value as <nobr><tt>x</tt></nobr> <i>before</i> the
+value of <nobr><tt>x</tt></nobr> is changed.</li>
+
+
+<P/><li>You can always find the value of a variable this way<pre>
+>>> x
+3
+</pre></li>
+
+
+<P/><li>Try some arithmetic expressions of your own after giving values to <nobr><tt>x</tt></nobr> and <nobr><tt>y</tt></nobr>.
+</li>
+
+</ol>
+
+<P><TABLE BORDER><TR><TD><FONT SIZE="-1">
+This is the one place where you must really
+watch out if teaching Python and mathematics together.  In mathematics
+a variable is assigned a value for one problem and it doesn't change
+until you start a new problem.  In computer science a variable can
+change its value wheresoever you want it to.   Many of us believe that
+this fact makes computer programming <i>harder</i> than mathematics.  When
+debugging programs, lots 
+of time can be wasted finding out why some variable acquired a crazy
+value!
+</FONT></TD></TR></TABLE></P>
+
+
+<p>&nbsp;</p><p><b>Kinds of Numbers</b></p>
+
+Off the shelf, Python can deal with two kinds of numbers, <i>integers</i>
+and <i>real numbers</i>.  Integers are called <nobr><tt>int</tt></nobr>s and real
+numbers are called <nobr><tt>float</tt></nobr>s.  Python recognizes a number to be
+an int if there is no decimal point and a float if there is
+a decimal point.
+
+The word &ldquo;float&rdquo; has historical origins and is useful today because
+it emphasizes that the results you get with floats are not exactly
+the same as the results you get with real numbers.
+<P>
+Python
+has functions for converting ints to floats and vice versa.
+
+<ol>
+
+
+<P/><li>What is the effect of <nobr><tt>float(22)</tt></nobr>?  Can you assign something to <nobr><tt>a</tt></nobr>
+so that you will get the same effect with <nobr><tt>float(a)</tt></nobr>?
+
+</li>
+
+
+
+<P/><li>Experiment with <nobr><tt>int(x)</tt></nobr> where <nobr><tt>x</tt></nobr> is a real number.
+</li>
+ 
+
+
+<P/><li>If x is a variable representing a real number, how would you round
+it to an integer using <nobr><tt>int</tt></nobr>?
+</li>
+
+
+</ol>
+<P><TABLE BORDER><TR><TD><FONT SIZE="-1">
+Extra: You won't have time for this today.
+<p>&nbsp;</p><p><b>Some exercises</b></p>
+
+Still at the sixth grade level here.
+<ol>
+
+<P/><li>Convert 158 minutes to hours and minutes.
+</li>
+
+
+
+<P/><li>Convert 67 hours 21 minutes to minutes.
+</li>
+
+
+
+<P/><li>Convert 157 inches to feet and inches.
+</li>
+
+
+
+<P/><li>Convert 4 feet 5 inches to inches.
+</li>
+
+</ol>
+</FONT></TD></TR></TABLE></P>
+
+<p>&nbsp;</p><p><b>Importing a Tool for Fractions</b></p>
+
+<ol>
+
+
+<P/><li>To use fractions, do this<pre>
+>>> import rational_numbers
+Installing:
+ rational, numerator, denominator.
+For more information use help(rational), etc.
+
+>>>
+</pre></li>
+
+
+
+<P/><li>Fractions are called rationals. Consider this<pre>
+
+>>> f1
+rational(1, 2)
+>>> numerator(f1)
+1
+>>> denominator(f1)
+2
+</pre>Make your own fraction, assign it to the variable <nobr><tt>f2</tt></nobr> and check
+its numerator and denominator</li>
+
+
+
+<P/><li>Add <nobr><tt>f1</tt></nobr> and <nobr><tt>f2</tt></nobr>. If <nobr><tt>f2</tt></nobr> is <nobr><tt>rational(2,3)</tt></nobr> you will
+get <nobr><tt>rational(7,6)</tt></nobr>.
+</li>
+
+
+
+<P/><li>Try arithmetic with other fractions.
+</li>
+
+
+
+<P/><li>There is no separate data type for a mixed number but you can
+force any rational to be converted to a real number.<pre>
+
+>>> float(rational(11,6))
+1.8333333333333333
+
+</pre>Try some of your own examples.</li>
+
+</ol>
+
+
+<P><TABLE BORDER><TR><TD><FONT SIZE="-1">
+Extra:  You won't have time for this today.
+<P>
+As an example of using this to teach mathematical properties, you could
+make examples of the
+distributive property three ways: with integers, with real numbers, and
+with fractions.  
+<P>
+However, do remember when you do 
+<nobr><tt>x*(u+v)</tt></nobr> and <nobr><tt>(x*u)+(x*v)</tt></nobr> for real numbers that the answers you
+get will not necessarily be exactly the same.  Why?
+</FONT></TD></TR></TABLE></P>
+
+<p>&nbsp;</p><p><b>Functions</b></p>
+
+Grade seven seems to be a good place to introduce the concept of
+function which we can think of as a process for making a new number
+out of an old one.
+
+
+To define (or explain) a function you have to 
+
+<UL>
+<LI>Give the a name.
+<LI>Give a name to the number you start with.
+<LI>Explain the process itself.
+</UL>
+
+The reason you name the function is so you can refer to it later.  The
+reason you name the starting value is because you have to be able to
+refer to it when you are explaining the process.
+
+Here's an example:
+
+<pre>
+
+>>> edit()
+</pre>
+
+
+Python provides no new prompt until a function has been defined.
+Instead, this window pops up:
+<P/>
+</p><center><image src="edit.jpg" width="50%"></center><p>
+<P/>
+In this window we define the function.  First, enter this line
+<BR>&nbsp;<BR>
+<pre>
+
+def f(x):
+</pre>
+
+
+This will tell Python that we are not asking to have an
+expression evaluated.  Rather we are making a definition.
+We are defining a function named &ldquo;f&rdquo;.  When we get around
+to explaining 
+the function's process, we will use
+the variable <nobr><tt>x</tt></nobr> to represent the starting value.
+<P>
+To keep things simple, suppose the process of creating another
+number is merely to add one to the starting value.  Then
+our second line looks
+like this:
+
+<pre>
+
+   return x + 1
+</pre>
+
+
+which tells Python that the new number is going to be <nobr><tt>x+1</tt></nobr>.
+Python already knows that <nobr><tt>x</tt></nobr> is the name we use for the starting
+value.
+<P>
+The starting value is usually called the function's <i>argument</i>.
+<P>
+Here is what our complete definition looks like when entered
+in the edit window
+<P/>
+</p><center><image src="f.jpg" width="60%"></center><p>
+<P/>
+Before we can use our new function we must check it by clicking 
+on &ldquo;check&rdquo;.  If it checks out OK, we click on &ldquo;load&rdquo;.  If
+not, we edit it and try again.
+
+Once <nobr><tt>f</tt></nobr> has been defined we can use it in Python expressions
+like this
+
+<pre>
+
+>>> f(3)
+4
+>>> 2 * f(-1)
+0
+>>>
+</pre>
+
+
+It is Python's job to take the number in parentheses, assign
+it to the variable <nobr><tt>x</tt></nobr>, then evaluate the return expression, 
+then return the value obtained.  What &ldquo;return&rdquo; 
+means is for the first calculation, is to continue calculating as
+if we had typed <nobr><tt>4</tt></nobr> instead of <nobr><tt>f(3)</tt></nobr>  and, for the
+second calculation, to continue calculating as if we had
+typed <nobr><tt>0</tt></nobr> instead of <nobr><tt>f(-1)</tt></nobr>.
+<P>
+Here is another way to look at function definition.  Suppose we wanted
+to convert a fahrenheit value to centigrade.  A somewhat long-winded
+way of doing this is:
+
+<pre>
+
+>>> fahr = 18
+>>> centigrade = 5*(fahr-32.0)/9
+>>> centigrade
+-7.7777777777777777
+</pre>
+
+
+Wouldn't it be nicer to just write the following?
+
+<pre>
+
+>>> centigrade(18)
+-7.7777777777777777
+>>> centigrade(-40)
+-40.0
+</pre>
+
+
+<P><TABLE BORDER><TR><TD><FONT SIZE="-1">
+Isn't the second result curious?  I learned this fact, while teaching at the
+University of Calgary in Alberta.  It happened to be -40 that day.
+</FONT></TD></TR></TABLE></P>
+
+
+The starting values 18 and -40 are the arguments.
+<P>
+Here is a definition for such a <nobr><tt>centigrade</tt></nobr> function:
+<pre>
+
+def centigrade(fahr):
+    return 5*(fahr-32.0)/9
+</pre>
+
+
+You are about ready to try this for yourself.  Of course, you will make
+some mistakes from time to time.  There are two kinds of mistakes
+
+<UL>
+<LI> <strong>Syntax errors</strong> these are mistakes that confuse Python because
+you are not writing its language correctly.  These are the kind of
+mistakes that will be found when you click on <nobr><tt>check</tt></nobr>.
+
+<LI> <strong>Logic errors</strong> these are mistakes that happen when Python
+understands what you want and what you want is wrong.  You will not
+find these errors until you test your function.  (And maybe not even
+then.) 
+</UL>
+
+To fix a logic error you need to re-edit the function.  To re-edit
+a function named <nobr><tt>f</tt></nobr> do this
+<pre>
+
+>>> edit(f)
+</pre>
+
+
+For these exercises, use the fact that a kilometer is six tenths of 
+a mile.
+<ol>
+
+
+<P/><li>Write and test a function named <nobr><tt>kilometer</tt></nobr> that converts miles to kilometers.
+</li>
+
+
+<P/><li>Write and test a function named <nobr><tt>mile</tt></nobr> that converts kilometers
+to
+miles.
+</li>
+
+
+<P/><li>Test <nobr><tt>mile(kilometer(60))</tt></nobr> and <nobr><tt>kilometer(mile(100)</tt></nobr>.
+</li>
+
+</ol>
+
+
+<p>&nbsp;</p><p><b>Drawing Graphs</b></p>
+
+To draw graphs in K12Python you must do this first:
+
+<pre>
+
+>>> import graphing
+Installing:
+ a Graph class; enter help(Graph) for more info
+</pre>
+
+
+<ol>
+
+<P/><li>Graph your <nobr><tt>kilometer</tt></nobr> with <nobr><tt>Graph(kilometer)</tt></nobr>. 
+</li>
+
+
+<P/><li>Define a function <nobr><tt>g</tt></nobr> which returns 3 times the 
+cube of its argument.  Graph it.  The graph looks real bad
+doesn't it?  You need to change the scale.  Try this<pre>
+
+Graph(g,xfactor=0.01,width=600)
+</pre>You should see something
+like this graph. 
+<P/>
+</p><center><image src="g_graph.jpg" width="60%"></center><p> </li>
+
+</ol>
+You can also adjust the yaxis and the height.  Use <nobr><tt>yfactor=</tt></nobr> and
+<nobr><tt>height=</tt></nobr>, respectively.
+
+
+<p>&nbsp;</p><p><b>Restarting K12Python; Saving, Reloading, and Changing Folders</b></p>
+
+Now that you have some functions written, you may want to save them for
+another day.  You can do this as you shut K12Python down.
+
+<pre>
+
+>>> quit()
+Save this workspace? (y, n, or ?) y
+saved to workspace
+</pre>
+
+
+This does not work if you shut down K12Python by simply closing the
+window.  The next time you start K12Python, you will be asked if you
+want to reload that workspace.  If you answer by entering &ldquo;y&rdquo;, all
+the functions and variables from your saved workspace will be reloaded.
+Why don't you try quiting, 
+restarting, and reloading?
+<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>
+<P><TABLE BORDER><TR><TD><FONT SIZE="-1">
+Extra:  You won't have time for this today.
+<P>
+If you want to be able to save more than one workspace you must
+understand how the folders and files work in your computer.  If you do, then
+know that workspaces are saved in a file named <nobr><tt>saved_workspace</tt></nobr> in
+the current folder.  If you want to save different workspaces, then you
+must save them in different current folders.  To change the current
+folder use <nobr><tt>changeFolder()</tt></nobr> which will pop up a window you can 
+browse for the folder you want.
+<P>
+You can save or reload a workspace at anytime.  Be sure you are in
+the correct current folder for that workspace and then use <nobr><tt>save()</tt></nobr>
+to save your current workspace or <nobr><tt>load()</tt></nobr> to load the workspace
+of the current folder into K12Python.  Whenever you load a workspace,
+you are asked if you want to clear out K12Python before the loading
+takes place.
+<P>
+If you have a function or variable, say its name is <nobr><tt>k</tt></nobr>, that you no
+longer want, then do this
+<pre>
+
+>>> del k
+>>>
+</pre>
+
+The variable will be removed from K12Python but not from any workspace
+where it has been saved.
+<P>
+K12Python also has functions for reading and writing text files which
+will work with files in the current folder.  If you write a file with
+Notepad, you can read it with <nobr><tt>readString</tt></nobr>.  If you write a file with
+<nobr><tt>writeString</tt></nobr>, you can read it with Notepad.  Of course, you will
+want to learn more about how standard Python handles text before you
+try this.  Text in Python, and most programming languages, is called
+a &ldquo;string&rdquo;.
+
+</FONT></TD></TR></TABLE></P>
+
+<p>&nbsp;</p><p><b>Lists</b></p>
+
+For the eighth grade you will want to talk about averages and
+medians.  To do that you need to talk about lists of numbers.  In
+Python, lists of numbers are as easy to work with as numbers.  Some
+examples,
+
+<pre>
+
+>>> [1,2,3]
+[1, 2, 3]
+>>> [9,8,7]
+[1, 3, 2]
+>>> [1,2,3] + [9,8,7]
+[1, 2, 3, 1, 3, 2]
+>>> sorted( [4,2,8,10,-1,0] )
+[-1, 0, 2, 4, 8, 10]
+>>> x = [1,2,3]
+>>> y = [9,8,7]
+>>> x + y
+[1, 2, 3, 9, 8, 7]
+>>> sorted( x + y )
+[1, 2, 3, 7, 8, 9]
+</pre>
+
+
+<ol>
+
+<P/><li>Create a couple lists of your own and assign them to variables
+<nobr><tt>x</tt></nobr> and <nobr><tt>y</tt></nobr>
+</li>
+
+
+<P/><li>Try to apply the function <nobr><tt>sum</tt></nobr> to your lists.  What does it
+do?
+</li>
+
+
+<P/><li>Try to apply the function <nobr><tt>min</tt></nobr> to your lists.  What does it 
+do?
+</li>
+
+
+<P/><li>Try to apply the function <nobr><tt>max</tt></nobr> to your lists.  What does it
+do?
+</li>
+
+
+<P/><li>Try to apply the function <nobr><tt>len</tt></nobr> to your lists.  What does it
+do?
+</li>
+
+
+<P/><li>Write a function of your own.  Name it <nobr><tt>average</tt></nobr>.  Your
+function should start with a list and return a float.  The returned
+float should be the average of the values in the list. You will, of
+course, be using both the <nobr><tt>sum</tt></nobr> and the <nobr><tt>len</tt></nobr> functions to 
+accomplish this.
+</li>
+
+</ol>
+
+<p>&nbsp;</p><p><b>Indexing Lists</b></p>
+
+
+
+
+It is possible to play with the individual numbers in a list.
+Consider this
+
+<pre>
+
+>>> t = [1,2,3]
+>>> t
+[1, 2, 3]
+>>> t[0]
+1
+>>> t[1]
+2
+>>> t[2]
+3
+</pre>
+
+
+The numbers 0,1, and 2 are list indexes.  The numbers 1,2,3 are list
+values.  We <i>always</i> start counting list indexes at 0 and go up
+by one each time we move to the right.  List values on the, other hand
+can be anything.
+
+<pre>
+
+>>> t = [1,1,1]
+>>> len(t)
+3
+>>> sum(t)
+3
+>>> len(t)
+3
+>>> u = [5,3,[1,1]]
+>>> u[2]
+[1,1]
+>>> len(u)
+3
+>>> sum(u)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in ?
+TypeError: unsupported operand type(s) for +: 'int' and 'list'
+>>>
+</pre>
+
+
+This last use of the <nobr><tt>sum</tt></nobr> function didn't work because the list <nobr><tt>u</tt></nobr> does not
+consist solely of numbers.  We can make a list of lists, but then
+we cannot add all the numbers!
+
+We can, however, change individual values in a list.  Consider this
+
+<pre>
+
+>>> u[2] = 4
+>>> u
+[5, 3, 4]
+</pre>
+
+
+<ol>
+
+
+<P/><li>Find the median of [8,2,9,3,6].  (Sort it and take the middle
+value.)
+</li>
+
+
+
+<P/><li>The range of a list of numbers might be defined as the difference
+between the highest and lowest numbers in the list.  Write and test
+a function <nobr><tt>range</tt></nobr> which returns the range of its list argument.
+</li>
+
+
+
+<P/><li>If <nobr><tt>lst</tt></nobr> is a list with an odd number of values, what is
+<nobr><tt>lst[ len(lst)//2 ]</tt></nobr>?  (Hint: &ldquo;It is the index of that value
+which &hellip;&rdquo; .)  Test your answer with some experiments.
+</li>
+
+
+
+<P/><li>If <nobr><tt>lst</tt></nobr> is a list with an even number of values, what is
+<nobr><tt>lst[ len(lst)//2 ]</tt></nobr>?  Test your answer with some experiments.
+</li>
+
+
+</ol>
+
+One definition of <i>median</i> of a list of numbers says that
+the median the
+middle of value of the same list, sorted.  If the list has an
+even number of values and there are two middle values. Here it
+is convenient to take the
+larger (rightmost) one as the median.  With this definition, the formula you
+have been testing can be be used to write a function which will
+return the median of a list of numbers. Here it is 
+
+<pre>
+
+def median(lst):
+    middle = len(lst)//2
+    sortedlst = sorted( lst )
+    return sortedlst[middle]
+</pre>
+
+
+Notice that this function definition involves more than just a
+<nobr><tt>return</tt></nobr> statement.  It is always possible to put extra statements
+before the return statement.  We do this when we want to create
+variables that will make the expression in the return statement
+easier to write.
+<P>
+One important caveat:  <i>All the statements in your function definition
+must be indented exactly the same amount!</i>
+
+<p>&nbsp;</p><p><b>About K12Python</b></p>
+
+K12Python was written at the Oklahoma School of Science and Mathematics
+by me, Dr. J Adrian Zimmer.  Its purpose is to provide a version of
+Python that is even more encouraging of student experimentation than
+is standard Python. The current version is 0.1.1. 
+<P>
+When you start K12Python, all the differences 
+between it and standard Python are listed as a startup message.
+When you import either of K12Python's modules, <nobr><tt>rational_numbers</tt></nobr>
+and <nobr><tt>graphing</tt></nobr>, the things they add to Python are again listed
+as the module imports.  (The <nobr><tt>rational_numbers</tt></nobr> module, by the
+way, was not written by me.  All I did was repackage a version that
+can be found at the Python web site.)
+<P>
+K12Python is available as open source software from my web site.  This web
+site is being redesigned during the summer of 2007 so I am not exactly sure where to
+tell you to look.  Try
+
+<pre>
+
+http://jazimmer.net/DoPython
+http://teach-and-learn-computer-programming.info/k12python
+http://static.jazimmer.net/k12python
+http://static.teach-and-learn-computer-programming.info/k12python
+</pre>
+
+in that order.
+<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>&nbsp;<BR>
+<P><TABLE BORDER><TR><TD><FONT SIZE="-1">
+Extra: you won't have time for this today.
+<P>
+My way of learning mathematics has always been to find a problem I find
+a bit tricky and solve it.  Here are some suggestions which I
+think <i>might</i>&nbsp; 
+be right for you.  Yes, they
+are computer problems rather than math problems, but solving them requires a bit of what is known
+as &ldquo;mathematical maturity&rdquo;.
+
+<ol>
+
+
+<P/><li>Can you rewrite the <nobr><tt>median</tt></nobr> function so that there is no
+need for the variables <nobr><tt>middle</tt></nobr> and <nobr><tt>sortedlst</tt></nobr>?
+</li>
+
+
+
+<P/><li>Suppose<pre>
+
+>>> x = 2
+2
+>>> y = 3
+3
+
+</pre>How would you swap the values assigned to <nobr><tt>x</tt></nobr> and <nobr><tt>y</tt></nobr> if you
+didn't know they were 2 and 3?  (Hint: you will need to use a third
+variable.)</li>
+
+
+
+<P/><li>Suppose you didn't want to write <nobr><tt>float(3)</tt></nobr> but wanted to write
+<nobr><tt>real(3)</tt></nobr> instead.  Find two ways of enabling this.
+</li>
+
+
+</ol>
+
+Answers:
+<ol>
+
+<P/><li><pre>
+def median(lst):
+   return sorted( lst )[ len(lst)//2 ]
+</pre></li>
+
+
+
+<P/><li><pre>
+>>> z = x
+>>> x = y
+>>> y = z
+>>>
+</pre></li>
+
+
+
+<P/><li>The most obvious way would be to enter <nobr><tt>edit</tt></nobr> and then make
+this definition<pre>
+def real(x):
+   return float(x)
+
+</pre>Another way relies on the fact that variables in Python need not
+refer to only numbers and lists of numbers, they can refer 
+to functions.  So you can name a variable <nobr><tt>real</tt></nobr> and assign the
+function we know as <nobr><tt>float</tt></nobr> to it.  As in, <nobr><tt>real = float</tt></nobr>.</li>
+
+</ol>
+
+</FONT></TD></TR></TABLE></P>
+
+
+
+
+
+</body>
+</html>
+

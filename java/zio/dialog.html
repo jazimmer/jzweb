@@ -1,0 +1,23 @@
+<HTML><BODY BGCOLOR="#fafafa"><P><TABLE WIDTH="100%"><TR><TD ALIGN="left" WIDTH="15%"><FONT SIZE="+1"><A HREF="teachers.html">context</A></FONT></TD><TD ALIGN="center" WIDTH="40%"><CENTER><H1>-  Subclassing for I/O  -</H1></CENTER></TD><TD ALIGN="right" WIDTH="15%"><FONT SIZE="+1"><A HREF="http://jazimmer.net/">author</A></FONT></TD></TR></TABLE><P>What students want these days is a GUI or even a multimedia approach.
+This past year, I emphasized GUI programming from day one.  Our programs
+generated a kind of interactive window with a line of text that the
+program controlled and a line that the user controlled.  I called the
+class which generated these things a <CODE>DialogBox</CODE> class.<P>A <CODE>DialogBox</CODE> object
+ shows a window with a line of displayed text and a
+data entry line.  The class has a <CODE>processInput()</CODE> method that is executed 
+whenever the user enters input and a <CODE>writeString()</CODE> method that rewrites
+the displayed text.<P>My approach was "objects first"&#151;something I had on my mind from
+having tried BlueJ the year earlier.  Only my objects were all instances
+of subclasses of one class.  Students used the <CODE>DialogBox</CODE> class by
+overriding the <CODE>processInput()</CODE> method in a subclass. For example,<P><CODE>public&nbsp;void&nbsp;processInput(&nbsp;String&nbsp;userin&nbsp;)&nbsp;{<BR>&nbsp;&nbsp;&nbsp;writeString(userin);<BR>}<BR><BR>
+</CODE><P>defines a <CODE>processInput()</CODE> that will simply echo back what the user types.<P>Other fairly simple examples illustrate instance variables.  A chat
+example showed how two objects become aware of each other.<P>Although this approach emphasized objects early on, I did not go into
+lots of detail about how things work.  At first I told students that
+"The <CODE>DialogBox</CODE> class is a complete GUI program with one thing missing:
+the way it responds to user input. You have to add that missing piece.
+Do it by making another class which is just like <CODE>DialogBox</CODE> but for
+a new version of the <CODE>processInput()</CODE> method."<P>THE zio PACKAGE DOES NOT YET SUPPORT <CODE>DialogBox</CODE>.  It will REAL SOON NOW.<P>My old version of <CODE>DialogBox</CODE> was a dead end.  I had no good way to teach
+students how to make their own <CODE>DialogBox</CODE> classes.  A major reason for
+creating the GUI part of the zio package is to overcome that limitation.<P>More about the zio package 
+<A HREF="http://jazimmer.net/source_code/java/zio.html">here</A>.
+<P><PRE></PRE><P><TABLE WIDTH="100%"><TR><TD ALIGN="left" WIDTH="15%"><FONT SIZE="+1"><A HREF="teachers.html">context</A></FONT></TD><TD ALIGN="center" WIDTH="40%"><FONT SIZE="-1">Jun 25, 2005</FONT></TD><TD ALIGN="right" WIDTH="15%"><FONT SIZE="+1"><A HREF="http://jazimmer.net/">author</A></FONT></TD></TR></TABLE></BODY></HTML>

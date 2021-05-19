@@ -1,0 +1,24 @@
+<HTML><BODY BGCOLOR="#fafafa"><P><TABLE WIDTH="100%"><TR><TD ALIGN="left" WIDTH="15%"><FONT SIZE="+1"><A HREF="teachers.html">context</A></FONT></TD><TD ALIGN="center" WIDTH="40%"><CENTER><H1>-  Deemphasize I/O  -</H1></CENTER></TD><TD ALIGN="right" WIDTH="15%"><FONT SIZE="+1"><A HREF="http://jazimmer.net/">author</A></FONT></TD></TR></TABLE><P>The idea behind this approach is to emphasize basic data types and converting
+data from one type to another.  Arrays are also introduced early.  Not much
+is said about I/O.<P>For writing on the command window  use <CODE>Zio.show()</CODE> and
+for reading and writing on files use <CODE>InOut.readText()</CODE> and 
+<CODE>InOut.writeText()</CODE>.  Example,<P><CODE>public&nbsp;static&nbsp;void&nbsp;main(&nbsp;String&nbsp;[]&nbsp;ignore&nbsp;)&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;theFile&nbsp;=&nbsp;InOut.readText("someFileName.txt");<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Zio.show(theFile);&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;InOut.writeFile("someFileName.txt","This&nbsp;material&nbsp;has&nbsp;been&nbsp;censored.");<BR>}<BR><BR>
+</CODE><P>which will read an entire file, dump it to the command window, 
+and rewrite the file so that its entire contents is "This material
+has been censored."<P>This approach requires very little time to explain I/O.  
+Later when students know something about arrays, they can use additional
+methods in the <CODE>Zio</CODE> class which take the <CODE>String</CODE>s obtained with
+<CODE>InOut.readText()</CODE> and separate them into lines, characters, or tokens.<P>The use of
+<CODE>Zio.show</CODE> is unnecessary.  You could use <CODE>System.out.println()</CODE>
+just as well.  Two reasons to use <CODE>Zio.show()</CODE> are<P><UL>
+
+
+<LI> It only writes <CODE>String</CODE>s, not <CODE>int</CODE>s or <CODE>double</CODE>s.  This
+restriction forces students to remain aware of the differences between 
+data types.
+
+<LI> It exists in the same class as other useful methods and so using
+it minimizes the number of classes students must be aware of.
+
+</UL><P>The <CODE>InOut</CODE> and <CODE>Zio</CODE> classes are freely available 
+<A HREF="http://jazimmer.net/source_code/java/zio.html">here</A>.<P><P><P><PRE></PRE><P><TABLE WIDTH="100%"><TR><TD ALIGN="left" WIDTH="15%"><FONT SIZE="+1"><A HREF="teachers.html">context</A></FONT></TD><TD ALIGN="center" WIDTH="40%"><FONT SIZE="-1">Jun 25, 2005</FONT></TD><TD ALIGN="right" WIDTH="15%"><FONT SIZE="+1"><A HREF="http://jazimmer.net/">author</A></FONT></TD></TR></TABLE></BODY></HTML>
