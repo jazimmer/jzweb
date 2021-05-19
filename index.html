@@ -1,0 +1,90 @@
+<HEAD>
+<TITLE>J. Adrian Zimmer</TITLE>
+<LINK HREF="/css/home.css" media="screen" rel="stylesheet" type="text/css" />
+<SCRIPT><!--
+if (document.images) {
+
+     LastSlide = 6
+     WaitInterval = 3500
+     Slides = new Array(
+                "/media/j6mo.jpg",
+                "/media/j6.jpg", 
+                "/media/j24.jpg",
+                "/media/j35.jpg", 
+                "/media/j45.jpg",
+                "/media/j55.jpg",
+                "/media/j65.jpg"
+              );
+    var SlideCount=0;
+ 
+    function init_slides() {
+       SlideCount = 0
+       Timer = setTimeout("show_next_slide()",1000)
+    }
+
+    function show_next_slide() {
+       document.slideScreen.src = Slides[SlideCount]
+       if(SlideCount<LastSlide) {
+         SlideCount += 1 
+         Timer = setTimeout("show_next_slide()",WaitInterval)
+       } else {
+         Timer = null
+       }
+    }
+
+    function restart_slides() {
+        SlideCount=0;
+        if(Timer!=null) clearTimeout(Timer);
+        show_next_slide()
+    }
+
+    var Timer = null
+
+}
+//--></SCRIPT>
+</HEAD>
+<BODY>
+
+<H1> J Adrian Zimmer </H1>
+
+
+<DIV CLASS='pic'>
+  <IMG SRC="/media/j65.jpg" ALT="[View of Me]" 
+   NAME="slideScreen" onclick="restart_slides()">
+</DIV>
+
+<DIV CLASS='text'>
+   <P>
+   I was raised in Nebraska but have lived in Canada, Denmark, 
+   and Iran as well as South Carolina, Oklahoma, North Dakota,
+   and Massachusetts.
+   </P><P>
+   <A HREF="ZimmerEducation.html">Educated</A> through
+   a postdoc in mathematics,
+   my 
+   <A HREF="ZimmerPublications.html">publications</A>
+   include two books.  
+</P><P>
+   I am retired from 
+   <A HREF="ZimmerTeaching.html">teaching</A>
+   mathematics and computer science and 
+   live in Lexington, Massachusetts.
+   </P>
+</DIV>
+
+<DIV CLASS='epilog' STYLE='margin-top:0'>
+   <DIV CLASS='date'>June 2020</DIV>
+   <SPAN CLASS='links'>
+     <A HREF="https://cogitamus.substack.com/welcome">Cogitamus</A>
+     <A HREF="6goals.html">Six Daily Goals</A>
+   </SPAN>
+   <DIV CLASS='contact'>
+     <A HREF="http://hilr.dce.harvard.edu/">HILR</A>
+   </DIV>
+</DIV>
+
+<SCRIPT>init_slides()</SCRIPT>
+
+</BODY>
+</HTML>
+

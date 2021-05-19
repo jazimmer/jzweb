@@ -1,0 +1,328 @@
+<html>
+   <head>
+   <script language='javascript'>
+      var breadcrumbs = []
+
+      function find(elt) {
+         for( var i=0; i<breadcrumbs.length; i+=1 ) {
+            if( elt==breadcrumbs[i] ) return i
+         }
+         return -1
+      }
+
+      function remove(elt) {
+         var i = find(elt)
+         if( i>=0 ) {
+            while(i<breadcrumbs.length-1) {
+               breadcrumbs[i] = breadcrumbs[i+1]
+               i+=1
+            }
+            breadcrumbs.pop()
+         }
+      }
+    
+      function flip(from, to){
+         leave(from); enter(to);
+      }
+
+      function leave(from) {
+         document.getElementById(from+"-qu").style.display = "none"
+         document.getElementById(from+"-an").style.display = "none"
+         document.getElementById(from+"-ref").style.display = "none"
+         document.getElementById(from+"-link").style.display = "none"
+      }
+      
+      function enter(to) {
+         remove(to) 
+         breadcrumbs.push(to)
+         document.getElementById(to+"-qu").style.display = "block"
+         document.getElementById(to+"-an").style.display = "block"
+         document.getElementById(to+"-ref").style.display = "block"
+         document.getElementById(to+"-link").style.display = "block"
+      }
+
+      function backup() {
+         var leaving = breadcrumbs.pop()
+         var entering = breadcrumbs[breadcrumbs.length-1]
+         flip(leaving,entering)
+      }
+   </script>
+
+   <style>
+      .question {
+         display: list-item;
+         list-style-type: square;
+         padding-right: 20px;
+      }
+      a:link {   /* remember order of these things matters */
+          color: #0000FF;
+          text-decoration:underline;
+      }
+      a:visited {
+          color: #800080;
+          text-decoration:underline;
+      }
+      a:hover {
+          color: #FF0000;
+      }
+      a:active {
+          color: #800080;
+          text-decoration:none;
+      }   
+      </style> 
+</head>
+
+<body onLoad="enter(1)" style='padding: 15px 20px 15px 20px;'>
+   <div style='width:100%; height:15px; text-align:center; font-size:130%'>Using Computer Science for General Education Requirements</div>
+   <div id="question">
+      <div id='6-qu' style='display:none; margin:25px 0px 15px 0px;' font-size:108%;display:none'><a href='#' onclick='backup();'><img align='left';
+      style='border-style:none; padding-right:6px;' float='left;' src='back_arrow.gif'/></a>Examples of how Haskell works with   functions .</div><div id='12-qu' style='display:none; margin:25px 0px 15px 0px;' font-size:108%;display:none'><a href='#' onclick='backup();'><img align='left';
+      style='border-style:none; padding-right:6px;' float='left;' src='back_arrow.gif'/></a> How can a helpful graduated curriculum be created? </div><div id='7-qu' style='display:none; margin:25px 0px 15px 0px;' font-size:108%;display:none'><a href='#' onclick='backup();'><img align='left';
+      style='border-style:none; padding-right:6px;' float='left;' src='back_arrow.gif'/></a>Examples of how Haskell functions can  manipulate more than numbers .</div><div id='8-qu' style='display:none; margin:25px 0px 15px 0px;' font-size:108%;display:none'><a href='#' onclick='backup();'><img align='left';
+      style='border-style:none; padding-right:6px;' float='left;' src='back_arrow.gif'/></a>Example of how working with Haskell can teach the  creation of abstractions .</div><div id='14-qu' style='display:none; margin:25px 0px 15px 0px;' font-size:108%;display:none'><a href='#' onclick='backup();'><img align='left';
+      style='border-style:none; padding-right:6px;' float='left;' src='back_arrow.gif'/></a> How can the makeSetOperation function be defined? </div><div id='9-qu' style='display:none; margin:25px 0px 15px 0px;' font-size:108%;display:none'><a href='#' onclick='backup();'><img align='left';
+      style='border-style:none; padding-right:6px;' float='left;' src='back_arrow.gif'/></a>Give  some examples  of the need to be precise when designing complex processes outside the realm of mathematics.  </div><div id='15-qu' style='display:none; margin:25px 0px 15px 0px;' font-size:108%;display:none'><a href='#' onclick='backup();'><img align='left';
+      style='border-style:none; padding-right:6px;' float='left;' src='back_arrow.gif'/></a> Isn't this example too abstract for the average student? </div><div id='1-qu' style='display:none; margin:25px 0px 15px 0px;' font-size:108%;display:none'> Why Use Computer Science as a General Education Requirement? </div><div id='2-qu' style='display:none; margin:25px 0px 15px 0px;' font-size:108%;display:none'><a href='#' onclick='backup();'><img align='left';
+      style='border-style:none; padding-right:6px;' float='left;' src='back_arrow.gif'/></a> Because  basic concepts of computer programming involve creative precise reasoning and are of use to almost everybody.</div><div id='3-qu' style='display:none; margin:25px 0px 15px 0px;' font-size:108%;display:none'><a href='#' onclick='backup();'><img align='left';
+      style='border-style:none; padding-right:6px;' float='left;' src='back_arrow.gif'/></a> Because  it possible to design a computer science course that develops proficiency with creative precise reasoning.</div><div id='10-qu' style='display:none; margin:25px 0px 15px 0px;' font-size:108%;display:none'><a href='#' onclick='backup();'><img align='left';
+      style='border-style:none; padding-right:6px;' float='left;' src='back_arrow.gif'/></a>In more detail, how does submitting answers through a  web site  help? </div><div id='4-qu' style='display:none; margin:25px 0px 15px 0px;' font-size:108%;display:none'><a href='#' onclick='backup();'><img align='left';
+      style='border-style:none; padding-right:6px;' float='left;' src='back_arrow.gif'/></a> Because  enrolling in such an introductory course will not slow down the development of programming skills or computer science knowlege.</div><div id='5-qu' style='display:none; margin:25px 0px 15px 0px;' font-size:108%;display:none'><a href='#' onclick='backup();'><img align='left';
+      style='border-style:none; padding-right:6px;' float='left;' src='back_arrow.gif'/></a> Because  students are not learning to do creative precise reasoning very well.</div>
+   </div>
+   <div id="answer">
+      <hr>
+      <div id='6-an' style='display:none'><p>An early (but by no means first) exercise might require students to write in Haskell the function</p>
+
+<p><tt>     f(x) = x<sup>3</sup> + 3x<sup>2</sup> + 3x - 2</tt></p>
+
+<p>An answer to this would be:</p>
+
+<pre><code>f x = x^3 + 3*x^2 + 3*x - 2
+</code></pre>
+
+<p>Notice that multiplication is made explicit with <code>*</code> and exponentiation with <code>^</code>.   Haskell is essentially a dialect of mathematics with a somewhat different syntax.   Seeing the same thing in two different representations starts students on the road to understanding abstractions.</p>
+
+<p>After some familiarity with functions is established, another problem could ask: what function is obtained by composing the above <code>f</code> with this <code>g</code></p>
+
+<pre><code>g x = x - 3
+</code></pre>
+
+<p>Multiple answers could be accepted, but all would be approximately of the form</p>
+
+<pre><code>h x = x^3 - 8*x^2 + 12 * x - 11
+</code></pre>
+
+<p>Later when students are more familiar with functions, problems with an increased level of abstraction could be introduced using Haskell's operator for composing functions.  A short example of this operator in use is  </p>
+
+<pre><code>h = f.g
+</code></pre>
+
+<p>which defines the same <code>h</code> as above.</p></div><div id='12-an' style='display:none'><p>By focusing on five things:</p>
+
+<ul>
+<li><p>Pick a subject related to creative precise reasoning. </p>
+
+<p>Such a subject is the concept of a function.  Functions are not just for numbers, they can manipulate symbols and even other functions.  When approached mathematically, functions require precise definitions.  Often a definition of a function requires a creative breakdown into simpler definitions.</p></li>
+<li><p>Pick a subject where it is possible to ask for creative work and
+still arrange for an objective, automated  evaluation of the outcome.</p>
+
+<p>It is difficult to learn to be creative and precise at the same time but that is exactly what is required when designing <em>any</em> system with interrelated processes.   The degree of precision required may vary but the need for it never goes away. </p>
+
+<p>Programming exercises require both creativity and precision.  Better yet computers can go a long way towards judging their correctness.  Practice with programming exercises prepares students for work planning complex systems that require less precision.</p></li>
+<li><p>Narrow the goals to those which directly support creative precise reasoning.  </p>
+
+<p>This must be done ruthlessly.  Otherwise there will be mission creep and
+other goals will crowd themselves into student brains.</p>
+
+<p>In particular, two subjects normally covered in an introductory course should be avoided:  i/o and objects.  Both concepts are an important part of programming.  However both concepts depend in one way or another on the concept of a function.  Both concepts may be learned more easily once that is mastered.  Neither concept is needed to acquire the skill of creative precise reasoning.  </p></li>
+<li><p>Provide students with exercises that range from easy to difficult in small steps.  </p>
+
+<p>This requires experience on the part of the course developers.  Going forward, it will also benefit from interactivity that allows students to share insights and confusions with instructors.</p></li>
+<li><p>Allow students to work in the dorm or at home while providing immediate feedback.</p>
+
+<p>Using web site technology to assign problems and evaluate answers works here&mdash;if the answers allow plenty of room for creativity and can still be evaluated effectively.  Exercises involving computer programming can satisfy these criteria.</p></li>
+<li><p>Provide students who need more practice with more practice.  </p>
+
+<p>Not easily done without computer support.</p></li>
+</ul>
+
+<p>By mastering such a course, a student has a skill which can easily be transferred to other subjects.  It is much easier to go from the precision required by mathematics to the precision required by designing fast food processes than the other way around. </p>
+
+<p>The course advocated here provides hands on experience writing arithmetic
+and symbolic functions in the Haskell programming language.  For more
+particular information see:</p></div><div id='7-an' style='display:none'><p>Algebras of sets and boolean values are often the first nonnumeric algebras that students 
+see.  Haskell can provide exercises involving both concepts.  Here is the
+definition of a function for logical implication</p>
+
+<pre><code>implies x y  =  (not x) || y
+</code></pre>
+
+<p>where <code>||</code> means "or".</p>
+
+<p>Here is the same function but named <code>==&gt;</code> and used like <code>+</code> or
+&times; as an operator</p>
+
+<pre><code>x ==&gt; y  =  (not x) || y
+</code></pre>
+
+<p>We use the word <em>operator</em> for a function whose name is written in symbols
+rather than letters and which is used in same style as a <code>+</code> or &times;
+might be used.  Notice that we continue to show students examples of how the
+same thing can have different representations.</p>
+
+<p>Set union and intersections can be defined as well.  Here is some Haskell
+notation one might use.  The definitions of these operators are not shown
+here.  What is shown is an equation asserting that the left hand and right
+hand sides are equal.</p>
+
+<pre><code>[1,2] +++ [2,3]  ==  [1,2,3]
+[1,2] *** [3,4]  ==  []
+</code></pre></div><div id='8-an' style='display:none'><p>One of the ways to teach students to create abstractions is to show them how to identify common patterns and then to write functions which will generate those common patterns.  This can be motivated as a way to avoid repetition.</p>
+
+<p>To make an example: again assume we have used Haskell to create two operators,
+<code>+++</code> and <code>***</code>, for set union and intersection.  Use these operators
+to create generalized union and intersection functions,
+<code>gUnion</code> and <code>gIntersect</code>.  Here are applications of the desired functions:</p>
+
+<pre><code>gUnion [ [1,2,5], [3,4,5], [2,5,7] ]    ==  [1,2,3,4,5,7]
+gIntersect [ [1,2,5], [3,4,5], [2,5,7] ]  ==  [5]
+</code></pre>
+
+<p>You can see <code>gUnion</code> finds the union of all the sets in a set of sets and <code>gIntersect</code> the intersection.  </p>
+
+<p>Here is a definition of <code>gUnion</code>.  It has two parts, the first explains
+that the union of an empty family of sets is empty and the second
+peels off one set so the its union with the rest can be found.</p>
+
+<pre><code>gUnion  []           = []
+gUnion  (set:rest)   = set +++ (gUnion rest)
+</code></pre>
+
+<p>Clearly this definition is recursive.  The details of how it works don't matter for current purposes.  What is important to notice is the similarity of this defintion of 'gUnion' with the definiton of 'gIntersection' below.   In particular, notice that if we alter the first definition by replacing <code>gUnion</code> with <code>gIntersect</code> and <code>+++</code> with <code>***</code>, we will obtain an exact copy of the second definition. </p>
+
+<pre><code>gIntersect []          = []
+gIntersect (set:rest)  = set *** (gIntersect rest)
+</code></pre>
+
+<p>This similarity can be exploited in Haskell.  We can avoid having to write what is structurally the same definition twice by defining a function <code>makeSetOperation</code> which creates and returns the <code>gUnion</code> or <code>gIntersect</code> function from, respectively, the <code>+++</code> or <code>***</code> operation.</p></div><div id='14-an' style='display:none'><p>To define <code>makeSetOperation</code> we can make it create another function <code>g</code> that
+will behave like one of <code>gUnion</code> or <code>gIntersect</code>.  All we have to do
+is define <code>g</code> in a context where <code>f</code> is a parameter and then say
+<code>makeSetOperation</code> is defined to be that <code>g</code>.  Here's the definition:</p>
+
+<pre><code>makeSetOperation f = g
+   where g f []         = []
+         g f (set:rest) = f set (g rest)
+</code></pre>
+
+<p>You see <code>f set (g rest)</code> instead of <code>set f (g rest)</code> because <code>f</code> is a function, not an operator.   To use <code>makeSetOperation</code> to make alternate definitions of <code>gUnion</code> and 'gIntersect' we may pass the arguments <code>+++</code> or <code>***</code> to the parameter <code>f</code>.</p>
+
+<pre><code>gUnion = makeSetOperation (+++)
+gIntersect = makeSetOperation (***)
+</code></pre></div><div id='9-an' style='display:none'><ul>
+<li><p>The evacuation plan for a large city in case of a nuclear meltdown.</p></li>
+<li><p>The functions of workers in a fast food restaurant.</p></li>
+<li><p>A military operation.</p></li>
+<li><p>Creation of a system of laws that work together.</p></li>
+</ul></div><div id='15-an' style='display:none'><p>People can obtain a greater understanding than they tend to think they can but they often have to be brought slowly to it.  That is why the course goals need to be kept focused.</p>
+
+<p>People understand things at different rates of speed.  An advantage of online exercises is that different students can do different amounts of practicing.  Moreover the immediate feedback helps with both understanding and the motivation to keep trying.</p>
+
+<p>A second advantage is that practicing is more relevant than in the typical homework situation because feedback is immediate.</p>
+
+<p>The generalized union and intersection problem shows the need for a slow
+progression of exercise difficulty.  Before students can work with a problem
+like this they need to be comfortable with recursion and with functions
+whose domains and codomains consist of other functions. </p>
+
+<p>Problems such as this come towards the end of the course.  How easily they are worked depends on what is learned before.  Not all students will have everything assimilated at the end.  That is normal and the fact that the learning experience is not quite the same for all students does not lessen the value of a course.</p></div><div id='1-an' style='display:none'><p>The introductory computer science course could be much more useful for
+general education requirements if some major changes were made:</p></div><div id='2-an' style='display:none'><p>Knowing things is a first step.  The second is to be able to use one's
+knowledge.  That second step is hard to take but luckily once it has been
+taken in one discipline it is easier to take in another.  Four concepts from
+computer science are particularly good for this.</p>
+
+<ul>
+<li><p>creation of abstractions to clarify one's thinking </p>
+
+<p>Planning any complex activity requires breaking that activity down into component processes that work smoothly together.  These components are abstractions that must be precise enough that their ability to work together can be checked.  These components are abstractions that are often created from a blank sheet of paper.  Programmers learn early to do such a thing because they must create programs with parts that make sense and work together correctly.  Some experience with this is good practice for anybody who would do creative planning of complex processes. </p></li>
+<li><p>functions </p>
+
+<p>Thinking in terms of functions is clearly of use in any discipline that involves even the slightest use of mathematics.  But functions are a part of nontechnical thinking as well.  We often say things likes: "our growth is a function of our ability to create."   Mastering the precise way of looking at functions makes us more careful in those inevitable situations where we use the concept imprecisely.</p></li>
+<li><p>use of algebra for more than manipulating numbers </p>
+
+<p>Mathematical logic for example is required in any situation where careful reasoning about correctness is an issue. Running driverless commuter trains and planning automatic shutdowns of nuclear plants are situations where such reasoning already has been applied.</p></li>
+<li><p>data types  </p>
+
+<p>In physics and chemistry, students are taught to think in terms of units.  (You don't multiply velocity times distance because velocity is distance/time.)   Data types involve exactly the same kind of reasoning but student programmers get more practice in making them up for themselves.  </p></li>
+</ul></div><div id='3-an' style='display:none'><p>Exercises requiring creative precise reasoning can go a long way towards
+developing skills&mdash;provided they are assigned in graduated difficulty and provided students receive good feedback in a timely manner.</p>
+
+<p>By asking students to write the results of their reasoning online in a language which a computer can "understand", we can provide good immediate feedback.  For an instructor to judge the accuracy of creative student thinking requires time and effort.  By responding or not responding in the expected way, a computer can do this very quickly.   </p>
+
+<p>With such support from technology, a  good teacher can focus her feedback on elegance and readability.  A  poor teacher will do less damage.</p></div><div id='10-an' style='display:none'><p>A conundrum that has made it difficult to teach creative precise reasoning is this:</p>
+
+<ul>
+<li>The more structured an exercise is, the more likely a student is to find a
+way to work it without exercising creativity.  </li>
+<li>The less structured an exercise is, the more difficult it is to require a precise answer.   </li>
+</ul>
+
+<p>Less structured exercises that require precise answers <em>are</em> possible if the answers are in a dialect of mathematics.  The Haskell programming language is a dialect which a computer can interpret and act on.   Therefore using Haskell we can ask questions of students that require them to formulate their own answers while we remain able to use a computer to make a quality judgement about what they write.</p>
+
+<p>The feedback a student gets from this process is timely and relevant.  It frees a teacher of the tedium of judging the accuracy of a less than well written answer.  It frees teachers, for the easier, but still important task of informing students about the clarity of their writing.</p></div><div id='4-an' style='display:none'><p>All programmers need at least some skill at creative precise problem solving.  The kind of introductory course advocated here would not be a detour from the development of computer scientists.  It would merely rearrange the order in which things are taught.</p>
+
+<p>Currently most introductory courses teach the details of a general purpose computer language.  Because Java is the language with the widest employment interest, Java is the language being taught.   We are asking all our introductory students to be proficient in the language de jour of professional programmers.  </p>
+
+<p>Even those students who become fluent in Java are not ready for the advertised Java jobs. A fluent knowledge of the Java language does not make a Java programmer any more than a fluent knowledge of English makes a writer!  One needs an ability to create and organize ideas for that.</p>
+
+<p>Practicing creative precise reasoning before learning a programming language in detail will not slow down the development of computer science majors.  Rather it will give them practice of creative problem solving within their own discipline and, by putting off the thorough learning of a programming language, it will make it bit more likely that the language they learn will be the language of choice when they graduate.  </p></div><div id='5-an' style='display:none'><p>Although the name varies, all colleges have general education requirements
+and these requirements involve
+some form of creative precise reasoning.  In spite of the prevalence of
+such a goal, students are not
+developing the desired skill set.  </p>
+
+<p>In their carefully researched book <a href="http://www.amazon.com/Academically-Adrift-Limited-Learning-Campuses/dp/0226028569/ref=sr_1_1?ie=UTF8&amp;qid=1301882958&amp;sr=8-1">"Academically
+Adrift"</a>
+Arum and Roksa zero in on the best research they can find for how well our
+colleges are teaching "critical thinking, complex reasoning, and writing"
+skills.  What they find is that "American education is characterized by
+limited or no learning for a large proportion of students ..." (page 30).</p>
+
+<p>Within living memory, creative precise reasoning was taught in humanities
+classes by having students write and professors carefully read papers and in
+mathematics by having students write and professors carefully read proofs.
+As Arum and Roksa point out, today's faculty are expected to spend more time
+on research.  The faculty time for careful feedback of student work has been
+greatly reduced.</p>
+
+<p>Of course, many people are trying to harnass computer techology to fix this 
+problem.  As one example, 
+<a href="http://www.ascilite.org.au/conferences/melbourne01/pdf/papers/vangeldert.pdf">here</a>
+is a description of an effort by a philosophy professor in Australia.  The effort has
+a major weakness: "Reason!Able on its own does not provide any significant
+feedback on the user's activities."
+Indeed computers are not, per se, very good at giving reasonable feedback
+for creative precise reasons.  We <em>can</em> fix that:</p></div>
+      <div id='6-link' style='display:none'><ul></ul></div><div id='12-link' style='display:none'><ul><li class='question'>Examples of how Haskell works with  <a href='#' onclick='flip(12,6);return
+false'>functions</a>.</li><li class='question'>Examples of how Haskell functions can <a href='#' onclick='flip(12,7);return
+false'>manipulate more than numbers</a>.</li><li class='question'>Example of how working with Haskell can teach the <a href='#' onclick='flip(12,8);return
+false'>creation of abstractions</a>.</li><li class='question'>Give <a href='#' onclick='flip(12,9);return
+false'>some examples</a> of the need to be precise when designing complex processes outside the realm of mathematics.  </li></ul></div><div id='7-link' style='display:none'><ul></ul></div><div id='8-link' style='display:none'><ul><li class='question'><a href='#' onclick='flip(8,14);return
+false'>How can the makeSetOperation function be defined?</a></li><li class='question'><a href='#' onclick='flip(8,15);return
+false'>Isn't this example too abstract for the average student?</a></li></ul></div><div id='14-link' style='display:none'><ul><li class='question'><a href='#' onclick='flip(14,15);return
+false'>Isn't this example too abstract for the average student?</a></li></ul></div><div id='9-link' style='display:none'><ul></ul></div><div id='15-link' style='display:none'><ul></ul></div><div id='1-link' style='display:none'><ul><li class='question'><a href='#' onclick='flip(1,5);return
+false'>Because</a> students are not learning to do creative precise reasoning very well.</li><li class='question'><a href='#' onclick='flip(1,2);return
+false'>Because</a> basic concepts of computer programming involve creative precise reasoning and are of use to almost everybody.</li><li class='question'><a href='#' onclick='flip(1,3);return
+false'>Because</a> it is possible to design a computer science course that develops proficiency with creative precise reasoning.</li><li class='question'><a href='#' onclick='flip(1,4);return
+false'>Because</a> enrolling in such an introductory course will not slow down the development of programming skills or computer science knowlege.</li></ul></div><div id='2-link' style='display:none'><ul><li class='question'><a href='#' onclick='flip(2,12);return
+false'>How can a helpful graduated curriculum be created?</a></li></ul></div><div id='3-link' style='display:none'><ul><li class='question'>In more detail, how does submitting answers through a <a href='#' onclick='flip(3,10);return
+false'>web site</a> help? </li><li class='question'><a href='#' onclick='flip(3,12);return
+false'>How can a helpful graduated curriculum be created?</a></li></ul></div><div id='10-link' style='display:none'><ul></ul></div><div id='4-link' style='display:none'><ul></ul></div><div id='5-link' style='display:none'><ul><li class='question'><a href='#' onclick='flip(5,3);return
+false'>Because</a> it possible to design a computer science course that develops proficiency with creative precise reasoning.</li></ul></div>
+   </div>
+   <div id="references">
+      <div id='6-ref' style='display:none'><ol></ol></div><div id='12-ref' style='display:none'><ol></ol></div><div id='7-ref' style='display:none'><ol></ol></div><div id='8-ref' style='display:none'><ol></ol></div><div id='14-ref' style='display:none'><ol></ol></div><div id='9-ref' style='display:none'><ol></ol></div><div id='15-ref' style='display:none'><ol></ol></div><div id='1-ref' style='display:none'><ol></ol></div><div id='2-ref' style='display:none'><ol></ol></div><div id='3-ref' style='display:none'><ol></ol></div><div id='10-ref' style='display:none'><ol></ol></div><div id='4-ref' style='display:none'><ol></ol></div><div id='5-ref' style='display:none'><ol></ol></div>
+   </div>
+   <div style='width:100%; height:15px; text-align:center; font-size:80%'>by <a href="http://jazimmer.net/index.html">J Adrian Zimmer<a></div>
+</body>
+</html>
+

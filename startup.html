@@ -1,0 +1,191 @@
+<HTML><HEAD><TITLE>Adrian's Bookmarks</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<script><!--
+   function getWeather() {
+     self.location.htef = 
+      "https://www.google.com/search?q=weather+" +
+      escape(document.weather.value)    
+   }
+   
+   function getFinancialTimes() {
+     self.location.href =
+      "http://markets.ft.com/markets/finder.asp?view=company&selectedResultGroup=&query=" +
+     escape(document.financial_times.companyName.value) 
+     return false;
+   }
+   function makeReutersReport() {
+     Ticker = document.stocks.ticker.value
+        self.location.href = "http://www.investor.reuters.com/business/BusCompanyFullDesc.aspx?ticker=" + 
+           Ticker+
+           "&target=%2fbusiness%2fbuscompany%2fbuscompfake%2fbuscompdescr";
+     return false;
+   }
+   function makeClosedEnd() {
+     Ticker = document.stocks.ticker.value
+        self.location.href = "http://www.closed-endfunds.com/FundSelector/fundcompare.fs?Search=" + 
+           Ticker
+     return false;
+    }
+
+   function makeIncomeStatement() {
+     Ticker = document.stocks.ticker.value
+        self.location.href = "http://www.marketwatch.com/tools/quotes/financials.asp?symb=" + 
+           Ticker+
+           "&dist=TQP_Nav_financials";
+     return false;
+   }
+   function makeCashFlowStatement() {
+     Ticker = document.stocks.ticker.value
+        self.location.href = "http://www.marketwatch.com/tools/quotes/financials.asp?symb="+
+           Ticker+
+           "&report=3&freq=1";
+     return false;
+  }
+  function makeBalanceSheet() {
+     Ticker = document.stocks.ticker.value
+        self.location.href = "http://www.marketwatch.com/tools/quotes/financials.asp?symb="+
+           Ticker+
+           "&report=2&freq=1";
+     return false;
+  }
+  function makeYahooFinanceChart() {
+     Ticker = document.stocks.ticker.value
+        self.location.href = "http://finance.yahoo.com/q/ta?s="+
+           Ticker+
+           "&t=6m&l=on&z=l&q=l&p=b&a=v&c=";
+     return false;
+  }
+function makeMorningstar() {
+     Ticker = document.stocks.ticker.value
+     self.location.href = "http://quicktake.morningstar.com/etfnet/Snapshot.aspx?Country=USA&Symbol="
+          +Ticker+
+          "&fdtab=snapshot";
+     return false;
+  }
+
+
+  function makeMarketwatchQuote() {
+     Ticker = document.stocks.ticker.value
+     self.location.href = "http://www.marketwatch.com/tools/quotes/quotes.asp?symb="+Ticker+"&vc=&siteid=mktw&dist=dropmenu";
+     return false;
+  }
+
+  function makeLongNyTimesChart() {
+     Ticker = document.stocks.ticker.value
+     self.location.href = "http://marketwatch.nytimes.com/custom/nyt-com/html-interactivecharting.asp?symb=" +
+     Ticker +
+     "&time=1yr&compidx=SP500%7E3377&comp=&ma=0&maval=60&x=18&y=11&freq=1wk&type=2&uf=8&lf=1&ind_compind="
+     return false;
+  }
+  function makeShortNyTimesChart() {
+     Ticker = document.stocks.ticker.value
+     self.location.href = "http://marketwatch.nytimes.com/custom/nyt-com/html-interactivecharting.asp?symb=" +
+     Ticker +
+     "&time=5dy&compidx=SP500%7E3377&comp=&ma=0&maval=60&x=18&y=4&freq=1hr&type=2&uf=8&lf=1&ind_compind="
+     return false;
+  }
+  
+//--></script>
+</HEAD>
+<BODY text=#101000 vLink=#0fbd0f link=#0f0fdd bgColor=#fff0be>
+<CENTER>
+<H1>Adrian's Bookmarks</H1></CENTER>
+<CENTER>
+<TABLE>
+  <TBODY>
+  <TR>
+    <TD vAlign=top>
+      <H3>News &amp; Commentary&nbsp;</H3>
+      <UL>
+        <LI> <A href="http://qz.com/">Quartz</A></LI>
+        <LI>The <A href="http://www.nytimes.com">New
+        York Times</A> </LI>
+        <LI><A href="http://bloomberg.com/news">Bloomberg</A></LI>
+        <LI>The <A href="http://www.worldeconomist.com/">World Economist</A>&nbsp; <FONT
+        size=-1></FONT>&nbsp;</LI>
+        <LI><A href="http://www.bbc.com/news">BBC</A></LI>
+        <LI><A href="http://english.aljazeera.com/">English Al Jazeera</A></LI>
+        <LI>The <A href="http://www.atimes.com">Asia Times</A></LI>
+    </UL></TD>
+    <TD>&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+    <TD vAlign=top>
+      <H3>Reference</H3>
+      <UL>
+        <LI><A href="http://www.weather.com/weather/local/73103?lswe=73103&lwsa=WeatherLocalUndeclared&from=whatwhere">
+        Oklahoma City Weather</A></LI>
+        <LI><A href="http://www.mapquest.com/">Maps</A>&nbsp;</LI>
+        <LI><A href="http://en.wikipedia.org/wiki/Main_Page">
+           Wikipedia</A></LI>
+        <LI><A href="http://www.wordiq.com/">Word Lookup</A></LI>         
+        <LI><A href="http://www.google.com/">Google Search</A></LI>         
+        <LI>CIA <A  href="http://www.odci.gov/cia/publications/factbook/index.html">World
+        Fact Book</A></LI>
+        <LI><A href="http://us.imdb.com/">IMDb</A> Movie Database</LI>
+        <LI><A
+           href="http://www.bbc.co.uk/worldservice/index.shtml">BBC</A></LI>
+        <LI><A href="http://www.npr.org">NPR</A></LI>
+    </UL></TD></TR>
+    <TR><TD VALIGN="top">
+       <UL><LI><FORM NAME="financial_times" METHOD="get"
+             ACTION="javascript:getFinancialTimes()">
+             <FONT SIZE="-1">Financial Times Lookup by Company
+                Name</FONT>
+             <BR>
+             <FONT SIZE="-2"><INPUT NAME="companyName" TYPE="text" SIZE=36>
+           </FONT></FORM></LI>
+           <LI><A
+           href="http://www.rightsideadvisors.com/premium/59/blog.aspx?">
+           <FONT SIZE="-1">Global Investing</FONT></A> 
+        <FONT SIZE="-2">(subscribe)</FONT>
+           </LI> 
+       </UL>
+       </TD>
+    <TD>&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+       <TD>
+       <UL> <LI><FORM NAME="stocks" METHOD="get"
+             ACTION="javascript:makeMarketwatchQuote()">
+             <FONT SIZE="-1">Lookup Ticker: 
+                &nbsp<INPUT NAME="ticker" TYPE="text" SIZE=6></FONT>
+             <BR><FONT SIZE="-2">
+             Press enter for MarketWatch quote or click below.
+             <BR>Funds:&nbsp;
+             <A HREF="#" ONCLICK="makeMorningstar()">
+                Morningstar</A>
+             &nbsp;&nbsp;
+             <A HREF="#" ONCLICK="makeClosedEnd()">
+             Closed End</A>
+             <BR>
+             Financials:&nbsp;
+             <A HREF="#" ONCLICK="makeIncomeStatement()">
+                Income</A>
+             &nbsp;&nbsp;
+             <A HREF="#" ONCLICK="makeCashFlowStatement()">
+                Cash Flow</A>
+             &nbsp;&nbsp;
+             <A HREf="#" ONCLICK="makeBalanceSheet()">
+                Balance Sheet</A>
+             &nbsp;&nbsp;
+             <A HREF="#" ONCLICK="makeDividendInfo()">Dividends</A>
+             <BR>
+             Charts:&nbsp;
+             <A HREF="#" ONCLICK="makeLongNyTimesChart()">
+                Year</A>
+             &nbsp;&nbsp;
+             <A HREF="#" ONCLICK="makeShortNyTimesChart()">
+                Week</A>
+             </FONT></FORM></LI>
+    </UL></TD></TR> 
+    </TBODY></TABLE></CENTER>
+<CENTER>
+<H3>More By Category</H3></CENTER>
+<CENTER><A
+href="http://jazimmer.net/consumer.html">consumer</A>,&nbsp;&nbsp; <A
+href="http://jazimmer.net/financial.html">financial</A>,&nbsp;&nbsp;
+<A
+href="http://jazimmer.net/government.html">government</A>
+<P><!-- LinkBar -->
+<P><FONT size=-1><B>From </B><A
+href="http://jazimmer.net/home.html">Adrian's Home Page</A></FONT>
+<P><I><FONT size=-1>April 13, 2008</FONT></I>
+<P><A href="http://www.eff.org/"><IMG alt="[Support Free Speech Online]"
+border=0 src="/images/rib_bar.gif"></A></CENTER></P></BODY></HTML>
