@@ -6,8 +6,10 @@
 <SCRIPT><!--
 if (document.images) {
 
-     LastSlide = 6
-     WaitInterval = 3500
+  var
+     LastSlide = 6,
+     SlideCount=0,
+     WaitInterval = 3500,
      Slides = new Array(
                 "media/j6mo.jpg",
                 "media/j6.jpg", 
@@ -16,12 +18,14 @@ if (document.images) {
                 "media/j45.jpg",
                 "media/j55.jpg",
                 "media/j65.jpg"
-              );
-    var SlideCount=0;
- 
+              ),
+     RepeatClick=undefined,
+     Timer = null;
+
     function init_slides() {
        SlideCount = 0
        Timer = setTimeout("show_next_slide()",1000)
+       RepeatClick = document.getElementById('repeatclick')
     }
 
     function show_next_slide() {
@@ -29,18 +33,21 @@ if (document.images) {
        if(SlideCount<LastSlide) {
          SlideCount += 1 
          Timer = setTimeout("show_next_slide()",WaitInterval)
-       } else {
+       } else {  // all done
          Timer = null
+         RepeatClick
+           .setAttribute( 'STYLE',
+                          "visibility:visible; font-size:50%;"
+                        );
        }
     }
 
     function restart_slides() {
         SlideCount=0;
         if(Timer!=null) clearTimeout(Timer);
-        show_next_slide()
+        RepeatClick.style.visibility = "hidden";
+        show_next_slide();
     }
-
-    var Timer = null
 
 }
 //--></SCRIPT>
@@ -50,9 +57,14 @@ if (document.images) {
 <H1> J Adrian Zimmer </H1>
 
 
-<DIV CLASS='pic'>
+<DIV CLASS='pic' ID='pic'>
   <IMG SRC="/media/j65.jpg" ALT="[View of Me]" 
    NAME="slideScreen" onclick="restart_slides()">
+  <P STYLE="visibility:hidden;"
+     ID="repeatclick"
+  >
+     <A HREF="javascript:restart_slides()">repeat</A>
+  <P>
 </DIV>
 
 <DIV CLASS='text'>
@@ -67,10 +79,15 @@ if (document.images) {
    <A HREF="ZimmerPublications.html">publications</A>
    include two books with academic publishers.  
 </P><P>
-   I am retired from 
+   I live in Lexington, MA where I am retired from 
    <A HREF="ZimmerTeaching.html">teaching</A>
-   mathematics and computer science and 
-   live in Lexington, Massachusetts.
+   mathematics and computer science.  
+</P><P>
+   Occasionally I lead
+   movie discussions in retirement learning programs. 
+   <SPAN STYLE="font-size:85%">
+      (<A HREF="ForeignChoices.html">For example</A>.)
+   </SPAN>
    </P>
 </DIV>
 
