@@ -112,10 +112,12 @@ Contacting J Adrian Zimmer
 <form id="fs-frm" name="simple-contact-form" accept-charset="utf-8" action="https://formspree.io/f/mbjqgbkg" method="post">
   <fieldset id="fs-frm-inputs">
     <label for="full-name">Your Name</label>
-    <input type="text" name="name" id="full-name" placeholder="" required="">
+    <input type="textarea" rows="1" name="name" id="full-name" placeholder="" required="">
     <label for="message">Message</label>
-    <textarea rows="5" name="message" id="message" placeholder="" required=""></textarea>
-      <p style="font-size:70%">Provide contact information if you like.  At most I'll use it to respond to this message.</p>
+    <textarea rows="6" name="message" id="message" placeholder="" required=""></textarea>
+      <input type="email" name="_replyto">
+      <p>Provide an email address if you
+      want a reply.  At most I'll use it to respond to this message.</p>
   </fieldset>
   <input type="submit" value="Submit" style="width:auto;">
 </form></div>
