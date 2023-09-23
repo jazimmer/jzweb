@@ -1,0 +1,592 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Stepping Into Mathematics - Finding Roots</title>
+<style text/css>
+body {
+   font-family:"Times New Roman", Times, serif;
+   font-size:100%;
+   max-width:800px;
+}
+
+div,h1,h2,h3,h4,h5,h6,ol,ul,img {
+   position:relative;
+   margin-top:0ex;
+   margin-bottom;0ex;
+}
+
+h1 { 
+   text-align:center;
+}
+
+h4{
+   margin-bottom:0;
+}
+
+h1.extra {
+   font-size:1.25em;
+   margin-top:-1.8ex;
+   margin-bottom:0ex;
+}
+
+h5.by {
+   margin-top:1.6ex;
+   margin-bottom:0ex;
+   text-align:center;
+   font-size:0.95em;
+}
+
+h2.first {
+   margin-top:2.5ex;
+   margin-bottom:2.6ex; 
+}
+
+h2.next {
+   break-before:page;
+   margin-top:4ex;
+   margin-bottom:2ex; 
+}
+
+.spaced2 {
+   margin-top:2ex;
+   margin-bottom:0ex;
+}
+
+.spaced1,ul,ol {
+   margin-top:1.3ex;
+   margin-bottom:1.1ex;
+}
+
+.spaced0 {
+  margin-top:-1.85ex;
+  margin-bottom:0;
+}
+
+img{
+   margin-left:2em;
+   text-align:center
+}
+
+
+li {
+   font-family:"Times New Roman", Times, serif;
+   font-size:0.95em;
+   margin-top:1.85ex;
+   line-height:1.8ex;
+}
+
+.no-bullet {
+   list-style-type:none;
+   list-style-position:outside;
+}
+
+div.ln {
+   margin-top:-1.3ex;
+   margin-bottom:-1.3ex;
+   padding:0;
+}
+
+.half_display {
+   margin-top:2ex;
+   margin-bottom:0ex;
+}
+
+.display {
+}
+
+.indent {
+   padding-left:2em;
+   padding-right:0.75em;
+   margin-top:2ex;
+   margin-bottom:2ex;
+}
+
+.code_block {
+   white-space:pre;
+   margin-top:-1ex;
+   font-family: "Courier New", monospace;
+   font-size:0.94em; 
+}
+
+.cmxFont {
+   font-family:"Comic Sans MS", cursive, sans-serif;
+   font-weight:500;
+   font-size:0.95em;
+}
+
+.code {
+   white-space:nowrap;
+   font-family: "Courier New", monospace;
+   font-size:0.94em; 
+}
+
+
+.smalljz {
+   font-size:0.8em; 
+}
+
+.largejz {
+   font-size:1.4em; 
+}
+
+
+.italicjz {
+  font-family: serif;
+  font-style:italic;
+}
+
+.boldjz {
+  font-family: sans-serif;
+  font-weight:bold;
+}
+
+
+</style>
+</head><body><div> 
+
+
+
+<div  class="center display"><img class="center" height="75px" src="file:///Users/jazimmer/Dropbox/MathReader/images/Draft.png" alt="image: draft"/></div>
+
+<h1 class="spaced1">Finding Roots</h1>
+
+An <span class="italicjz">interval</span> of <span class="boldjz code">R</span> is a set 
+{<span class="code"> z | z∊<span class="boldjz">R</span> ∧ <span class="code">lo</span>≤z≤hi </span>} where
+<span class="code">lo≤hi</span> for some <span class="code">lo,hi∊<span class="boldjz">R</span></span>. 
+
+Functions whose domain and range are both intervals have many
+uses, I will call them <span class="italicjz">real</span>.  Like all functions real
+functions consist of
+<span class="code"><span class="italicjz">(input,output)</span></span> pairs, but for real functions the
+pairs are pairs of numbers <span class="code">(x,y)</span>.  That means they
+can be graphed on an x,y-axis like this
+
+<div  class="center display"><img class="center" height="190px" src="file:///Users/jazimmer/Dropbox/MathReader/images/sample_graph.png" alt="image:  Graph of an real Function"/></div>
+
+A
+<span class="italicjz">root</span> is an <span class="code">r∊[lo,hi]</span> such that <span class="code">f(r)=0</span>.
+This <span class="code">f</span> has three of them.
+
+</div><div  class="undefined half_display">
+In this chapter we will develop a rather general way of finding
+a root of a real function.  Then in the next chapter we will apply our 
+technique to calculating a result for the <span class="code">payment</span>
+function mentioned in Chapter 2.
+
+<div  class="indent smalljz italicjz display"> Do keep in mind that our real goal in this topic is
+to provide practice thinking about recursive and/or anonymous
+functions.  Our examples involve finding roots of
+real functions because that is a subject that requires no
+more than high school math for understanding.  </div>
+
+<h2 class="first">Solvable Intervals</h2>
+
+An x-axis interval <span class="code">[lo,hi]</span> is <span class="italicjz">solvable</span> for an
+real function <span class="code">f</span> in case <span class="code">f</span>'s graph can be drawn
+on that interval in a (steadily) upward direction from
+<span class="code">f(lo)≤0)</span> to <span class="code">f(hi)≥0</span> or a (steadily) downward
+direction from <span class="code">f(lo)≥0</span> to <span class="code">f(hi)≤0</span> without
+lifting the writing instrument.
+
+<div  class="center display"><img class="center" height="200px" src="file:///Users/jazimmer/Dropbox/MathReader/images/functions.png" alt="image:  Solvable x-axis intervals"/></div>
+
+<div class="spaced1">&nbsp;</div>
+The <span class="italicjz">y-image</span> of a solvable interval <span class="code">[lo,hi]</span> is one of
+these intervals <span class="code">[f(lo),f(hi)]</span> (if <span class="code">f(lo)≤f(hi)</span>) or
+<span class="code">[f(hi),f(lo)]</span> (if <span class="code">f(lo)&gt;(hi)</span>).
+
+</div><div  class="undefined half_display">
+The next diagram shows a y-image.
+
+<div  class="center display"><img class="center" height="300px" src="file:///Users/jazimmer/Dropbox/MathReader/images/functions2.png" alt="image: Variations of solvable intervals"/></div>
+
+No matter how <span class="code">f</span> is defined, as long as it is real on
+a solvable interval, its graph will cross the x-axis exactly once.
+  This is
+the condition our method needs so it can find roots. The
+<span class="code">r∊[lo,hi]</span> where <span class="code">f</span> crosses the x-axis is a
+root. 
+
+<div class="spaced1">&nbsp;</div> Suppose a function <span class="code">f</span> is solvable on
+an interval
+interval <span class="code">[lo,hi]</span> where <span class="code">lo=hi</span>. Will <span class="code">f</span> have
+a root in its domain<span class="boldjz code">??</span>
+
+<div class="spaced1">&nbsp;</div>
+<h4>answer:</h4>
+<div  class="indent display">
+The only element of this domain is <span class="code">lo</span> (aka <span class="code">hi</span>).
+Because <span class="code">f</span> is solvable on its domain we know that
+either <span class="code">f(lo)≤0≤f(lo)</span> or
+<span class="code">f(lo)≥0≥f(lo)</span>.  Either way <span class="code">lo</span> must be a
+root.
+</div>
+
+<h2 class="next">How to Approximate a Root</h2>
+
+If a solvable interval <span class="code">[lo,hi]</span> for an real function
+<span class="code"></span> and its y-image are very small then for every
+<span class="code">u∊[lo,hi]</span>, <span class="code">f(u)</span> will be very close to 0 and any
+such <span class="code">u</span> will be a close approximation of a root for <span class="code">f</span>.
+
+<div  class="center display"><img class="center" height="190px" src="file:///Users/jazimmer/Dropbox/MathReader/images/functions2.png" alt="image: file:///Users/jazimmer/Dropbox/MathReader/images/functions2.png"/></div>
+
+So our plan for finding a root for an real function <span class="code">f</span>
+is 
+
+<ol><li>
+Find a solvable interval.  We have a lot of leeway in picking
+<span class="code">lo</span> and <span class="code">hi</span> here.  The requirement is that either 
+<div  class="indent display">
+<span class="code">f(lo)≤0</span>, <span class="code">f(hi)≥0</span>, and <span class="code">f</span> is increasing,
+</div>
+or
+<div  class="indent display"> 
+<span class="code">f(lo)≥0</span>, <span class="code">f(hi)≤0</span>, and <span class="code">f</span> is decreasing
+</div>
+</li><li>
+Shrink the interval, keeping it solvable, until it is very
+small, i.e. until <span class="code">hi-lo</span> and <span class="code">|f(hi)-f(lo)|</span> are both
+less than <span class="code">small</span> where <span class="code">small</span> is a very small number
+</li><li>
+Pick any <span class="code">m∊[lo,hi]</span> as an approximate root.
+</li></ul>
+
+</div><div  class="undefined half_display">
+The first step requires a knowledge of the particular <span class="code">f</span>
+to accomplish.
+The second is accomplished with a recursive function.  The
+third is trivial as any element of <span class="code">[lo,hi]</span> will do.
+
+<h2 class="next">Booleans and Guards</h2>
+
+Recall the <span class="code">abs</span> function.
+
+<div  class="code_block indent display">
+abs(x):
+  <span class="largejz">|</span> x≥0       <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> x
+  <span class="largejz">|</span> otherwise <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> -x
+</div>
+
+The guards are evaluated in the top-down order they are
+written. The expression between the <span class="code">|</span>
+and the <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> is expected to produce a value of <span class="code">true</span>
+or <span class="code">false</span>.  If the value is <span class="code">true</span> the guarded
+expression to the right of the <span style="font-size:115%;">&rarr;</span> is chosen, if
+<span class="code">false</span>
+the next guard is checked out.
+
+</div><div  class="undefined half_display"> The values <span class="code">true</span> and <span class="code">false</span> (in some systems
+they are called simply 1 and 0) are the only values in a
+data type called <span class="code">boolean</span>.  Like all other kinds of data,
+boolean values can be  
+
+<ul><li>
+be assigned to helping varibles.
+</li><li>
+be passed as arguments to parameters.
+</li><li>
+can be returned from other functions.
+</li></ul>
+
+Just as functions are a special kind of data that can be
+applied, booleans are a special kind of data that can be used
+in guards.  In the definition of <span class="code">abs</span>, <span class="code">x≥0</span> works
+because it evaluates to <span class="code">true</span> or <span class="code">false</span>, the keyword
+<span class="code">otherwise</span> works because it evaluates to <span class="code">true</span>.
+
+</div><div  class="undefined half_display">
+So this is an equivalent definition of <span class="code">abs</span>.
+
+<div  class="code_block indent display">
+abs(x):
+  <span class="largejz">|</span> x≥0  <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> x
+  <span class="largejz">|</span> true <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> -x
+</div>
+
+</div><div  class="undefined half_display"> Just as numeric data can be used with arithmetic functions
+<span class="code">+</span>, &times;, <span class="code">-</span>, and <span class="code">/</span>, boolean data can be used
+with boolean functions ∧ (aka and), ∨ (aka or), and
+¬ (aka not).
+There is more about these functions in Chapter 6, which
+discusses the Propositional Logic as a kind of
+metamathematics.
+
+</div><div  class="undefined half_display">
+The functions, &lt;, &gt;, ≤, ≥, take pairs of numbers
+as input and produce boolean output.  We see that in the
+expression <span class="code">x≥0</span> in the definition of <span class="code">abs</span>.
+
+</div><div  class="undefined half_display"> The functions <span class="code">=</span> and ≠ can compare any kind of
+data for equality, even other functions.  If the values being compared are equal,
+<span class="code">=</span> returns <span class="code">true</span>, if not then <span class="code">false</span>.  The
+function ≠ of course does just the opposite.
+
+<div  class="indent smalljz italicjz display">
+Functions can seldom be compared for equality in practice.
+But, as sets of pairs, they can be compared for
+equality in theory.
+</div>
+
+<div class="spaced1">&nbsp;</div>
+What does each of the following expressions evaluate to?
+<div  class="code_block indent display">
+{<span class="code">1,2</span>}={<span class="code">2,1</span>}
+(1,2)=(2,1)
+((1,2)=(2,1))=¬true
+({<span class="code">1,2</span>}={<span class="code">2,1</span>})=¬((1,2)=(2,1))
+</div>
+
+<div class="spaced1">&nbsp;</div>
+<h4>answer:</h4>
+<div  class="code_block indent display">
+{<span class="code">1,2</span>}={<span class="code">2,1</span>}
+    <span class="italicjz">is</span> true
+(1,2)=(2,1)
+    <span class="italicjz">is</span> false
+((1,2)=(2,1))=¬true
+    <span class="italicjz">evaluates this way</span>
+    ((1,2)=(2,1))=¬true
+    false = false
+    true
+({<span class="code">1,2</span>}={<span class="code">2,1</span>})=¬((1,2)=(2,1))
+    <span class="italicjz">evaluates this way</span>
+    ({<span class="code">1,2</span>}={<span class="code">2,1</span>})=¬((1,2)=(2,1))
+    true = ¬false
+    true = true
+    true
+</div>
+
+<div class="spaced1">&nbsp;</div>
+Is is possible to write <span class="code">1=1</span> everyplace that writing
+<span class="code">true</span> is possible<span class="boldjz code">??</span>
+
+<div class="spaced1">&nbsp;</div>
+<h4>answer:</h4>
+<div  class="indent display">
+Yes, but it would be a confusing thing to do.  The comparison
+<span class="code">1=1</span> returns <span class="code">true</span> while <span class="code">true</span> is already <span class="code">true</span>.
+</div>
+
+<div class="spaced1">&nbsp;</div>
+When we define a function to shrink a solvable interval
+<span class="code">[lo,hi]</span> for an real function <span class="code">f</span>, we will need a guard that stops the shrinking
+and returns an element of the shrunken <span class="code">[lo,hi]</span>. The
+boolean expression in this guard should evaluate to true when
+both <span class="code">[lo,hi]</span> and its image are small enough.
+
+</div><div  class="undefined half_display">
+In the next section we will assume that <span class="code">f</span> is increasing
+so the <span class="code">f</span> image of <span class="code">[lo,hi]</span> is <span class="code">[f(lo),f(hi)]</span> and the
+guard to stop the shrinking will be written this way
+
+<div  class="code_block indent display">
+<span class="largejz">|</span> x_ok ∧ fx_ok <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> …
+</div>
+
+because making use of these helping variables
+
+<div  class="code_block indent display">
+x_ok := hi-lo &lt; small
+fx_ok := f(hi)-f(lo) &lt; small
+</div>
+
+can make the guard readable.
+
+<h2 class="next">A Function to Shrink <span class="code">[lo,hi]</span></h2>
+
+Let's define a recursive function <span class="code">shrink</span> which will
+repeatedly cut the size of a solvable interval
+in half. We 
+can do that by starting with the helping variable
+<span class="code">mid=(lo+hi)/2</span> 
+and considering which of these two half intervals,
+<span class="code">[lo,mid]</span> and <span class="code">[mid,hi]</span>, contains the root.  
+
+</div><div  class="undefined half_display">
+The choice is easy to make if we are working with an
+increasing <span class="code">f</span>.  Then the situation looks like 
+one of these.
+
+<div  class="center display"><img class="center" height="190px" src="file:///Users/jazimmer/Dropbox/MathReader/images/intervalI.png" alt="image: Increasing and Crossing the x-axis"/></div>
+
+So <span class="code">[lo,hi]</span> should shrink to <span class="code">[lo,mid]</span> if
+<span class="code">f(mid)≥0</span> and to <span class="code">[mid,hi]</span> otherwise. Here is a
+function that can do the job
+
+<div  class="code_block indent display">
+shrink(f,small,lo,hi):
+   <span class="largejz">|</span> x_ok ∧ fx_ok <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> mid 
+   <span class="largejz">|</span> f(mid)≥0 <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> shrink(f,small,lo,mid)
+   <span class="largejz">|</span> otherwise <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> shrink(f,small,mid,hi)
+  where
+   mid := (lo+hi)/2
+   x_ok := hi-lo &lt; small
+   fx_ok := f(hi)-f(lo) &lt; small 
+</div>
+
+When <span class="code">[lo,hi]</span> is small enough any element of <span class="code">[lo,hi]</span> is a good
+approximation for the root so <span class="code">shrink</span> can return
+<span class="code">(lo+hi)/2</span>.
+
+<div class="spaced1">&nbsp;</div>
+Sometimes we may make a mistake in choosing a starting <span class="code">[lo,hi]</span>
+interval. So it would be nice if experimenting with
+<span class="code">shrink</span> did not require us to repeat the function and
+accuracy arguments each time <span class="code">shrink</span> is applied.  We
+can create a context in which the values of those arguments
+are constant this way
+
+<div  class="code_block indent display">
+shrinkMaker(f,small):
+   shrink
+ where
+   shrink(lo,hi):
+      <span class="largejz">|</span> x_ok ∧ fx_ok <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> mid 
+      <span class="largejz">|</span> f(mid)≥0 <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> shrink(lo,mid)
+      <span class="largejz">|</span> otherwise <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> shrink(mid,hi)
+     where
+      mid := (lo+hi)/2
+      x_ok := hi-lo &lt; small
+      fx_ok := f(hi)-f(lo) &lt; small 
+</div>
+
+<div class="spaced1">&nbsp;</div>
+Why not define <span class="code">shrinkMaker</span> this way<span class="boldjz code">??</span>
+
+<div  class="code_block indent display">
+shrinkMaker(f,small):
+   shrink
+ where
+   shrink(lo,hi):
+      <span class="largejz">|</span> f(mid)=0 <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> mid
+      <span class="largejz">|</span> x_ok ∧ fx_ok <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> mid 
+      <span class="largejz">|</span> f(mid)≥0 <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> shrink(lo,mid)
+      <span class="largejz">|</span> otherwise <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> shrink(mid,hi)
+     where
+      mid := (lo+hi)/2
+      x_ok := hi-lo &lt; small
+      fx_ok := f(hi)-f(lo) &lt; small 
+</div>
+
+<div class="spaced1">&nbsp;</div>
+<h4>answer:</h4>
+<div  class="indent display">
+In theory there is nothing wrong with this.  In practice that
+first guard will very seldom evaluate to <span class="code">true</span> and we are
+already getting the accuracy we want.
+</div>
+
+<div class="spaced1">&nbsp;</div>
+We will fix <span class="code">shrinkMaker</span> so that the function it returns
+can handle decreasing functions in the next chapter.  For now
+let's use this version to calculate square
+roots.
+
+<h2 class="next">Square Roots</h2>
+
+Here is a function for calculating the square of a number.
+
+<div  class="code_block indent display">
+sq(x): x&times;x
+</div>
+
+Since the square root of a positive number <span class="code">x</span> is another
+number <span class="code">r</span> such that <span class="code">sq(r)=x</span>, we can graph <span class="code">sq</span> to
+get ideas about how to find <span class="code">r</span>.  
+
+<div  class="center display"><img class="center" height="175px" src="file:///Users/jazimmer/Dropbox/MathReader/images/sqrgph.png" alt="image:  Graph of sq"/></div>
+
+Notice that <span class="code">sg</span> is decreasing to the left of the y-axis
+and increasing to the right.  To be able to use
+<span class="code">shrinkMaker</span> we will limit <span class="code">sq</span>'s domain
+like this.
+
+<div  class="center display"><img class="center" height="190px" src="file:///Users/jazimmer/Dropbox/MathReader/images/sqrgphP.png" alt="image: Positive Square Roots"/></div>
+
+</div><div  class="undefined half_display">
+Notice the point <span class="code">(6,36)</span>.  If <span class="code">sq</span> were a different
+function whose y value was smaller by
+36, this point would be on the x axis and 6 would be its root.
+Said another way, to find the square root of 36, we could look
+for the root of this function
+
+<div  class="code_block indent display">
+sq'(x) = x<sup class="smalljz">2</sup> - 36
+</div>
+
+whose graph looks like
+
+<div  class="center display"><img class="center" height="190px" src="file:///Users/jazimmer/Dropbox/MathReader/images/sqr_36.png" alt="image: Graph of sq'"/></div>
+
+
+With this <span class="code">sq'</span> we can create a recursive function for
+finding the square root 6 of 36 this
+way
+
+<div  class="code_block indent display">
+sqrt36 = shrinkMaker(sq',0.00001)
+</div>
+
+To apply <span class="code">sqrt36</span> we need a solvable interval, <span class="code">[0,36]</span>
+will do.  On my desktop computer
+<span class="code">sqrt36(0,36)</span> is 5.99999.
+
+<div class="spaced1">&nbsp;</div>
+Knowing that the square root of any number
+<span class="code">z&gt;1</span> is going to be 
+going to be in the interval <span class="code">[1,z]</span> and the square root of any number 
+<span class="code">z∊[0,1]</span> will be in the interval <span class="code">[z,1]</span>, we can
+define 
+function  <span class="code">squareRoot</span> for finding the square root of any
+positive number.  Here is a start, can you finish it<span class="boldjz code">??</span>
+
+<div  class="code_block indent display">
+squareRoot(z):
+   <span class="largejz">|</span> … <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> …
+   <span class="largejz">|</span> … <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> …
+  where
+   shrink = shrinkMaker(λ(x):x&times;x-z, 0.00001)
+</div>
+
+Can you finish it<span class="boldjz code">??</span>
+
+<div class="spaced1">&nbsp;</div>
+<h4>answer:</h4>
+<div  class="code_block indent display">
+squareRoot(z):
+   <span class="largejz">|</span> z≤1 <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> shrink(z,1)
+   <span class="largejz">|</span> z&gt;1 <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> shrink(1,z)
+  where
+   shrink = shrinkMaker(λ(x):x&times;x-z, 0.00001)
+</div>
+
+<div class="spaced1">&nbsp;</div>
+<div  class="indent smalljz italicjz display">
+The world of mathematics exists in our heads.  Applying its
+conclusions to the real world does not always go smoothly.
+There are several things that might go wrong if you try these
+calculations on an existing computer:
+
+<ul><li>
+Your numbers may be too large,
+</li><li>
+Your numbers may be too small.
+</li><li>
+Your first solvable interval may be too wide.
+</li><li>
+The inevitable small errors in each recursive application may
+reinforce each other to the point where the final answer is
+worthless.
+</li></ul>
+Dealing with any of this is beyond the scope of this monograph.
+</div>
+
+<div class="spaced1">&nbsp;</div>
+<div  class="indent smalljz italicjz display">
+Copyright 2023, by J Adrian Zimmer
+<br/><br/>
+ All rights reserved. Permission granted for personal viewing
+ from the jazimmer.net website only.
+</div>
+
+
+
+</div></body><script>function() { var elts = document.getElementsByClassName('page'); for( let i in elts ) { elts[i].setAttribute('class','topMargin') } }()</script></html>

@@ -1,0 +1,551 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Stepping Into Mathematics &ndash; More Roots</title>
+<style text/css>
+body {
+   font-family:"Times New Roman", Times, serif;
+   font-size:100%;
+   max-width:800px;
+}
+
+div,h1,h2,h3,h4,h5,h6,ol,ul,img {
+   position:relative;
+   margin-top:0ex;
+   margin-bottom;0ex;
+}
+
+h1 { 
+   text-align:center;
+}
+
+h4{
+   margin-bottom:0;
+}
+
+h1.extra {
+   font-size:1.25em;
+   margin-top:-1.8ex;
+   margin-bottom:0ex;
+}
+
+h5.by {
+   margin-top:1.6ex;
+   margin-bottom:0ex;
+   text-align:center;
+   font-size:0.95em;
+}
+
+h2.first {
+   margin-top:2.5ex;
+   margin-bottom:2.6ex; 
+}
+
+h2.next {
+   break-before:page;
+   margin-top:4ex;
+   margin-bottom:2ex; 
+}
+
+.spaced2 {
+   margin-top:2ex;
+   margin-bottom:0ex;
+}
+
+.spaced1,ul,ol {
+   margin-top:1.3ex;
+   margin-bottom:1.1ex;
+}
+
+.spaced0 {
+  margin-top:-1.85ex;
+  margin-bottom:0;
+}
+
+img{
+   margin-left:2em;
+   text-align:center
+}
+
+
+li {
+   font-family:"Times New Roman", Times, serif;
+   font-size:0.95em;
+   margin-top:1.85ex;
+   line-height:1.8ex;
+}
+
+.no-bullet {
+   list-style-type:none;
+   list-style-position:outside;
+}
+
+div.ln {
+   margin-top:-1.3ex;
+   margin-bottom:-1.3ex;
+   padding:0;
+}
+
+.half_display {
+   margin-top:2ex;
+   margin-bottom:0ex;
+}
+
+.display {
+}
+
+.indent {
+   padding-left:2em;
+   padding-right:0.75em;
+   margin-top:2ex;
+   margin-bottom:2ex;
+}
+
+.code_block {
+   white-space:pre;
+   margin-top:-1ex;
+   font-family: "Courier New", monospace;
+   font-size:0.94em; 
+}
+
+.cmxFont {
+   font-family:"Comic Sans MS", cursive, sans-serif;
+   font-weight:500;
+   font-size:0.95em;
+}
+
+.code {
+   white-space:nowrap;
+   font-family: "Courier New", monospace;
+   font-size:0.94em; 
+}
+
+
+.smalljz {
+   font-size:0.8em; 
+}
+
+.largejz {
+   font-size:1.4em; 
+}
+
+
+.italicjz {
+  font-family: serif;
+  font-style:italic;
+}
+
+.boldjz {
+  font-family: sans-serif;
+  font-weight:bold;
+}
+
+
+</style>
+</head><body><div> 
+
+
+<div  class="center display"><img class="center" height="75px" src="file:///Users/jazimmer/Dropbox/MathReader/images/Draft.png" alt="image: draft"/></div>
+
+<h1 class="spaced1">More Roots</h1>
+
+In this chapter we generalize <span class="code">shrinkMaker</span> so that the
+function it returns will work with both decreasing and
+increasing real
+functions. Then we use the new <span class="code">shrinkMaker</span> to
+approximate the monthly payment needed to pay off a mortgage.
+
+<h2 class="first">Generalizing <span class="code">shrinkMaker</span></h2>
+
+
+Our first step in generalizing <span class="code">shrinkMaker</span> is to make it
+aware of whether the function it is processing is increasing
+or decreasing.  This cannot be fully automatic, we need theory
+to tell us whether a function is real and also whether it
+is steadily increasing or decreasing. So instead of trying to
+do the impossible, we simply stipulate that the domain of
+   <span class="code">shrinkMaker</span> consists of all pairs <span class="code">(f,small)</span> where <span class="code">f</span> is an
+   real function that steadily increases or decreases over
+   its domain and <span class="code">small</span> is a positive number. 
+
+</div><div  class="undefined half_display">
+Although complying with such a domain ensures that we use an
+appropriate <span class="code">f</span>, it does
+not ensure that we will apply any <span class="code">shrink</span> function correctly.
+For that we have to specify the domain of <span class="code">shrink</span> and that
+will depend on <span class="code">f</span>'s domain.  Can you describe
+<span class="code">shrink</span>'s domain<span class="boldjz code">??</span>
+
+<div class="spaced1">&nbsp;</div>
+<h4>answer</h4>
+<div  class="indent display">
+The domain of any such <span class="code">shrink</span> consists of a pair
+<span class="code">(lo,hi)</span> where where <span class="code">lo≤0</span>, <span class="code">hi≥0</span>, and
+both numbers are within <span class="code">f</span>'s domain.
+</div>
+
+<div  class="indent smalljz italicjz display">
+Of course I am assuming that anybody who applies
+<span class="code">shrinkMaker</span> or the returned <span class="code">shrink</span> function uses only
+arguments within their domains.
+</div>
+
+Under these conditions we can give <span class="code">shrink</span> the ability to
+know if the function <span class="code">f</span> is increasing or decreasing:
+<span class="code">f</span>
+is increasing if <span class="code">f(lo)≤f(hi)</span> and decreasing
+if <span class="code">f(lo)≥f(hi)</span>.  A boolean helping variable allows
+   <span class="code">shrink</span> to know which is the case.
+
+<div  class="code_block indent display">
+increasing := f(lo)≤f(hi)
+</div>
+
+<div  class="indent smalljz italicjz display">
+Yes, I have arbitrarily decided that a flat <span class="code">f</span> is
+increasing.
+</div>
+
+<div class="spaced1">&nbsp;</div>
+When <span class="code">f</span> is
+decreasing the choice between shrinking to <span class="code">[lo,mid]</span> or
+<span class="code">[mid,hi]</span> must be made differently than when <span class="code">f</span> is
+increasing.  This diagram
+represents the situation with a decreasing <span class="code">f</span>.
+
+<div  class="center display"><img class="center" height="180px" src="file:///Users/jazimmer/Dropbox/MathReader/images/intervalD.png" alt="image:  Decreasing and crossing the x-axis"/></div>
+
+We need to choose <span class="code">[lo,mid]</span> when <span class="code">f(mid)≤0</span> instead of
+when <span class="code">f(mid)≥0</span>.  The <span class="code">shrink</span> defined in the previous
+chapter chooses <span class="code">[lo,mid]</span> this way
+
+<div  class="code_block indent display">
+<span class="largejz">|</span> f(mid)≥0 <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> shrink(lo,mid)
+</div>
+
+When <span class="code">f</span> is decreasing we want that choice to be made
+this way
+
+<div  class="code_block indent display">
+<span class="largejz">|</span> f(mid)≤0 <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> shrink(lo,mid)
+</div>
+
+We can make this guard flexible enough to handle both versions
+with
+
+<div  class="code_block indent display">
+<span class="largejz">|</span> chooseLeft(mid) <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> shrink(lo,mid)
+</div>
+
+assuming we can define a <span class="code">chooseLeft</span> that returns the
+needed boolean value.
+
+</div><div  class="undefined half_display">
+This definition does the trick.
+
+<div  class="code_block indent display">
+chooseLeft(m):
+  <span class="largejz">|</span> increasing <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> m≥0
+  <span class="largejz">|</span> otherwise  <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> m≤0
+</div>
+
+because the comparison functions return the boolean values
+determined by ≥ and ≤.
+
+</div><div  class="undefined half_display">
+Now we are ready to define a version of <span class="code">shrinkMaker</span>
+which can return a shrink function
+capable of handling both increasing and decreasing real
+functions.  
+<div  class="code_block indent display">
+shrinkMaker(f,small):
+   shrink
+ where
+   shrink(lo,hi):
+      <span class="largejz">|</span> x_ok ∧ fx_ok <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> mid 
+      <span class="largejz">|</span> chooseLeft(mid) <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> shrink(lo,mid)
+      <span class="largejz">|</span> otherwise <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> shrink(mid,hi)
+    where
+      increasing := f(lo)≤f(hi)
+      chooseLeft(m):
+         <span class="largejz">|</span> increasing <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> m≥0
+         <span class="largejz">|</span> otherwise  <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> m≤0
+      mid := (lo+hi)/2
+      x_ok := hi-lo &lt; small
+      fx_ok := |f(hi)-f(lo)| &lt; small 
+</div>
+
+<div class="spaced1">&nbsp;</div>
+It is possible to make <span class="code">shrinkMaker</span> more succinct but less readable
+by getting rid of <span class="code">x_ok</span>, <span class="code">fx_ok</span>, <span class="code">increasing</span>, and <span class="code">chooseLeft</span>.  Can you do it<span class="boldjz code">??</span>
+
+<div class="spaced1">&nbsp;</div>
+<h4>answer:</h4>
+<div  class="code_block indent display">
+shrinkMaker(f,sm):
+   shrink
+ where
+   shrink(lo,hi):
+      <span class="largejz">|</span> (hi-lo&lt;sm)∧(|f(hi)-f(lo)|&lt;sm) 
+         <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> mid
+      <span class="largejz">|</span> (f(hi)≥f(lo))∧(f(mid)≥0) 
+         <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> shrink(lo,mid)
+      <span class="largejz">|</span> (f(hi)≤f(lo))∧(f(mid)≤0) 
+         <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> shrink(lo,mid)
+      <span class="largejz">|</span> otherwise 
+         <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> shrink(mid,hi)
+    where
+      mid := (lo+hi)/2
+</div>
+
+Of course you could could get rid of <span class="code">mid</span> or even combine the middle two guards into one
+with
+
+<div  class="code_block indent display"><span class="smalljz">
+((f(hi)≥f(lo))∧(f(mid)≥0))∨((f(hi)≤f(lo))∧(f(mid)≤0))
+</span></div>
+
+but why?
+
+
+<h2 class="next">Monthly Payments</h2>
+
+This is where the <span class="code">payment</span> function discussed in Chapter 2
+gets a recursive process definition.  Recall that <span class="code">payment</span> returns the amount
+of a monthly payment needed to pay back a loan whose amount
+(<span class="code">amt</span>),
+annual percentage rate (<span class="code">aP</span>), and number of monthly
+payments (<span class="code">nM</span>) are known.
+
+</div><div  class="undefined half_display">
+To use our root finding method we need a real function
+<span class="code">paymentChecker</span> that inputs a monthly payment (<span class="code">mP</span>)
+and returns 0 when <span class="code">mP</span> is the correct monthly payment for
+the specified <span class="code">amt</span>, <span class="code">aP</span>, and <span class="code">nM</span>.  Best not to try
+to define <span class="code">paymentChecker</span> right away.  
+
+</div><div  class="undefined half_display">
+Instead let's begin
+with a function <span class="code">nextAmt</span> whose input is an amount owed and
+whose output is the next month's amount owed.  The monthly
+interest due is subtracted and the monthly
+payment is added.
+This is an easy function to define if we know
+how to calculate the monthly
+interest due.  Think it through this way.
+
+<ol><li>
+Each one percent of annual interest means 1/100
+of <span class="code">amt</span> must paid per year. So the amount of
+interest accrued in one year is <span class="code">amt&times;(aP/100)</span>.
+</li><li>
+Long ago accountants decreed that the amount accrued in a month is
+1/12<sup class="smalljz">th</sup> of the amount accrued in a year.  So the monthly
+interest accrued is <span class="code">amt&times;rate</span> where
+
+<div  class="code_block indent display">
+rate = aP/1200
+</div>
+</li></ol>
+
+Now we can define
+
+<div  class="code_block indent display">
+nextAmt(amt):  amt + (amt&times;rate) - mP
+</div>
+
+assuming a context where <span class="code">rate</span> and <span class="code">mP</span> are known.
+
+</div><div  class="undefined half_display">
+To see the amount owed after multiple months we might try
+something like this
+
+<div  class="code_block indent display">
+amt
+nextAmt(amt)
+nextAmt( nextAmt(amt) )
+nextAmt( nextAmt( nextAmt(amt) ) )
+…
+</div>
+
+This type of calculation is easily performed with
+a two parameter recursive function <span class="code">recurs(amt,n)</span>.  Each
+recursive step 
+adjusts the amount owed and the number of
+months left to pay off the
+loan.  Assuming a context
+where <span class="code">rate</span>, <span class="code">nextAmt</span> and <span class="code">nM</span> are known,
+can you define <span class="code">recurs</span><span class="boldjz code">??</span>
+
+<div class="spaced1">&nbsp;</div>
+<h4>answer</h4>
+<div  class="code_block indent display">
+recurs(amt,n):  
+  <span class="largejz">|</span> n=nM      <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> amt
+  <span class="largejz">|</span> otherwise <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> recurs( nextAmt(amt), n+1 )
+)
+</div>
+
+Now if we start with 
+<span class="code">recurs(<span class="italicjz">amount of loan</span>,0)</span> then
+when <span class="code">n</span> reaches <span class="code">nM</span>, <span class="code">amt</span> is the amount still owed given the
+original loan conditions and that
+<span class="code">mP</span> was paid each month.
+
+</div><div  class="undefined half_display">
+So <span class="code">recurs</span> is useful but it relies on a context that
+contains <span class="code">rate</span>, <span class="code">nextAmt</span> and <span class="code">nM</span>.  Let's create one.
+
+<div  class="code_block indent display">
+leftUnpaid(amt,aP,mP,nM):
+    recurs(amt,0)
+  where
+    rate := aP/1200
+    nextAmt(amt'): 
+       amt'&times;(1+rate) - mP
+    recurs(amt',n):  
+      <span class="largejz">|</span> n=nM     <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> amt'
+      <span class="largejz">|</span> otherwise <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> 
+          recurs( nextAmt(amt'), n+1 )
+</div>
+
+Because of their different application contexts, all these
+functions could reuse the
+parameter name <span class="code">amt</span> and have that name for their very own.
+But it seems to be confusing to use this one name in so many
+different ways so I have renamed the amount parameter in
+<span class="code">nextAmt</span> and <span class="code">recurs</span> to be <span class="code">amt'</span>.
+
+</div><div  class="undefined half_display"> To recap: <span class="code">leftUnpaid</span>'s parameters expect to receive
+the original values given to a <span class="code">payment</span> function except
+for plus <span class="code">mP</span>. These values are constant. If <span class="code">leftUnpaid</span>
+is defined in a context that already has them, there is no
+reason for them to be <span class="code">leftUnpaid</span>'s parameters.  Remove
+them and we get
+
+<div  class="code_block indent display">
+leftUnpaid(mP):
+    recurs(amt,0)
+  where
+    rate := aP/1200
+    nextAmt(amt'): 
+       amt'&times;(1+rate) - mP
+    recurs(amt',n):  
+      <span class="largejz">|</span> n=nM     <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> amt'
+      <span class="largejz">|</span> otherwise <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> 
+          recurs( nextAmt(amt'), n+1 )
+</div>
+
+This is a real function that steadily decreases. When the
+return value is negative, it represents an overpayment. When
+the return value is 0, the monthly payment is the amount
+needed to pay off the loan and no more.  So
+<span class="code">leftUnpaid</span> is the <span class="code">paymentChecker</span> function we were
+looking for.  We are now ready to use <span class="code">shrinkMaker</span> in a
+definition of the <span class="code">payment</span> function.
+
+</div><div  class="undefined half_display">
+
+Here is a partial definition. Can you fill in the missing
+parts<span class="boldjz code">??</span>
+
+<div  class="code_block indent display">
+payment(amt,aP,nM):
+    shrink(lo,hi)
+  where
+    …
+    shrink := shrinkMaker(…,0.00001)
+    lo := <span class="italicjz">ignore this for now</span>
+    hi := <span class="italicjz">ignore this for now</span>
+</div>
+
+<div class="spaced1">&nbsp;</div>
+<h4>answer</h4>
+<div  class="code_block indent display">
+payment(amt,aP,nM):
+    shrink(lo,hi)
+  where
+    leftUnpaid(mP):
+       recurs(amt,0)
+     where
+       rate := aP/1200
+       nextAmt(amt'): 
+          amt'&times;(1+rate) - mP
+       recurs(amt',n):  
+         <span class="largejz">|</span> n=nM     <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> amt'
+         <span class="largejz">|</span> otherwise <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> 
+             recurs( nextAmt(amt'), n+1 )
+    shrink := shrinkMaker(leftUnpaid,0.00001)
+    lo := <span class="italicjz">ignore this for now</span>
+    hi := <span class="italicjz">ignore this for now</span>
+</div>
+
+It would be OK to use the name <span class="code">paymentChecker</span> instead of
+<span class="code">leftUnpaid</span> but I think <span class="code">leftUnpaid</span> is more explanatory.
+
+</div><div  class="undefined half_display">
+Now we need an interval <span class="code">[lo,hi]</span> to start 
+<span class="code">shrink</span> with.
+
+<ul><li>
+Let <span class="code">lo</span> be 0.  That means no payments are made at all and
+the value of <span class="code">leftUnpaid(lo)</span> will be positive.
+</li><li>
+Let <span class="code">hi</span> be <span class="code">amt+amt&times;rate</span> where <span class="code">amt</span> is the
+original amount owed.  The then entire debt is payed off the
+first month and the same <span class="code">hi</span> payment will be applied to
+an increasing credit in each succeeding month.  The value of
+<span class="code">leftUnpaid(hi)</span> will be negative.
+</li></ul>
+
+For those values <span class="code">[lo,hi]</span> will be a solvable interval for
+<span class="code">leftUnpaid</span> and so <span class="code">shrink(lo,hi)</span> (and hence
+<span class="code">payment(z)</span>) will return the desired monthly payment.
+
+</div><div  class="undefined half_display">
+Here is the completed <span class="code">payment</span> function.
+
+<div  class="code_block indent display">
+payment(amt,aP,nM):
+    shrink(lo,hi)
+  where
+    leftUnpaid(mP):
+       recurs(amt,0)
+     where
+       rate := aP/1200
+       nextAmt(amt'): 
+          amt'&times;(1+rate) - mP
+       recurs(amt',n):  
+         <span class="largejz">|</span> n=nM     <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> amt'
+         <span class="largejz">|</span> otherwise <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> 
+             recurs( nextAmt(amt'), n+1 )
+    shrink := shrinkMaker(leftUnpaid,0.00001)
+    lo := 0
+    hi := amt+amt&times;rate
+</div>
+
+
+<div  class="indent smalljz italicjz display">
+There is an algebraic process which will in theory produce the
+exact result for the <span class="code">payment</span> function but, because of inaccuracies in expressing
+numbers and performing calculations, no exact result can be
+expected in practice.
+<br/><br/>
+You have seen that our <span class="code">payment</span> function is not designed
+to produce an exact result.  Nevertheless in theory it can be made to
+produce a result that is as accurate as we might want to
+achieve.
+However once again inaccuracies in expressing numbers and performing
+calculations mean some accuracy goals will not be realized in practice.
+<br/><br/>
+The field of mathematics which studies how much accuracy can
+be expected from a given way of calculating is called
+“numerical analysis”.
+</div>
+
+<div class="spaced1">&nbsp;</div>
+<div  class="indent smalljz italicjz display">
+Copyright 2023, by J Adrian Zimmer
+<br/><br/>
+ All rights reserved. Permission granted for personal viewing
+ from the jazimmer.net website only.
+</div>
+
+</div></body><script>function() { var elts = document.getElementsByClassName('page'); for( let i in elts ) { elts[i].setAttribute('class','topMargin') } }()</script></html>
