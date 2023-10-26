@@ -1,0 +1,640 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Stepping Into Mathematics +/ndash Anonymity and Recursion</title>
+<style text/css>
+body {
+   font-family:"Times New Roman", Times, serif;
+   font-size:100%;
+   line-height:125%;
+   max-width:800px;
+}
+
+div,h1,h2,h3,h4,h5,h6,ol,ul,img {
+   position:relative;
+   margin-top:0ex;
+   margin-bottom;0ex;
+}
+
+h1 { 
+   text-align:center;
+}
+
+h4{
+   margin-bottom:0;
+}
+
+h1.extra {
+   font-size:1.25em;
+   margin-top:-1.8ex;
+   margin-bottom:0ex;
+}
+
+h5.by {
+   margin-top:1.6ex;
+   margin-bottom:0ex;
+   text-align:center;
+   font-size:0.95em;
+}
+
+h2.first {
+   margin-top:2.5ex;
+   margin-bottom:2.6ex; 
+}
+
+h2.next {
+   break-before:page;
+   margin-top:4ex;
+   margin-bottom:2ex; 
+}
+
+.spaced2 {
+   margin-top:2ex;
+   margin-bottom:0ex;
+}
+
+.spaced1,ul,ol {
+   margin-top:1.3ex;
+   margin-bottom:1.1ex;
+}
+
+.spaced0 {
+  margin-top:-1.85ex;
+  margin-bottom:0;
+}
+
+img{
+   margin-left:2em;
+   text-align:center
+}
+
+
+li {
+   font-family:"Times New Roman", Times, serif;
+   font-size:0.95em;
+   margin-top:1.85ex;
+   line-height:1.8ex;
+}
+
+.no-bullet {
+   list-style-type:none;
+   list-style-position:outside;
+}
+
+div.ln {
+   margin-top:-1.3ex;
+   margin-bottom:-1.3ex;
+   padding:0;
+}
+
+.half_display {
+   margin-top:2ex;
+   margin-bottom:0ex;
+}
+
+.display {
+}
+
+.indent {
+   padding-left:2em;
+   padding-right:0.75em;
+   margin-top:2ex;
+   margin-bottom:2ex;
+}
+
+.code_block {
+   white-space:pre;
+   margin-top:-1ex;
+   font-family: "Courier New", monospace;
+   font-size:0.94em; 
+}
+
+.cmxFont {
+   font-family:"Comic Sans MS", cursive, sans-serif;
+   font-weight:500;
+   font-size:0.95em;
+}
+
+.code {
+   white-space:nowrap;
+   font-family: "Courier New", monospace;
+   font-size:0.94em; 
+}
+
+
+.smalljz {
+   font-size:0.8em; 
+}
+
+.sub_sup_size {
+   font-size:0.7em; 
+}
+
+.largejz {
+   font-size:1.4em; 
+}
+
+
+.italicjz {
+  font-family: serif;
+  font-style:italic;
+}
+
+.boldjz {
+  font-family: sans-serif;
+  font-weight:bold;
+}
+
+
+</style>
+</head><body>
+
+<div> 
+
+<div  class="center display"><img class="center" height="75px" src="http://www.jazimmer.net/SteppingIntoMath/images/Draft.png" alt="image: draft"/></div>
+
+<h1 class="spaced1">Recursion</h1>
+
+A recursive function re-applies the same process to ever more
+simple input data.  Output is generated in one of two ways
+described in this chapter.
+
+</div><div  class="undefined half_display">
+This chapter also describes anonymous functions.  These are
+functions we don't bother to give a name to.
+
+</div><div  class="undefined half_display"> Anonymous functions are used with maker functions, i.e.
+functions that output (or “make”) other functions, most
+often recursive functions.
+
+
+<h2 class="first">Applying Functions From Within Functions</h2>
+
+Let's look at what happens when a function is applied from
+within a function.
+
+</div><div  class="undefined half_display">
+Here is a simple function
+
+<div  class="code_block indent display">
+g(x): 2&times;x
+</div>
+
+and here is a function which makes use of <span class="code">g</span>.
+
+<div  class="code_block indent display">
+f(x): 1 + g(x-3)
+</div>
+
+When <span class="code">f(2)</span> is applied two application contexts need to be
+closed, one for <span class="code">f</span> and one for <span class="code">g</span>.
+
+<div  class="center display"><img class="center" height="110px" src="http://www.jazimmer.net/SteppingIntoMath/images/LoadedContext4.png" alt="image: Closed Context for Function Applying
+Another Function"/></div>
+
+The first box shows two snapshots of the closed context for
+<span class="code">f(2)</span>.  The first line shows what
+the closed context looks like, after all
+parameters (and helping variables if any)  have been give values.  The
+second line
+shows closed application context arises after
+<span class="code">g(-1)</span> is applied. 
+
+</div><div  class="undefined half_display">
+The second box shows the closed context for <span class="code">g(-1)</span>.
+After this calculation is finished, -2 is returned to <span class="code">f</span>'s
+closed context.  Each closed application context disappears
+when the value it generates is returned.
+
+<div  class="indent smalljz italicjz display">
+Open application contexts never disappear.  They are templates
+from which closed application contexts are created.
+</div>
+
+<h2 class="next">Recursive Definitions</h2>
+
+Recursion happens when the application of a function requires
+a re-application of the same function.  
+ Consider this example 
+
+<div  class="code_block indent display">
+f(): f()
+</div>
+
+
+This is possible because <span class="code">f</span> is a global name and global names
+are available to application contexts.   The definition appears to be circular but it isn't
+because <span class="code">f</span> names a process and each application of
+<span class="code">f()</span> runs that process on a new closed application context, like this
+
+<div  class="center display"><img class="center" height="60px" src="http://www.jazimmer.net/SteppingIntoMath/images/infRecursion.png" alt="image: Infinite Recursion"/></div>
+
+<div  class="indent smalljz italicjz display">
+In theory these new closed application contexts will be created
+forever.  When run on a computer, the operating
+system puts a stop to the nonsense when there is no more room
+in memory for a new closed context.
+</div>
+
+<div class="spaced1">&nbsp;</div>
+The most common example of recursion is the factorial function
+which may be defined this way
+
+
+<div  class="code_block indent display">
+n! = n &times; n-1 &times; n-2 &times; … &times; 1
+</div>
+
+
+If we view
+factorial as a function named <span class="code">fact</span> the possible return
+values can be calculated right-to-left this way
+
+<div  class="code_block indent display">
+fact(1) = 1
+fact(2) = 2&times;1
+fact(3) = 3&times;2&times;1
+fact(4) = 4&times;3&times;2&times;1
+…
+</div>
+
+There's a pattern here: for any <span class="code">n∊<span class="boldjz code">N</span></span> greater
+than 1,
+<span class="code">fact(n)=n&times;fact(n-1)</span>. So
+
+<div  class="code_block indent display">
+fact(4) = 4&times;fact(3)
+fact(3) = 3&times;fact(2)
+fact(2) = 2&times;fact(1)
+fact(1) = 1
+</div>
+
+The closed calculation contexts for <span class="code">fact(4)</span> should 
+look like this
+
+<div  class="center display"><img class="center" height="175px" src="http://www.jazimmer.net/SteppingIntoMath/images/LoadedContext5pre.png" alt="image: Closed Calculation Contexts For
+4!"/></div>
+
+So we can define <span class="code">fact</span> with a process that does the same
+thing to smaller and smaller integers until 1 is reached.
+
+<div  class="code_block indent display">
+fact(n):
+  | n&gt;1       <span style="font-size:115%;">&rarr;</span> n&times;fact(n-1)
+  | otherwise <span style="font-size:115%;">&rarr;</span> 1
+</div>
+
+</div><div  class="undefined half_display"> Every
+recursive definition must
+contain a guard that stops the recursion.  This recursive
+definition does that with
+
+<div  class="code_block indent display">
+  | otherwise <span style="font-size:115%;">&rarr;</span> 1
+</div>
+
+<h2 class="next">Calculating While Recursing</h2>
+
+There is a clear distinction between <span class="italicjz">recursing</span> in which we keep
+re-applying the function and <span class="italicjz">unwinding</span> in which we return
+from all the closed contexts that were set up during the
+recursing phase.  You can see it in the closed contexts
+diagram for <span class="code">fact(4)</span>.
+
+<div  class="center display"><img class="center" height="175px" src="http://www.jazimmer.net/SteppingIntoMath/images/LoadedContext5.png" alt="image: Closed Calculation Contexts For
+4!"/></div>
+
+</div><div  class="undefined half_display"> The actual calculating is done during the unwinding.  Each
+context lasts until its calculation is completed at which time
+it disappears and returns processing to the context from which
+it was created.
+
+</div><div  class="undefined half_display">
+Often we would prefer to have a recursive calculation
+happen while recursing rather than while unwinding.
+For the <span class="code">fact</span> function, calculating while recursing means 
+calculating the partial results left-to-right this way
+<div  class="code_block indent display">
+n&times;(n-1)
+(n&times;(n-1))&times;(n-2)
+…
+(((n&times;(n-1))&times;(n-2))&times;…)&times;1
+</div>
+
+An extra parameter is needed so that each closed application
+context can pass its calculation on to the next one.
+Let's define a function <span class="code">f</span> that calculates this way. Our <span class="code">f</span> will have two parameters, one to handle the normal
+recursion (from <span class="code">n</span> to 1) and one to handle the partial
+results (from <span class="code">n</span> to <span class="code">n!</span>).  Here are the closed
+application contexts that  <span class="code">f(4,4)</span> would create.
+
+<div  class="center display"><img class="center" height="125px" src="http://www.jazimmer.net/SteppingIntoMath/images/LoadedContext6.png" alt="image: Closed Application Contexts For f(4)"/></div>
+
+   <div  class="indent smalljz italicjz display">
+   The middle line shows an intermediate calculation for our
+   convenience.
+   </div>
+
+A function that would calculate <span class="code">n!</span> this way would be
+
+<div  class="code_block indent display">
+f(n,p):
+  | n≤1       <span style="font-size:115%;">&rarr;</span>  p
+  | otherwise <span style="font-size:115%;">&rarr;</span> f( n-1, p&times;(n-1) )
+</div>
+
+For a user of this function that extra parameter is a
+nuisance. So let's redefine <span class="code">fact</span> this way
+
+<div  class="code_block indent display">
+fact(n):
+   f(n,n)
+ where
+   f(n,p):
+     | n≤1       <span style="font-size:115%;">&rarr;</span>  n
+     | otherwise <span style="font-size:115%;">&rarr;</span> f( n-1, p&times;(n-1) )
+</div>
+
+Now the calculation of <span class="code">fact(4)</span> looks like
+
+<div  class="center display"><img class="center" height="125px" src="http://www.jazimmer.net/SteppingIntoMath/images/LoadedContext7.png" alt="image: Closed Application Contexts For
+fact(4)"/></div>
+
+</div><div  class="undefined half_display">
+Given this definition of <span class="code">fact</span> what will <span class="code">fact(-1)</span> return<span class="boldjz code">??</span>
+<div class="spaced1">&nbsp;</div>
+<h4>answer:</h4>
+<div  class="indent display">
+-1
+</div>
+But this is not a reasonable question because the domain of
+this function should be <span class="boldjz code">N</span>, not <span class="boldjz code">Z</span> which means -1 is
+not applicable.
+
+<h2 class="next">Anonymous Functions</h2>
+
+Consider this function definition
+
+<div  class="code_block indent display">
+f(x):
+   g
+ where 
+   g(y): y + 10
+</div>
+
+Then the closed application context for <span class="code">f(2)</span> looks like
+this
+
+<div  class="center display"><img class="center" height="120px" src="http://www.jazimmer.net/SteppingIntoMath/images/deNaming.png" alt="image: Returning a function"/></div>
+
+We can see that the argument given to <span class="code">f</span> is ignored,
+<span class="code">f(-1)</span> would return the same thing as <span class="code">f(2)</span>.  And what
+kind of thing is that?  A function. 
+
+
+</div><div  class="undefined half_display">
+Returning a function is perfectly
+acceptable because a function is a set of ordered pairs.  What
+may seem weird is that the function is returned without its
+name.  The name <span class="code">g</span> is neither part of the function nor
+available outside of <span class="code">f</span>'s application context.
+
+</div><div  class="undefined half_display"> In the global context the function, formerly known as
+<span class="code">g</span>, is referred to as <span class="code">f(2)</span> (or <span class="code">f(-1)</span> depending on
+the useless argument).  Because it refers to a function,
+<span class="code">f(2)</span> acts as a function name.
+That means <span class="code">f(2)(3)</span> is 
+an application of that function  and the
+closed application context looks like this
+
+<div  class="center display"><img class="center" height="120px" src="http://www.jazimmer.net/SteppingIntoMath/images/deNaming2.png" alt="image: Returning a function"/></div>
+
+In the definition of <span class="code">f</span> both the parameter <span class="code">x</span> and the
+function name <span class="code">g</span> are useless.  It is easy to remove the
+parameter but to remove the function name we need to be able
+to define a
+function anonymously.   It turns out that anonymous
+definitions are easy, simply
+replace the function name with a λ.
+
+</div><div  class="undefined half_display"> So this is an anonymous definition of <span class="code">g</span>
+
+<div  class="code_block indent display">
+λ(x):
+    x + 10
+</div>
+
+and this
+<div  class="code_block indent display">
+g(x): 
+   x + 10
+</div>
+
+can be considered to be shorthand for this
+
+<div  class="code_block indent display">
+g := (λ(x): x + 10)
+</div>
+
+
+<div  class="indent smalljz italicjz display"> In this monograph I use parentheses two ways:  to delineate argument or
+parameter lists or to resolve potential ambiguities.  Don't
+fret the ambiguities. It is my job to disambiguate them.
+</div>
+
+The way we have been defining functions up to now is quite
+convenient but it deceives us into thinking that having a name
+is part of being a function.  That is not true of sets. There
+is no reason it should be true of functions.
+
+
+<div class="spaced1">&nbsp;</div>
+Recall the <span class="code">average</span> function.  Its anonymous version looks
+like this
+<span class="code">λ(x,y):(x+y)/2</span>. Can
+you complete the following explanation of why <span class="code">average</span> and
+its anonymous version are the same function<span class="boldjz code">??</span>
+
+<div  class="code_block indent display">
+{<span class="code"> ( (x,y), … ) | x,y∊<span class="boldjz code">R</span> </span>} 
+=
+{<span class="code"> ( (x,y), … ) | x,y∊<span class="boldjz code">R</span> </span>}
+</div>
+
+<span class="boldjz">Hint:</span>
+<div  class="indent display">
+These sets show  <span class="italicjz">(input,output)</span> pairs for <span class="code">average</span>
+and its anonymous version.  Output values, of course, come
+from applying functions.
+</div>
+
+<div class="spaced1">&nbsp;</div>
+<h4>answer:</h4>
+<div  class="code_block indent display">
+{<span class="code"> ( (x,y), average(x,y) ) | x,y∊<span class="boldjz code">R</span> </span>}
+=
+{<span class="code"> ( (x,y), (λ(x,y):(x+y)/2)(x,y) ) | x,y∊<span class="boldjz code">R</span> </span>} 
+</div>
+
+The expressions <span class="code">lambda(x,y):(x+y)/2</span> and <span class="code">average</span> are
+playing the same role but the version using <span class="code">average</span> is
+easier to read.  
+This is a good demonstration of why we like functions to
+have names.  However when functions are part of the input or
+output of other functions, anonymity can be helpful.
+
+
+
+<h2 class="next">Combining Recursion with Anonymous Functions</h2>
+
+Can you say what <span class="code">g(4)</span> will return when <span class="code">g</span> is defined
+this way?
+
+<div  class="code_block indent display">
+g(n):
+   f(n,n)
+ where
+   f(n,p):
+     | n≤1       <span style="font-size:115%;">&rarr;</span>  p
+     | otherwise <span style="font-size:115%;">&rarr;</span> f( n-1, p+(n-1) )
+</div>
+
+<div class="spaced1">&nbsp;</div>
+<h4>answer:</h4>
+<div  class="indent display">
+This looks almost like the definition of <span class="code">fact</span>
+
+<div  class="code_block indent display">
+fact(n):
+   f(n,n)
+ where
+   f(n,p):
+     | n≤1       <span style="font-size:115%;">&rarr;</span>  n
+     | otherwise <span style="font-size:115%;">&rarr;</span> f( n-1, p&times;(n-1) )
+</div>
+
+But <span class="code">g(n)</span> adds the first <span class="code">n</span> natural numbers whereas
+<span class="code">fact(n)</span> multiplies them.
+<br/><br/>
+So <span class="code">g(4)=10</span>.
+</div>
+
+It seems a shame to repeat a function definition just to make a
+small change.  It is also unnecessary when we can define a
+more general function capable of doing either calculation.
+This general function need not know how to calculate.  It is
+enough if it knows what numbers need to be calculated.  The trick is
+to add a parameter that expects to be assigned a function like
+λ<span class="code">(x):x&times;y</span>, or λ<span class="code">(x):x+y</span>, or
+whatever, like this
+
+<div  class="code_block indent display">
+acc(n,c):
+   f(n,n)
+ where
+   f(n,p):
+     | n≤1       <span style="font-size:115%;">&rarr;</span>  p
+     | otherwise <span style="font-size:115%;">&rarr;</span> f( n-1, c(p,n-1) )
+</div>
+
+If we apply <span class="code">acc(3,λ(x,y):x+y)</span> the closed contexts
+for <span class="code">f</span> will all be included in the closed context for
+   <span class="code">acc</span> this way
+
+<div  class="center display"><img class="center" height="160px" src="http://www.jazimmer.net/SteppingIntoMath/images/acc.png" alt="image: Closed contexts for acc(3,lambda(x,y):x+y)"/></div>
+
+You can see that the parameter <span class="code">c</span> references
+λ<span class="code">(x,y):x+y</span> and that this reference is valid within
+all of <span class="code">f</span>'s closed contexts.
+
+</div><div  class="undefined half_display">
+Although this looks a bit silly, what will
+<span class="code">acc(3,λ(u,v):u-v)</span> return?
+
+<div class="spaced1">&nbsp;</div>
+<h4>answer:</h4>
+<div  class="indent display">
+0
+<br/><br/>
+Here is a diagram of the needed closed contexts.
+
+<div  class="center display"><img class="center" height="170px" src="http://www.jazimmer.net/SteppingIntoMath/images/acc2.png" alt="image: Closed contexts for acc(3,lambda(x,y):x+y)"/></div>
+</div>
+
+<div class="spaced1">&nbsp;</div>
+We can create a <span class="italicjz">maker</span> function whose output will be
+<span class="code">fact</span> or <span class="code">g</span> or, perhaps,
+something rather different.
+
+<div  class="code_block indent display">
+make_acc(action):
+   λ(n):`acc(n,action)
+ where
+   acc(n,c):
+      f(n,n)
+    where
+      f(n,p):
+        | n≤1       <span style="font-size:115%;">&rarr;</span>  p
+        | otherwise <span style="font-size:115%;">&rarr;</span> f( n-1, c(p,n-1) )
+</div>
+
+We can use this maker to define <span class="code">fact</span> or <span class="code">sum</span> (aka
+<span class="code">g</span>) this way
+
+<div  class="code_block indent display">
+fact := make_acc(λ(x,y):x&times;y)
+sum := make_acc(λ(x,y):x+y)
+</div> 
+
+Now
+
+<div  class="code_block indent display">
+fact(5) = 120
+sum(5) = 15
+</div>
+
+<div class="spaced1">&nbsp;</div>
+This definition of <span class="code">make_acc</span> is unnecessarily verbose
+because the function <span class="code">acc</span> is not needed.  All it added to 
+the definition was
+a context for defining <span class="code">f</span>. We can use
+<span class="code">make_acc</span> for that.  Can you re-define <span class="code">make_acc</span>
+so that neither <span class="code">acc</span> nor <span class="code">c</span> is present<span class="boldjz code">??</span>
+
+<div class="spaced1">&nbsp;</div>
+<h4>answer:</h4>
+<div  class="code_block indent display">
+make_acc(action):
+   λ(n):`f(n,n)
+ where
+   f(n,p):
+     | n≤1       <span style="font-size:115%;">&rarr;</span>  p
+     | otherwise <span style="font-size:115%;">&rarr;</span> f( n-1, action(p,n-1) )
+</div>
+
+<div class="spaced1">&nbsp;</div>
+<div  class="indent smalljz italicjz display"> Can you imagine working with functions of the style you
+have seen here but without helping variables,function names,
+numbers, or  algebra?  All functions would be
+anonymous and there would be precious little to work with.
+That precious little is known as the Lambda Calculus.  It is
+believed that all of mathematics can be built up from the
+Lambda Calculus, just as it is believed that all of
+mathematics can be built up from the more famous Turing
+Machine.  You would want to take college courses covering
+each of these systems to understand how that might be.  
+<br/><br/>
+Even
+more study would show you proofs that either of
+these systems can be used to simulate the other.  The two systems are 
+very different but anything that can be built from one of them
+can also be built from the other. 
+That either system could be used to build up all of
+mathematics is known as the Church-Turing thesis.  The phrase
+“all of mathematics” is much too vague to consider trying
+to prove the Church-Turing thesis.
+</div>
+
+<div class="spaced1">&nbsp;</div>
+<div  class="indent smalljz italicjz display">
+Copyright 2023, by J Adrian Zimmer [http://jazimmer.net]
+</div>
+
+</div></body><script>function() { var elts = document.getElementsByClassName('page'); for( let i in elts ) { elts[i].setAttribute('class','topMargin') } }()</script></html>
