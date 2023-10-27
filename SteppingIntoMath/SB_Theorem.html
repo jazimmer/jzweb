@@ -1,0 +1,469 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Stepping Into Mathematics -- The Schröder/Bernstein Theorem</title>
+<style text/css>
+body {
+   font-family:"Times New Roman", Times, serif;
+   font-size:100%;
+   line-height:125%;
+   max-width:800px;
+}
+
+div,h1,h2,h3,h4,h5,h6,ol,ul,img {
+   position:relative;
+   margin-top:0ex;
+   margin-bottom;0ex;
+}
+
+h1 { 
+   text-align:center;
+}
+
+h4{
+   margin-bottom:0;
+}
+
+h1.extra {
+   font-size:1.25em;
+   margin-top:-1.8ex;
+   margin-bottom:0ex;
+}
+
+h5.by {
+   margin-top:1.6ex;
+   margin-bottom:0ex;
+   text-align:center;
+   font-size:0.95em;
+}
+
+h2.first {
+   margin-top:2.5ex;
+   margin-bottom:2.6ex; 
+}
+
+h2.next {
+   break-before:page;
+   margin-top:4ex;
+   margin-bottom:2ex; 
+}
+
+.spaced2 {
+   margin-top:2ex;
+   margin-bottom:0ex;
+}
+
+.spaced1,ul,ol {
+   margin-top:1.3ex;
+   margin-bottom:1.1ex;
+}
+
+.spaced0 {
+  margin-top:-1.85ex;
+  margin-bottom:0;
+}
+
+img{
+   margin-left:2em;
+   text-align:center
+}
+
+
+li {
+   font-family:"Times New Roman", Times, serif;
+   font-size:0.95em;
+   margin-top:1.85ex;
+   line-height:1.8ex;
+}
+
+.no-bullet {
+   list-style-type:none;
+   list-style-position:outside;
+}
+
+div.ln {
+   margin-top:-1.3ex;
+   margin-bottom:-1.3ex;
+   padding:0;
+}
+
+.half_display {
+   margin-top:2ex;
+   margin-bottom:0ex;
+}
+
+.display {
+}
+
+.indent {
+   padding-left:2em;
+   padding-right:0.75em;
+   margin-top:2ex;
+   margin-bottom:2ex;
+}
+
+.code_block {
+   white-space:pre;
+   margin-top:-1ex;
+   font-family: "Courier New", monospace;
+   font-size:0.94em; 
+}
+
+.cmxFont {
+   font-family:"Comic Sans MS", cursive, sans-serif;
+   font-weight:500;
+   font-size:0.95em;
+}
+
+.code {
+   white-space:nowrap;
+   font-family: "Courier New", monospace;
+   font-size:0.94em; 
+}
+
+
+.smalljz {
+   font-size:0.8em; 
+}
+
+.sub_sup_size {
+   font-size:0.7em; 
+}
+
+.largejz {
+   font-size:1.4em; 
+}
+
+
+.italicjz {
+  font-family: serif;
+  font-style:italic;
+}
+
+.boldjz {
+  font-family: sans-serif;
+  font-weight:bold;
+}
+
+
+</style>
+</head><body>
+
+
+<div> 
+
+<div  class="center display"><img class="center" height="75px" src="http://www.jazimmer.net/SteppingIntoMath/images/Draft.png" alt="image: draft"/></div>
+
+<h1 class="spaced1">The Schröder/Bernstein Theorem</h1>
+
+Using our terminology the Schröder/Bernstein theorem states:
+
+<div  class="indent display">
+If two sets are <span class="code">size-bounded</span> by each other then they are
+<span class="code">size-equal</span>.
+</div>
+
+</div><div  class="undefined half_display"> To show two, potentially uncountable, sets are size-equal,
+the proof constructs the necessary complete matching using the
+concept of a link chain.  
+The first two sections of this chapter derive some properties
+of link chains.  The proof itself follows in the
+the next two sections and is presented without explanatory examples.
+Try reading it that way, but if you have difficulty, the
+examples in the fourth section may help.
+
+<h2 class="first">Proof Preliminary: Link Chains</h2>
+
+Link chains are sequences of links from two matchings.  They
+are not the same as the subset chains of Chapter 8.  In this
+chapter and in many places they are simply called chains.
+
+</div><div  class="undefined half_display">
+To define a chain we need two matchings <span class="code">R</span> and <span class="code">Q</span>
+between two sets <span class="code">A</span> and <span class="code">B</span> such that
+<span class="code">R</span> covers <span class="code">A</span> (i.e. <span class="cmxFont">e</span><span class="code">(R,A)=A</span>)
+and <span class="code">Q</span> covers <span class="code">B</span> (i.e. <span class="cmxFont">e</span><span class="code">(Q,B)=B</span>).
+
+<div  class="center display"><img class="center" height="160px" src="http://www.jazimmer.net/SteppingIntoMath/images/injectiveB.png" alt="image: A,B-injective matching"/></div>
+
+
+In this diagram I have made two copies of the same <span class="code">A</span> and <span class="code">B</span> to
+help differentiate between <span class="code">R</span> and <span class="code">Q</span>.  The chains
+which interest us begin in <span class="code">B-<span class="cmxFont">e</span>(R,B)</span> like this
+
+<div  class="center display"><img class="center" height="190px" src="http://www.jazimmer.net/SteppingIntoMath/images/chain.png" alt="image: A B*-chain"/></div>
+
+Define <span class="code">B*</span> to be <span class="code">B-<span class="cmxFont">e</span>(R,B)</span> and a <span class="code">B*-chain</span>
+to be a chain of links from <span class="code">R<span style="padding-left:0.2em;padding-right:0.2em;vertical-align:10%; font-size:65%;">⋃</span>Q</span> like this
+
+<div  class="code_block indent display">
+{<span class="code">c<sub class="sub_sup_size">0</sub>,c<sub class="sub_sup_size">1</sub></span>},{<span class="code">c<sub class="sub_sup_size">1</sub>,c<sub class="sub_sup_size">2</sub></span>},{<span class="code">c<sub class="sub_sup_size">2</sub>,c<sub class="sub_sup_size">3</sub></span>},…
+</div>
+
+where <span class="code">c<sub class="sub_sup_size">0</sub>∊B*</span>.  In this section we will see that
+B*-chains exist exactly when <span class="code">B*≠empty</span> and what their properties are.
+
+</div><div  class="undefined half_display"><span class="boldjz">P10.1</span>
+<div  class="indent display">
+A potential B*-chain begins with a <span class="code">c<sub class="sub_sup_size">0</sub></span> which is in
+<span class="code">B*</span> and continues with a link
+{<span class="code">c<sub class="sub_sup_size">0</sub>,c<sub class="sub_sup_size">1</sub></span>} which is in <span class="code">Q</span> and whose other
+end <span class="code">c<sub class="sub_sup_size">1</sub></span> is in <span class="code">A</span>.  Moreover
+<span class="code">c<sub class="sub_sup_size">0</sub></span> is not in any other link of <span class="code">R<span style="padding-left:0.2em;padding-right:0.2em;vertical-align:10%; font-size:65%;">⋃</span>Q</span>.
+</div>
+
+</div><div  class="undefined half_display"><span class="boldjz">Proof</span>
+<div  class="indent display">
+Can you prove this?
+</div>
+
+<div class="spaced1">&nbsp;</div>
+<h4>answer</h4>
+<div  class="indent display">
+By definition of a B*-chain <span class="code">c<sub class="sub_sup_size">0</sub>∊B*</span>.  By
+definition of <span class="code">B*</span>, <span class="code">c<sub class="sub_sup_size">0</sub></span> cannot be in any link of <span class="code">R</span>.
+Since <span class="code">Q</span> covers <span class="code">B</span>, <span class="code">c<sub class="sub_sup_size">0</sub></span> is in a link
+{<span class="code">c<sub class="sub_sup_size">0</sub>,c<sub class="sub_sup_size">1</sub></span>}
+of <span class="code">Q</span>. Since <span class="code">Q</span> separates <span class="code">B</span>, <span class="code">c<sub class="sub_sup_size">0</sub></span>
+cannot be in any other link of <span class="code">Q</span>.  Since <span class="code">Q</span> is a
+relation between <span class="code">A</span> and <span class="code">B</span>, <span class="code">c<sub class="sub_sup_size">1</sub></span> must be 
+in <span class="code">A</span>. 
+</div>
+
+</div><div  class="undefined half_display"><span class="boldjz">P10.2</span>
+<div  class="indent display">
+For any <span class="code">c∊B*</span> a B*-chain exists and has these
+properties:
+
+<ol><li>
+For any odd <span class="code">i∊<span class="boldjz">N</span></span>:
+<div  class="indent display">
+c<sub class="sub_sup_size">i</sub> is in <span class="code">A</span> and in exactly two links of
+<span class="code">R<span style="padding-left:0.2em;padding-right:0.2em;vertical-align:10%; font-size:65%;">⋃</span>Q</span>, <span class="code">{<span class="code">c<sub class="sub_sup_size">i-1</sub>,c<sub class="sub_sup_size">i</sub></span>}∊Q</span> and 
+<span class="code">{<span class="code">c<sub class="sub_sup_size">i</sub>,c<sub class="sub_sup_size">i+1</sub></span>}∊R</span>
+</div>
+</li><li> 
+For any even <span class="code">i∊<span class="boldjz">N</span></span>:
+<div  class="indent display">
+c<sub class="sub_sup_size">i</sub> is in <span class="code">B</span> and in exactly two links of
+<span class="code">R<span style="padding-left:0.2em;padding-right:0.2em;vertical-align:10%; font-size:65%;">⋃</span>Q</span>, <span class="code">{<span class="code">c<sub class="sub_sup_size">i-1</sub>,c<sub class="sub_sup_size">i</sub></span>}∊R</span> and 
+<span class="code">{<span class="code">c<sub class="sub_sup_size">i</sub>,c<sub class="sub_sup_size">i+1</sub></span>}∊Q</span>
+</div>
+</li></ol>
+</div>
+
+<h4>Proof</h4>
+<div  class="indent display">
+Since I think of this chain as being constructed, link by
+link, from <span class="code">c<sub class="sub_sup_size">0</sub>,c<sub class="sub_sup_size">1</sub></span>, an inductive proof
+best fits my intuition.  In the base case, <span class="code">i=1</span> and
+so P10.1 shows that <span class="code">{<span class="code">c<sub class="sub_sup_size">i-1</sub>,c<sub class="sub_sup_size">i</sub></span>}∊Q</span>
+and <span class="code">c<sub class="sub_sup_size">1</sub>∊A</span>.
+Since <span class="code">R</span> covers
+<span class="code">A</span>, there is a <span class="code">{<span class="code">c<sub class="sub_sup_size">i</sub>,c<sub class="sub_sup_size">i+1</sub></span>}∊R</span>.  Since
+<span class="code">R</span> and <span class="code">Q</span> separate <span class="code">A</span>, there can be no other links
+in <span class="code">R<span style="padding-left:0.2em;padding-right:0.2em;vertical-align:10%; font-size:65%;">⋃</span>Q</span> which contain <span class="code">c<sub class="sub_sup_size">i</sub></span>. Thus P10.2.1
+is satisfied for <span class="code">i=1</span>.
+
+<br/><br/>
+For the inductive step assume for an arbitrary natural number
+<span class="code">i&gt;1</span>, that 
+
+<ol><li>
+For any odd <span class="code">j∊<span class="boldjz">N</span></span> with <span class="code">j&lt;i</span>:
+<div  class="indent display">
+c<sub class="sub_sup_size">j</sub> is in <span class="code">A</span> and in exactly two links of
+<span class="code">R<span style="padding-left:0.2em;padding-right:0.2em;vertical-align:10%; font-size:65%;">⋃</span>Q</span>, <span class="code">{<span class="code">c<sub class="sub_sup_size">j-1</sub>,c<sub class="sub_sup_size">j</sub></span>}∊Q</span> and 
+<span class="code">{<span class="code">c<sub class="sub_sup_size">j</sub>,c<sub class="sub_sup_size">j+1</sub></span>}∊R</span>
+</div>
+</li><li> 
+For any even <span class="code">j∊<span class="boldjz">N</span></span> with <span class="code">j&lt;i</span>:
+<div  class="indent display">
+c<sub class="sub_sup_size">j</sub> is in <span class="code">B</span> and in exactly two links of
+<span class="code">R<span style="padding-left:0.2em;padding-right:0.2em;vertical-align:10%; font-size:65%;">⋃</span>Q</span>, <span class="code">{<span class="code">c<sub class="sub_sup_size">j-1</sub>,c<sub class="sub_sup_size">j</sub></span>}∊R</span> and 
+<span class="code">{<span class="code">c<sub class="sub_sup_size">j</sub>,c<sub class="sub_sup_size">j+1</sub></span>}∊Q</span>
+</div>
+</li></ol>
+
+Then for an odd natural number greater than 1:
+<div  class="indent display">
+<span class="code">i-1</span> is even and (taking <span class="code">j=i-1</span>) satisfies the
+second inductive assumption).
+Therefore <span class="code">c<sub class="sub_sup_size">i-1</sub>∊B</span> and 
+<span class="code">{<span class="code">c<sub class="sub_sup_size">i-1</sub>,c<sub class="sub_sup_size">i</sub></span>}∊Q</span> so <span class="code">c<sub class="sub_sup_size">i</sub></span>
+must be in <span class="code">A</span>.  Since <span class="code">R</span> covers
+<span class="code">A</span>, there is a <span class="code">c<sub class="sub_sup_size">i+1</sub>∊B</span> with 
+<span class="code">{<span class="code">c<sub class="sub_sup_size">i</sub>,c<sub class="sub_sup_size">i+1</sub></span>}∊R</span>.  Since
+<span class="code">R</span> and <span class="code">Q</span> separate <span class="code">A</span>, there can be no other links
+in <span class="code">R<span style="padding-left:0.2em;padding-right:0.2em;vertical-align:10%; font-size:65%;">⋃</span>Q</span> which contain <span class="code">c<sub class="sub_sup_size">i</sub></span>. Thus P10.2.1
+is satisfied.
+</div>
+
+And for an even natural number greater than 1:
+
+<div  class="indent display">
+<span class="code">i-1</span> is odd and (taking <span class="code">j=i-1</span>) satisfies the first
+inductive assumption).
+Therefore <span class="code">c<sub class="sub_sup_size">i-1</sub>∊A</span> and 
+<span class="code">{<span class="code">c<sub class="sub_sup_size">i-1</sub>,c<sub class="sub_sup_size">i</sub></span>}∊R</span> so <span class="code">c<sub class="sub_sup_size">i</sub></span>
+must be in <span class="code">B</span>.  Since <span class="code">Q</span> covers
+<span class="code">B</span>, there is a <span class="code">c<sub class="sub_sup_size">i+1</sub>∊A</span> with 
+<span class="code">{<span class="code">c<sub class="sub_sup_size">i</sub>,c<sub class="sub_sup_size">i+1</sub></span>}∊Q</span>.  Since
+<span class="code">R</span> and <span class="code">Q</span> separate <span class="code">B</span>, there can be no other links
+in <span class="code">R<span style="padding-left:0.2em;padding-right:0.2em;vertical-align:10%; font-size:65%;">⋃</span>Q</span> which contain <span class="code">c<sub class="sub_sup_size">i</sub></span>. Thus P10.2.2
+is satisfied.
+</div>
+</div>
+</div><div  class="undefined half_display">
+
+Let's see what we can do with B*-chains knowing that 
+P10.1 and P10.2 are satisfied.
+
+</div><div  class="undefined half_display"><span class="boldjz">P10.3</span>
+<div  class="indent display">
+If for some <span class="code">c∊B*</span>
+<div  class="code_block indent display">
+C={<span class="code">c<sub class="sub_sup_size">0</sub>,c<sub class="sub_sup_size">1</sub></span>},{<span class="code">c<sub class="sub_sup_size">1</sub>,c<sub class="sub_sup_size">2</sub></span>},{<span class="code">c<sub class="sub_sup_size">2</sub>,c<sub class="sub_sup_size">3</sub></span>},…
+</div>
+is a B*-chain with <span class="code">c<sub class="sub_sup_size">0</sub>=c</span>, then for no <span class="code">i</span> is there a
+{<span class="code">c<sub class="sub_sup_size">i</sub>,x</span>}∊<span class="code">R<span style="padding-left:0.2em;padding-right:0.2em;vertical-align:10%; font-size:65%;">⋃</span>Q</span> that is not a link of
+<span class="code">C</span>.
+</div>
+
+</div><div  class="undefined half_display"><span class="boldjz">Proof</span>
+<div  class="indent display">
+There is no such <span class="code">c<sub class="sub_sup_size">i</sub></span> because any such
+<ul><li>
+cannot be <span class="code">c<sub class="sub_sup_size">0</sub></span> (aka <span class="code">c</span>) because of P10.1
+</li><li>
+cannot be <span class="code">c<sub class="sub_sup_size">i</sub></span> with <span class="code">i∊<span class="boldjz">N</span></span> because of
+P10.2
+</li></ul>
+</div>
+
+We say a variable is <span class="italicjz">in</span> a B*-chain it there is a B*-chain
+with an link containing its value.
+
+</div><div  class="undefined half_display"><span class="boldjz">P10.4</span>
+<div  class="indent display">
+Given any <span class="code">x</span>∊<span class="code">A<span style="padding-left:0.2em;padding-right:0.2em;vertical-align:10%; font-size:65%;">⋃</span>B</span>, either <span class="code">x</span> is not an
+element of any link of some B*-chain or there exists exactly one B*-chain
+containing that link.
+</div>
+
+</div><div  class="undefined half_display"><span class="boldjz">Proof</span>
+<div  class="indent display">
+Let <span class="code">x</span> be an element of <span class="code">A<span style="padding-left:0.2em;padding-right:0.2em;vertical-align:10%; font-size:65%;">⋃</span>B</span>.  We know that
+<span class="code">x</span> either is, or is not, an element of a B*-chain so it is
+sufficient to show it cannot be the element of two distinct
+B*-chains.  Let
+<div  class="code_block indent display">
+C={<span class="code">c<sub class="sub_sup_size">0</sub>,c<sub class="sub_sup_size">1</sub></span>},{<span class="code">c<sub class="sub_sup_size">1</sub>,c<sub class="sub_sup_size">2</sub></span>},{<span class="code">c<sub class="sub_sup_size">2</sub>,c<sub class="sub_sup_size">3</sub></span>},…
+</div>
+be any B*-chain with some <span class="code">c<sub class="sub_sup_size">i</sub>=x</span>.  If there exists a
+B*-chain distinct from <span class="code">C</span> that also contains <span class="code">x</span>, then
+(because the two chains must be different someplace)
+there must be a <span class="code">c<sub class="sub_sup_size">j</sub></span> in <span class="code">C</span> which is also in a
+link of that other B*-chain.  By P10.3 that is impossible.
+</div>
+
+By P10.4, for every <span class="code">c∊B*</span> there is exactly one
+B*-chain containing <span class="code">c</span>.  Let's call that chain
+<span class="cmxFont">C</span><span class="code"><sub class="sub_sup_size">c</sub></span>.
+
+<h2 class="next">Proof of Schröder/Bernstein</h2>
+
+Again we start with
+two matchings <span class="code">R</span> and <span class="code">Q</span> between sets <span class="code">A</span> and
+<span class="code">B</span>, where <span class="code">R</span> covers <span class="code">A</span> (i.e. <span class="cmxFont">e</span><span class="code">(R,A)=A</span>)
+and <span class="code">Q</span> covers <span class="code">B</span> (i.e. <span class="cmxFont">e</span><span class="code">(Q,B)=B</span>).  
+</div><div  class="undefined half_display">
+Here again is a representation of a
+
+single B*-chain
+
+<div  class="center display"><img class="center" height="130px" src="http://www.jazimmer.net/SteppingIntoMath/images/alternate2.png" alt="image: A B*-chain"/></div>
+
+Let
+<div  class="code_block indent display">
+<span class="code">Q<sub class="sub_sup_size">c</sub> = {<span class="code">c<sub class="sub_sup_size">0</sub>,c<sub class="sub_sup_size">1</sub></span>},{<span class="code">c<sub class="sub_sup_size">2</sub>,c<sub class="sub_sup_size">3</sub></span>},{<span class="code">c<sub class="sub_sup_size">4</sub>,c<sub class="sub_sup_size">5</sub></span>},…</span>
+<span class="code">R<sub class="sub_sup_size">c</sub> = {<span class="code">c<sub class="sub_sup_size">1</sub>,c<sub class="sub_sup_size">2</sub></span>},{<span class="code">c<sub class="sub_sup_size">3</sub>,c<sub class="sub_sup_size">4</sub></span>},{<span class="code">c<sub class="sub_sup_size">5</sub>,c<sub class="sub_sup_size">6</sub></span>},…</span>
+</div>
+
+ Define <span class="code">R'</span> to be an alteration of <span class="code">R</span> obtained by
+replacing all the <span class="code">R<sub class="sub_sup_size">c</sub></span> links in each <span class="code"><span class="cmxFont">C</span><sub class="sub_sup_size">c</sub></span> with
+<span class="code">Q<sub class="sub_sup_size">c</sub></span> links.  Altering <span class="code">R'</span><span class="smalljz">s</span> links within each B*-chain this
+way does not ruin the fact that <span class="code">R</span> separates <span class="code">A</span> and
+<span class="code">B</span> because each
+<span class="code"><span class="cmxFont">C</span><sub class="sub_sup_size">c</sub></span> is basically a silo of its own.   P10.3
+tells us no
+link of <span class="code"><span class="cmxFont">C</span><sub class="sub_sup_size">c</sub></span> has one end in <span class="code"><span class="cmxFont">e</span>(<span class="cmxFont">C</span><sub class="sub_sup_size">c</sub>)</span> and the other outside of
+<span class="code"><span class="cmxFont">e</span>(<span class="cmxFont">C</span><sub class="sub_sup_size">c</sub>)</span>.  P10.4 tells us <span class="code"><span class="cmxFont">e</span>(<span class="cmxFont">C</span><sub class="sub_sup_size">c</sub>)</span> shares no element
+with <span class="code">A<span style="padding-left:0.2em;padding-right:0.2em;vertical-align:10%; font-size:65%;">⋃</span>B-<span class="cmxFont">e</span>(<span class="cmxFont">C</span><sub class="sub_sup_size">c</sub>)</span>.
+
+</div><div  class="undefined half_display">
+Left to prove is that <span class="code">R'</span> is a complete matching
+between <span class="code">A</span> and <span class="code">B</span>.
+
+</div><div  class="undefined half_display">
+We know that <span class="code">R</span> covers <span class="code">A</span> and we can see from the definitions of
+<span class="code">R<sub class="sub_sup_size">c</sub></span> and <span class="code">Q<sub class="sub_sup_size">c</sub></span> above that each <span class="code">Q<sub class="sub_sup_size">c</sub></span> covers more
+than <span class="code">R<sub class="sub_sup_size">c</sub></span>.  Therefore <span class="code">R'</span> covers <span class="code">A</span>.
+
+</div><div  class="undefined half_display"> Not only does each <span class="code">Q<sub class="sub_sup_size">c</sub></span> cover more than
+<span class="code">R<sub class="sub_sup_size">c</sub></span>,
+the difference is an element of <span class="code">B*</span>, namely <span class="code">c<sub class="sub_sup_size">0</sub></span>. So when we replace the links of
+<span class="code">R<sub class="sub_sup_size">c</sub></span> with links of <span class="code">Q<sub class="sub_sup_size">c</sub></span> in every
+<span class="code"><span class="cmxFont">C</span><sub class="sub_sup_size">c</sub></span>, we get
+that <span class="code"><span class="cmxFont">e</span>(R')=<span class="cmxFont">e</span>(R)<span style="padding-left:0.2em;padding-right:0.2em;vertical-align:10%; font-size:65%;">⋃</span>B*</span>.  Since <span class="code">B*=B-<span class="cmxFont">e</span>(R,B)</span> this means that
+<span class="code"><span class="cmxFont">e</span>(R',B)=<span class="cmxFont">e</span>(R,b)<span style="padding-left:0.2em;padding-right:0.2em;vertical-align:10%; font-size:65%;">⋃</span>(B-<span class="cmxFont">e</span>(R,B))</span>.  Thus R' covers B too.
+
+In summary we have in R' a complete matching between A and B.
+
+<h2 class="next">Examples</h2>
+
+Finite examples are easy to construct and can improve
+understanding.  Suppose we have the matchings as shown
+here, R which covers <span class="code">A</span> and <span class="code">Q</span> which covers <span class="code">B</span>.
+
+<div  class="center display"><img class="center" height="190px" src="http://www.jazimmer.net/SteppingIntoMath/images/RQfinite.png" alt="image:  Injective Matchings with Finite Sets"/></div>
+
+You can see that <span class="code">B*=∅</span>.  There are no B*-chains here.  This is as
+expected because when two finite sets are the
+same size any mapping that covers one seet must cover the
+other.  So in this case <span class="code"><span class="cmxFont">L</span><sub class="sub_sup_size">0</sub>=R</span> and there needs to
+be no replacing of <span class="code">R</span> links with <span class="code">Q</span> links in a chain.
+
+<div class="spaced1">&nbsp;</div> To see an example with a B*-chain we need to work with
+infinite sets.  Let's take <span class="code">A</span> and <span class="code">B</span> to be two
+separate copies of <span class="boldjz code">Z<sup class="sub_sup_size">[0,∞)</sup></span>.  I will
+distinguish between them by underlining the numbers in <span class="code">B</span>.
+</div><div  class="undefined half_display">
+Here are algebraic specifications for <span class="code">R</span>, with
+<span class="code"><span class="cmxFont">e</span>(R,A)=A</span>, and <span class="code">Q</span>, with <span class="code"><span class="cmxFont">e</span>(Q,B)=B</span>.
+
+<div  class="center display"><img class="center" height="150px" src="http://www.jazimmer.net/SteppingIntoMath/images/RQalgebraic.png" alt="image:  Algebraic Specifications size bounded
+infinite sets"/></div>
+Here is a view of the <span class="code">R</span> and <span class="code">Q</span> those specifications
+create.
+
+<div  class="center display"><img class="center" height="250px" src="http://www.jazimmer.net/SteppingIntoMath/images/RQtogether.png" alt="image:  R and Q overlaid"/></div>
+
+You can see that <span class="code">B*=</span>{<span class="code"><u>0</u></span>}.  To visualize
+<span class="cmxFont">c<sub class="sub_sup_size"><u>0</u></sub></span> it helps to see
+<span class="code">R</span> and <span class="code">Q</span> separately.
+
+<div  class="center display"><img class="center" height="300px" src="http://www.jazimmer.net/SteppingIntoMath/images/RQseparate.png" alt="image:  R and Q shown separately"/></div>
+
+So here is the chain
+
+<div  class="center display"><img class="center" height="250px" src="http://www.jazimmer.net/SteppingIntoMath/images/RQchain.png" alt="image:  The single chain"/></div>
+
+The <span class="code">R*</span> constructed by the theorem uses the links of
+<span class="code">Q<sub class="sub_sup_size"><u>0</u></sub></span> and the links of <span class="code"><span class="cmxFont">L</span><sub class="sub_sup_size">0</sub></span>.  Here it is
+
+<div  class="center display"><img class="center" height="300px" src="http://www.jazimmer.net/SteppingIntoMath/images/Rstar.png" alt="image: R*"/></div>
+
+<div class="spaced1">&nbsp;</div>
+<div  class="indent smalljz italicjz display">
+Copyright 2023, by J Adrian Zimmer [http://jazimmer.net]
+</div>
+
+</div></body><script>function() { var elts = document.getElementsByClassName('page'); for( let i in elts ) { elts[i].setAttribute('class','topMargin') } }()</script></html>
