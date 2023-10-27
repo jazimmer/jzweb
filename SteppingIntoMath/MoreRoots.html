@@ -261,21 +261,24 @@ which can return a shrink function
 capable of handling both increasing and decreasing real
 functions.  
 <div  class="code_block indent display">
-make_shrink(f,small):
+make_shrink(f,tiny):
    shrink
  where
    shrink(lo,hi):
-      <span class="largejz">|</span> x_ok ∧ fx_ok <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> mid 
-      <span class="largejz">|</span> chooseLeft(mid) <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> shrink(lo,mid)
-      <span class="largejz">|</span> otherwise <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> shrink(mid,hi)
+      <span class="largejz">|</span> x_ok ∧ fx_ok <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> 
+           mid 
+      <span class="largejz">|</span> chooseLeft(mid) <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> 
+           shrink(lo,mid)
+      <span class="largejz">|</span> otherwise <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> 
+           shrink(mid,hi)
     where
       increasing := f(lo)≤f(hi)
       chooseLeft(m):
-         <span class="largejz">|</span> increasing <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> m≥0
-         <span class="largejz">|</span> otherwise  <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> m≤0
+        <span class="largejz">|</span> increasing <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> m≥0
+        <span class="largejz">|</span> otherwise  <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> m≤0
       mid := (lo+hi)/2
-      x_ok := hi-lo &lt; small
-      fx_ok := |f(hi)-f(lo)| &lt; small 
+      x_ok := hi-lo &lt; tiny
+      fx_ok := |f(hi)-f(lo)|&lt;tiny 
 </div>
 
 <div class="spaced1">&nbsp;</div>
@@ -285,20 +288,20 @@ by getting rid of <span class="code">x_ok</span>, <span class="code">fx_ok</span
 <div class="spaced1">&nbsp;</div>
 <h4>answer:</h4>
 <div  class="code_block indent display">
-make_shrink(f,sm):
-   shrink
+make_shrink(f,t):
+  shrink
  where
-   shrink(lo,hi):
-      <span class="largejz">|</span> (hi-lo&lt;sm)∧(|f(hi)-f(lo)|&lt;sm) 
-         <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> mid
-      <span class="largejz">|</span> (f(hi)≥f(lo))∧(f(mid)≥0) 
-         <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> shrink(lo,mid)
-      <span class="largejz">|</span> (f(hi)≤f(lo))∧(f(mid)≤0) 
-         <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> shrink(lo,mid)
-      <span class="largejz">|</span> otherwise 
-         <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> shrink(mid,hi)
-    where
-      mid := (lo+hi)/2
+  shrink(lo,hi):
+   <span class="largejz">|</span> (hi-lo&lt;t)∧(|f(hi)-f(lo)|&lt;t) 
+      <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> mid
+   <span class="largejz">|</span> (f(hi)≥f(lo))∧(f(mid)≥0) 
+      <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> shrink(lo,mid)
+   <span class="largejz">|</span> (f(hi)≤f(lo))∧(f(mid)≤0) 
+      <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> shrink(lo,mid)
+   <span class="largejz">|</span> otherwise 
+      <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> shrink(mid,hi)
+  where
+   mid := (lo+hi)/2
 </div>
 
 Of course you could could get rid of <span class="code">mid</span> or even combine the middle two guards into one
@@ -354,7 +357,7 @@ rate = aP/1200
 Now we can define
 
 <div  class="code_block indent display">
-nextAmt(amt):  amt + (amt&times;rate) - mP
+nextAmt(amt): amt+(amt&times;rate)-mP
 </div>
 
 assuming a context where <span class="code">rate</span> and <span class="code">mP</span> are known.
@@ -384,8 +387,10 @@ can you define <span class="code">recurs</span><span class="boldjz code">??</spa
 <h4>answer</h4>
 <div  class="code_block indent display">
 recurs(amt,n):  
-  <span class="largejz">|</span> n=nM      <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> amt
-  <span class="largejz">|</span> otherwise <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> recurs( nextAmt(amt), n+1 )
+  <span class="largejz">|</span> n=nM <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> 
+      amt
+  <span class="largejz">|</span> otherwise <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> 
+      recurs( nextAmt(amt), n+1 )
 )
 </div>
 
@@ -405,11 +410,12 @@ leftUnpaid(amt,aP,mP,nM):
   where
     rate := aP/1200
     nextAmt(amt'): 
-       amt'&times;(1+rate) - mP
+      amt'&times;(1+rate) - mP
     recurs(amt',n):  
-      <span class="largejz">|</span> n=nM     <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> amt'
+      <span class="largejz">|</span> n=nM <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> 
+        amt'
       <span class="largejz">|</span> otherwise <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> 
-          recurs( nextAmt(amt'), n+1 )
+        recurs(nextAmt(amt'),n+1)
 </div>
 
 Because of their different application contexts, all these
@@ -434,9 +440,10 @@ leftUnpaid(mP):
     nextAmt(amt'): 
        amt'&times;(1+rate) - mP
     recurs(amt',n):  
-      <span class="largejz">|</span> n=nM     <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> amt'
+      <span class="largejz">|</span> n=nM <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> 
+         amt'
       <span class="largejz">|</span> otherwise <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> 
-          recurs( nextAmt(amt'), n+1 )
+         recurs(nextAmt(amt'),n+1)
 </div>
 
 This is a real function that steadily decreases. 
@@ -463,7 +470,10 @@ payment(amt,aP,nM):
     shrink(lo,hi)
   where
     …
-    shrink := make_shrink(…,0.00001)
+    shrink := make_shrink(
+                …,
+                0.00001
+              )
     lo := <span class="italicjz">ignore this for now</span>
     hi := <span class="italicjz">ignore this for now</span>
 </div>
@@ -481,10 +491,14 @@ payment(amt,aP,nM):
        nextAmt(amt'): 
           amt'&times;(1+rate) - mP
        recurs(amt',n):  
-         <span class="largejz">|</span> n=nM     <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> amt'
+         <span class="largejz">|</span> n=nM <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> 
+           amt'
          <span class="largejz">|</span> otherwise <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> 
-             recurs( nextAmt(amt'), n+1 )
-    shrink := make_shrink(leftUnpaid,0.00001)
+           recurs(nextAmt(amt'),n+1)
+    shrink := make_shrink(
+                leftUnpaid,
+                0.00001
+              )
     lo := <span class="italicjz">ignore this for now</span>
     hi := <span class="italicjz">ignore this for now</span>
 </div>
@@ -527,8 +541,11 @@ payment(amt,aP,nM):
        recurs(amt',n):  
          <span class="largejz">|</span> n=nM     <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> amt'
          <span class="largejz">|</span> otherwise <span class="largejz"><span style="font-size:115%;">&rarr;</span></span> 
-             recurs( nextAmt(amt'), n+1 )
-    shrink := make_shrink(leftUnpaid,0.00001)
+             recurs(nextAmt(amt'),n+1)
+    shrink := make_shrink(
+                leftUnpaid,
+                0.00001
+              )
     lo := 0
     hi := amt+amt&times;rate
 </div>

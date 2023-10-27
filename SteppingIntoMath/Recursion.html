@@ -393,8 +393,9 @@ kind of thing is that?  A function.
 Returning a function is perfectly
 acceptable because a function is a set of ordered pairs.  What
 may seem weird is that the function is returned without its
-name.  The name <span class="code">g</span> is neither part of the function nor
-available outside of <span class="code">f</span>'s application context.
+name.  As it happens the name <span class="code">g</span> is neither part of the function nor
+available outside of <span class="code">f</span>'s application context.  It is
+merely a variable that refers to a function.
 
 </div><div  class="undefined half_display"> In the global context the function, formerly known as
 <span class="code">g</span>, is referred to as <span class="code">f(2)</span> (or <span class="code">f(-1)</span> depending on
@@ -435,7 +436,7 @@ g := (λ(x): x + 10)
 
 
 <div  class="indent smalljz italicjz display"> In this monograph I use parentheses two ways:  to delineate argument or
-parameter lists or to resolve potential ambiguities.  Don't
+parameter lists and second to resolve potential ambiguities.  Don't
 fret the ambiguities. It is my job to disambiguate them.
 </div>
 
@@ -554,9 +555,9 @@ Although this looks a bit silly, what will
 0
 <br/><br/>
 Here is a diagram of the needed closed contexts.
+</div>
 
 <div  class="center display"><img class="center" height="170px" src="http://www.jazimmer.net/SteppingIntoMath/images/acc2.png" alt="image: Closed contexts for acc(3,lambda(x,y):x+y)"/></div>
-</div>
 
 <div class="spaced1">&nbsp;</div>
 We can create a <span class="italicjz">maker</span> function whose output will be
@@ -624,7 +625,7 @@ each of these systems to understand how that might be.
 Even
 more study would show you proofs that either of
 these systems can be used to simulate the other.  The two systems are 
-very different but anything that can be built from one of them
+very different but because of the simulations anything that can be built from one of them
 can also be built from the other. 
 That either system could be used to build up all of
 mathematics is known as the Church-Turing thesis.  The phrase
