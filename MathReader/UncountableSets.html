@@ -1,0 +1,552 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>A Mathematics Reader - Uncountable Sets</title>
+<style text/css>
+body {
+   font-family:"Times New Roman", Times, serif;
+   font-size:100%;
+   line-height:125%;
+   max-width:800px;
+}
+
+div,h1,h2,h3,h4,h5,h6,ol,ul,img {
+   position:relative;
+   margin-top:0ex;
+   margin-bottom;0ex;
+}
+
+h1 { 
+   text-align:center;
+   line-height:110%
+}
+
+h4{
+   margin-bottom:0;
+}
+
+h1.extra {
+   font-size:1.25em;
+   margin-top:-1.8ex;
+   margin-bottom:0ex;
+}
+
+h5.by {
+   margin-top:1.6ex;
+   margin-bottom:0ex;
+   text-align:center;
+   font-size:0.95em;
+}
+
+h2.first {
+   margin-top:2.5ex;
+   margin-bottom:2.6ex; 
+}
+
+h2.next {
+   break-before:page;
+   margin-top:4ex;
+   margin-bottom:2ex; 
+}
+
+.spaced2 {
+   margin-top:2ex;
+   margin-bottom:0ex;
+}
+
+.spaced1,ul,ol {
+   margin-top:1.3ex;
+   margin-bottom:1.1ex;
+}
+
+.spaced0 {
+  margin-top:-1.85ex;
+  margin-bottom:0;
+}
+
+img{
+   margin-left:2em;
+   text-align:center
+}
+
+
+li {
+   font-family:"Times New Roman", Times, serif;
+   font-size:0.95em;
+   margin-top:1.85ex;
+   line-height:1.8ex;
+}
+
+.no-bullet {
+   list-style-type:none;
+   list-style-position:outside;
+}
+
+div.ln {
+   margin-top:-1.3ex;
+   margin-bottom:-1.3ex;
+   padding:0;
+}
+
+.half_display {
+   margin-top:2ex;
+   margin-bottom:0ex;
+}
+
+.display {
+}
+
+.indent {
+   padding-left:2em;
+   padding-right:0.75em;
+   margin-top:2ex;
+   margin-bottom:2ex;
+}
+
+.code_block {
+   white-space:pre;
+   margin-top:-1ex;
+   font-family: "Courier New", monospace;
+   font-size:0.94em; 
+}
+
+.cmxFont {
+   font-family:"Comic Sans MS", cursive, sans-serif;
+   font-weight:500;
+   font-size:0.95em;
+}
+
+.code {
+   white-space:nowrap;
+   font-family: "Courier New", monospace;
+   font-size:0.94em; 
+}
+
+
+.smalljz {
+   font-size:0.8em; 
+}
+
+.sub_sup_size {
+   font-size:0.7em; 
+}
+
+.largejz {
+   font-size:1.4em; 
+}
+
+
+.italicjz {
+  font-family: serif;
+  font-style:italic;
+}
+
+.boldjz {
+  font-family: sans-serif;
+  font-weight:bold;
+}
+
+
+</style>
+</head><body>
+
+
+<div> 
+
+<div  class="center display"><img class="center" height="75px" src="http://www.jazimmer.net/MathReader/images/Draft.png" alt="image: draft"/></div>
+
+
+<h1 class="spaced1">Uncountable Sets</h1>
+
+In this chapter we show that <span class="boldjz code">R<sup class="sub_sup_size">(0,1)</sup></span> is
+uncountable and is size-equal to <span class="boldjz code">R</span>.
+</div><div  class="undefined half_display">
+The question of whether there is a set size-larger than <span class="boldjz code">Z</span>
+but size-smaller than <span class="boldjz code">R</span> has not been answered, but it is
+generally believed that there is no such set.  This belief is
+called the “Continuum Hypothesis”.
+
+</div><div  class="undefined half_display">
+The question of whether there are sets size-larger than <span class="boldjz code">R</span> has
+been answered.  There is a countable sequence of ever
+size-larger sets starting with <span class="boldjz code">R</span>. You can study such
+things in a course on set theory.
+
+<h2 class="first">Cantor's Diagonal Argument</h2>
+
+The first step in any proof that <span class="boldjz code">N</span> is size-smaller than 
+<span class="boldjz code">R<sup class="sub_sup_size">(0,1)</sup></span> 
+is to show is <span class="boldjz code">N</span> is
+size-bounded by <span class="boldjz code">R<sup class="sub_sup_size">(0,1)</sup></span>. Can you do that<span class="boldjz code">??</span>
+
+<div class="spaced1">&nbsp;</div>
+<h4>answer</h4>
+<div  class="indent display">
+All you have to do is repeat this diagram, or set up a similar
+matching.
+
+<div  class="center display"><img class="center" height="150px" src="http://www.jazimmer.net/MathReader/images/injectionN1.png" alt="image: Injecting N into R"/></div>
+
+</div>
+
+What remains is to show that no such matching is complete.
+Let <span class="code">M</span> be an arbitrary matching between <span class="boldjz code">N</span> and a
+subset of <span class="boldjz code">R<sup class="sub_sup_size">(0,1)</sup></span> that covers <span class="boldjz code">N</span>. We will show 
+that <span class="code">M</span> cannot cover <span class="boldjz code">R<sup class="sub_sup_size">(0,1)</sup></span>.
+
+</div><div  class="undefined half_display">
+Here is what <span class="code">M</span> looks like
+
+<div  class="center display"><img class="center" height="140px" src="http://www.jazimmer.net/MathReader/images/injectionN2.png" alt="image: Arbitrary Matching N To Reals"/></div>
+
+To set up his diagonal argument Cantor made use of the fact that all the numbers in
+<span class="boldjz code">R<sup class="sub_sup_size">(0,1)</sup></span> can be written in this pattern
+
+<div  class="code_block indent display">
+0.d<sub class="sub_sup_size">1</sub>d<sub class="sub_sup_size">2</sub>d<sub class="sub_sup_size">3</sub>…
+</div>
+
+with infinitely many fractional digits.  Cantor expressed each
+<span class="code">m<sub class="sub_sup_size">i</sub></span> with infinitely many fractional digits this way
+
+<div  class="code_block indent display">
+m<sub class="sub_sup_size">i</sub> = 0.d<sub class="sub_sup_size">i,1</sub>d<sub class="sub_sup_size">i,2</sub>d<sub class="sub_sup_size">i,3</sub>…
+</div>
+
+This means <span class="code">M</span> looks like
+
+<div  class="center display"><img class="center" height="210px" src="http://www.jazimmer.net/MathReader/images/diagonal1.png" alt="image:  A Injective Matching"/></div>
+
+To see that <span class="code">M</span> is not complete we can demonstrate the
+existence of an <span class="code">x∊<span class="boldjz">R<sup class="sub_sup_size">(0,1)</sup></span></span> that is not any
+<span class="code">m<sub class="sub_sup_size">i</sub></span> by choosing its fractional digits 
+
+<div  class="code_block indent display">
+x = 0.x<sub class="sub_sup_size">1</sub>x<sub class="sub_sup_size">2</sub>x<sub class="sub_sup_size">3</sub>…
+</div>
+
+to be different from the fractional digits on this diagonal
+
+<div  class="center display"><img class="center" height="220px" src="http://www.jazimmer.net/MathReader/images/diagonal2.png" alt="image: Choosing digits for different number"/></div>
+
+Specifically for every <span class="code">i∊<span class="boldjz">N</span></span> choose <span class="code">x<sub class="sub_sup_size">i</sub></span>
+to be any integer that is not <span class="code">d<sub class="sub_sup_size">i,i</sub></span>, 0, or 9.  
+
+</div><div  class="undefined half_display">
+Because each <span class="code">x<sub class="sub_sup_size">i</sub></span> 
+<ul><li>
+is different than <span class="code">d<sub class="sub_sup_size">i,i</sub></span>, we know that <span class="code">x</span> is different
+from <span class="code">m<sub class="sub_sup_size">i</sub></span>. 
+</li><li>
+is neither 0 nor 9, we know that
+<span class="code">x∊<span class="boldjz">R<sup class="sub_sup_size">(0,1)</sup></span></span>.
+</li></ul>
+
+Thus there is a matching between <span class="boldjz code">N</span> and <span class="boldjz code">R<sup class="sub_sup_size">(0,1)</sup></span> that
+covers <span class="code">N</span>, but no such matching can also cover
+<span class="boldjz code">R<sup class="sub_sup_size">(0,1)</sup></span>.   This means <span class="boldjz code">N</span> is size-bounded by,
+but not size-equal to
+<span class="boldjz code">R<sup class="sub_sup_size">(0,1)</sup></span>.  In other words 
+<span class="boldjz code">N</span> is size-smaller than
+<span class="boldjz code">R<sup class="sub_sup_size">(0,1)</sup></span>.  
+
+<h2 class="next">Abstract Tool: Partitions</h2>
+
+A <span class="italicjz">partition</span> of a set <span class="code">S</span> is a set of nonempty subsets
+<span class="cmxFont">P</span> of <span class="code">S</span>
+such that 
+
+<ul><li>
+<span style="padding-left:0.2em;padding-right:0;vertical-align:-10%;font-size:125%;">⋃</span><span class="cmxFont">P</span>=<span class="code">S</span> 
+</li><li>
+every two distinct sets <span class="code">A</span> and <span class="code">B</span> in <span class="cmxFont">P</span> are disjoint.
+</li></ul>
+
+<div class="spaced1">&nbsp;</div>
+Can you partition  {<span class="code">a,b,c,d,e,f</span>} into two element
+subsets, one of which is {<span class="code">a,f</span>}<span class="boldjz code">??</span>
+
+<div class="spaced1">&nbsp;</div>
+<h4>answer</h4>
+<div  class="indent display">
+Yes.  One way to do this is 
+<div  class="code_block indent display">
+{<span class="code"> {<span class="code">a,f</span>}, {<span class="code">b,c</span>}, {<span class="code">d,e</span>} </span>}
+</div>
+</div>
+
+<div class="spaced1">&nbsp;</div>
+Here is the start of an alternate definition of a partition
+<div  class="indent display">
+A <span class="italicjz">partition</span> of a set <span class="code">S</span> is a set of nonempty subsets
+<span class="cmxFont">P</span> of <span class="code">S</span>
+such that <span style="padding-left:0.2em;padding-right:0;vertical-align:-10%;font-size:125%;">⋃</span><span class="cmxFont">P</span>=<span class="code">S</span> and if any two sets in <span class="boldjz code">P</span>
+have an element in common then … .
+</div>
+
+Without changing what is written, can you finish the sentence
+so that the definition is equivalent to the one above<span class="boldjz code">??</span>
+
+<div class="spaced1">&nbsp;</div>
+<h4>answer</h4>
+<div  class="indent display">
+A <span class="italicjz">partition</span> of a set <span class="code">S</span> is a set of nonempty subsets
+<span class="cmxFont">P</span> of <span class="code">S</span>
+such that <span style="padding-left:0.2em;padding-right:0;vertical-align:-10%;font-size:125%;">⋃</span><span class="cmxFont">P</span>=<span class="code">S</span> and if any two sets in <span class="boldjz code">P</span>
+have an element in common then they are the same set.
+</div>
+
+<div  class="indent smalljz italicjz display">
+Note that “<span class="code">A<span style="vertical-align:10%; font-size:50%;">⋂</span>B≠∅</span> implies <span class="code">A=B</span>” is
+the contrapositive of
+“<span class="code">A</span> and <span class="code">B</span> distinct implies
+<span class="code">A<span style="vertical-align:10%; font-size:50%;">⋂</span>B=∅</span>”.
+</div>
+
+
+<h2 class="next">Abstract Tool: Assembling Matchings</h2>
+
+Sometimes the easiest way of creating a matching is to
+assemble it as the union of other matchings.   Of course these
+other matchings must have nothing in common.
+
+</div><div  class="undefined half_display">
+Suppose we have a two sets <span class="code">A</span> and <span class="code">B</span> that are
+partitioned into an equal, finite number of subsets,
+
+<div  class="code_block indent display">
+{<span class="code">A<sub class="sub_sup_size">1</sub>,A<sub class="sub_sup_size">2</sub>,…,A<sub class="sub_sup_size">n</sub></span>} 
+</div>
+and
+<div  class="code_block indent display">
+{<span class="code">B<sub class="sub_sup_size">1</sub>,B<sub class="sub_sup_size">2</sub>,…,B<sub class="sub_sup_size">n</sub></span>} 
+</div>
+
+Further assume that there is a complete
+matching <span class="code">m<sub class="sub_sup_size">i</sub></span> between <span class="code">A<sub class="sub_sup_size">i</sub></span> and
+<span class="code">B<sub class="sub_sup_size">i</sub></span> for all <span class="code">1≤i≤n</span> as in this diagram.
+
+<div  class="center display"><img class="center" height="190px" src="http://www.jazimmer.net/MathReader/images/r4.png" alt="image: Partitioned Matching"/></div>
+
+Let <span class="code">m=<span style="padding-left:0.2em;padding-right:0.2em;vertical-align:10%; font-size:50%;">⋃</span>{<span class="code">m<sub class="sub_sup_size">i</sub> : i∊N & i≤n</span>}</span>.
+
+</div><div  class="undefined half_display"><span class="boldjz">P9.1:</span> <span class="code">m</span> as defined above is a complete matching.
+</div><div  class="undefined half_display"><span class="boldjz">Proof:</span>
+<ul><li>
+No two links in <span class="code">m</span> have an element in common because
+
+<ul><li>
+No element of any <span class="code">A<sub class="sub_sup_size">i</sub></span>
+(<span class="code">B<sub class="sub_sup_size">i</sub></span>) is in two links from any single
+<span class="code">m<sub class="sub_sup_size">i</sub></span> (because all the <span class="code">m<sub class="sub_sup_size">i</sub></span><span class="smalljz">s</span> are
+complete matchings).
+</li><li>
+No element of any <span class="code">A<sub class="sub_sup_size">i</sub></span> (<span class="code">B<sub class="sub_sup_size">i</sub></span>) is in links
+from any two <span class="code">m<sub class="sub_sup_size">i</sub></span><span class="smalljz">s</span> (because
+the <span class="code">A<sub class="sub_sup_size">i</sub></span><span class="smalljz">s</span> (<span class="code">B<sub class="sub_sup_size">i</sub></span><span class="smalljz">s</span>) partition
+<span class="code">A</span> (<span class="code">B</span>)).
+</li></ul>
+
+</li><li>
+Any element of any <span class="code">A</span> (<span class="code">B</span>) is in some link of some
+<span class="code">m<sub class="sub_sup_size">i</sub></span> because 
+
+<ul><li>
+Each <span class="code">m<sub class="sub_sup_size">i</sub></span> is a complete matching that covers
+<span class="code">A<sub class="sub_sup_size">i</sub></span> and <span class="code">B<sub class="sub_sup_size">i</sub></span>.
+</li><li>
+The <span class="code">A<sub class="sub_sup_size">i</sub></span><span class="smalljz">s</span> partition <span class="code">A</span> and the
+<span class="code">B<sub class="sub_sup_size">i</sub></span><span class="smalljz">s</span> partition <span class="code">B</span>.
+</li></ul>
+
+</li><li>
+Therefore the links in <span class="code">m</span> focus and cover both <span class="code">A</span> and
+<span class="code">B</span> which means <span class="code">m</span> is a complete matching between
+<span class="code">A</span> and <span class="code">B</span>.
+</li></ul>
+
+
+<h2 class="next">Abstract Tool: Algebraic Matchings</h2>
+
+So far we have seen two kinds of diagrams for showing that two
+sets have a matching between them, using links or arrows.
+These diagrams are not very useful when the sets involved are
+uncountable.  
+When working with uncountable sets, we turn to algebra.  Consider this.
+
+<div  class="center display"><img class="center" height="190px" src="http://www.jazimmer.net/MathReader/images/r1.png" alt="image: (0,1) Size-Equal to (0,2)"/></div>
+<div  class="indent smalljz italicjz display">
+According to common practice,
+ <span class="code">R<sup class="sub_sup_size">(0,1)</sup></span> and <span class="code">R<sup class="sub_sup_size">(0,2)</sup></span> are
+ assumed to be disjoint copies.
+</div>
+
+Here we have one algebraic equation in <span class="code">x</span> and <span class="code">y</span> that
+defines this relation
+
+<div  class="code_block indent display">
+{<span class="code"> {<span class="code">x,y</span>} | x∊<span class="boldjz">R<sup class="sub_sup_size">(0,1)</sup></span>∧y∊<span class="boldjz">R<sup class="sub_sup_size">(0,2)</sup></span>∧2x=y </span>} 
+</div>
+</div><div  class="undefined half_display">
+The viewpoint from above the line shows that for every
+<span class="code">y∊<span class="boldjz">R<sup class="sub_sup_size">(0,2)</sup></span></span> there is exactly one
+<span class="code">x∊<span class="boldjz">R<sup class="sub_sup_size">(0,1)</sup></span></span>.  Thus the relation covers and
+separates <span class="boldjz code">R<sup class="sub_sup_size">(0,2)</sup></span>.
+</div><div  class="undefined half_display">
+The viewpoint from below the line shows that for every
+<span class="code">x∊<span class="boldjz">R<sup class="sub_sup_size">(0,1)</sup></span></span> there is exactly one
+<span class="code">y∊<span class="boldjz">R<sup class="sub_sup_size">(0,2)</sup></span></span>.  Thus the relation covers and
+separates <span class="boldjz code">R<sup class="sub_sup_size">(0,1)</sup></span>.
+
+</div><div  class="undefined half_display">
+You can see that algebraic matchings are meant to define
+complete matchings.  It is the
+reader's job to verify that there is exactly one <span class="code">x</span> for
+each relevant <span class="code">y</span> and and vice versa.
+
+</div><div  class="undefined half_display">
+The diagram shown above is unnecessarily complex.
+From now on our definitions of algebraic matchings will look
+like this
+
+<div  class="center display"><img class="center" height="100px" src="http://www.jazimmer.net/MathReader/images/algebraic.png" alt="image: Simplified Diagram of Algebraic Matching"/></div>
+
+<div class="spaced1">&nbsp;</div>
+Can you show that <span class="code">R<sup class="sub_sup_size">[0,∞)</sup></span> and <span class="code">R<sup class="sub_sup_size">(-∞,0]</sup></span>
+are size equal with an algebraic matching<span class="boldjz code">??</span>
+
+<div class="spaced1">&nbsp;</div>
+<h4>answer</h4>
+<div  class="center display"><img class="center" height="150px" src="http://www.jazimmer.net/MathReader/images/r10.png" alt="image:  A complete matching"/></div>
+
+
+<h2 class="next"><span class="boldjz code">R<sup class="sub_sup_size">(0,1)</sup></span> is size-equal with <span class="boldjz code">R<sup class="sub_sup_size">(a,b)</sup></span></h2>
+
+Here is the diagram outlines a proof that
+<span class="boldjz code">R<sup class="sub_sup_size">(0,1)</sup></span> is size-equal with <span class="boldjz code">R<sup class="sub_sup_size">(a,b)</sup></span> for
+arbitrary <span class="code">a,b∊<span class="boldjz">R</span></span> with <span class="code">a&lt;b</span>.
+
+<div  class="center display"><img class="center" height="115px" src="http://www.jazimmer.net/MathReader/images/r5.png" alt="image: Size-Equal to (0,1)"/></div>
+
+The proof utilizes both an algebraic matching and P8.4. 
+
+<h2 class="next"><span class="boldjz code">R<sup class="sub_sup_size">(0,1)</sup></span> is size-equal with <span class="boldjz code">R<sup class="sub_sup_size">(-∞,∞)</sup></span></h2>
+
+This diagram outlines a proof that <span class="boldjz code">R<sub class="sub_sup_size">(0,1)</sub></span> is
+size-equal to <span class="boldjz code">R</span>.  
+The proof utilizes an algebraic matchings, P8.4, and P9.1.
+
+<div  class="center display"><img class="center" height="240px" src="http://www.jazimmer.net/MathReader/images/r8.png" alt="image: (0,1) Size-Equal to R"/></div>
+
+Additional information is required
+
+<ul><li>
+
+<span class="code">{<span class="code"><span class="boldjz">R<sup class="sub_sup_size">(-1,0)</sup></span>,{<span class="code">0</span>},<span class="boldjz">R<sup class="sub_sup_size">(0,1)</sup></span></span>}</span>
+partitions <span class="boldjz code">R<sup class="sub_sup_size">(-1,1)</sup></span>
+
+</li><li>
+<span class="code">{<span class="code"><span class="boldjz">R<sup class="sub_sup_size">(-∞,0)</sup></span>,{<span class="code">0</span>},<span class="boldjz">R<sup class="sub_sup_size">(0,∞)</sup></span></span>}</span>
+partions <span class="boldjz code">R<sup class="sub_sup_size">(-∞,∞)</sup></span>
+
+</li><li>
+taking <span class="code">a=-1</span> and <span class="code">b=1</span> and applying the previous result
+shows that <span class="code">m'</span> is a complete matching
+
+</li><li>
+<span class="code">m<sub class="sub_sup_size">1</sub></span> is a complete matching because
+
+<div  class="center display"><img class="center" height="115px" src="http://www.jazimmer.net/MathReader/images/r6.png" alt="image: (-1,0) Size-Equal to (-∞,0)"/></div>
+
+</li><li>
+<span class="code">m<sub class="sub_sup_size">2</sub></span> is a complete matching because
+
+<div  class="center display"><img class="center" height="80px" src="http://www.jazimmer.net/MathReader/images/r7.png" alt="image: (-1,0) Size-Equal to (0,∞)"/></div>
+</li></ul>
+
+
+<h2 class="next"><span class="boldjz code">R<sup class="sub_sup_size">(0,1)</sup></span> is size-equal with <span class="boldjz code">R<sup class="sub_sup_size">[0,1]</sup></span></h2>
+
+<span class="boldjz code">R<sup class="sub_sup_size">[0,1]</sup></span> is only two elements more than
+<span class="boldjz code">R<sup class="sub_sup_size">(0,1)</sup></span>.  Were these sets countable we would know
+what to do.  As it is …
+we can extract this countable set
+
+<div  class="code_block indent display">
+X = {<span class="code">1/2, 1/3, 1/4, … </span>}
+</div>
+
+from <span class="boldjz code">R<sup class="sub_sup_size">(0,1)</sup></span> and this countable set
+<div  class="code_block indent display">
+X' = X<span style="padding-left:0.2em;padding-right:0.2em;vertical-align:10%; font-size:50%;">⋃</span>{0,1}
+</div>
+
+from <span class="boldjz code">R<sup class="sub_sup_size">[0,1]</sup></span>.  In both cases what is left over is
+
+<div  class="code_block indent display">
+Y = <span class="boldjz">R<sup class="sub_sup_size">(0,1)</sup></span>-X = <span class="boldjz">R<sup class="sub_sup_size">[0,1]</sup></span>-X'
+</div>
+
+So {<span class="code">X,Y</span>} partitions <span class="boldjz code">R<sup class="sub_sup_size">(0,1)</sup></span> and {<span class="code">X',Y</span>}
+partitions <span class="boldjz code">R<sup class="sub_sup_size">[0,1]</sup></span>.
+
+</div><div  class="undefined half_display"> Let <span class="code">m<sub class="sub_sup_size">0</sub></span> be this complete matching between <span class="code">X</span> and <span class="code">X'</span>.
+
+<div  class="center display"><img class="center" height="130px" src="http://www.jazimmer.net/MathReader/images/r9.png" alt="image: X size-equals X'"/></div>
+
+Now we can construct a complete matching between 
+<span class="boldjz code">R<sup class="sub_sup_size">(0,1)</sup></span> and <span class="boldjz code">R<sup class="sub_sup_size">[0,1]</sup></span> this way
+
+<div  class="center display"><img class="center" height="120px" src="http://www.jazimmer.net/MathReader/images/openClosed2.png" alt="image: (0,1) size-equals [0,1]"/></div>
+
+and call upon P9.1 to show a complete matching exists
+between <span class="boldjz code">R<sup class="sub_sup_size">(0,1)</sup></span> and <span class="boldjz code">R<sup class="sub_sup_size">[0,1]</sup></span>.
+</div>
+
+<h2 class="next">Previous Y is Uncountable</h2>
+
+Let's continue with <span class="code">X'</span>, <span class="code">Y</span>, and <span class="boldjz code">R<sup class="sub_sup_size">[0,1]</sup></span>
+from the previous section.  We know <span class="code">X'</span> is countable, 
+<span class="boldjz code">R<sup class="sub_sup_size">[0,1]</sup></span> is uncountable, and {<span class="code">X',Y</span>} partitions
+<span class="boldjz code">R<sup class="sub_sup_size">[0,1]</sup></span>.  
+
+</div><div  class="undefined half_display"> It probably seems obvious that <span class="code">Y</span>
+must be uncountable.  Let's prove it.
+Assume <span class="code">Y</span> is countable, then there exists 
+a complete matching <span class="code">m<sub class="sub_sup_size">y</sub></span> between <span class="boldjz code">N</span> and 
+<span class="code">Y</span>.  Because <span class="code">X'</span> is countable there exists
+a complete matching <span class="code">m<sub class="sub_sup_size">x</sub></span> between <span class="boldjz code">N</span> and 
+<span class="code">X</span>.  We can show this leads to a paradox with a
+diagram something like this.
+
+<div  class="center display"><img class="center" height="160px" src="http://www.jazimmer.net/MathReader/images/openClosed3.png" alt="image: Partially Constructed Matching"/></div>
+
+Can you fill it in to show that
+<span class="boldjz code">R<sup class="sub_sup_size">[0,1]</sup></span> must be countable<span class="boldjz code">??</span>
+
+
+<div class="spaced1">&nbsp;</div>
+<h4>answer</h4>
+<div  class="indent display">
+It is necessary to partition <span class="boldjz code">N</span> into two countable
+subsets.  Let <span class="code">N={<span class="code">Even,Odd</span>}</span> where <span class="code">Even</span> and
+<span class="code">Odd</span> are even and odd natural numbers.  Then
+complete matchings <span class="code">m<sub class="sub_sup_size">even</sub></span> and <span class="code">m<sub class="sub_sup_size">odd</sub></span> exist
+like this
+
+<div  class="center display"><img class="center" height="210px" src="http://www.jazimmer.net/MathReader/images/evenOdd.png" alt="image: Even and Odd are countable"/></div>
+
+and so we can fill in the above proof outline this way
+
+  <div  class="center display"><img class="center" height="170px" src="http://www.jazimmer.net/MathReader/images/R01Countable.png" alt="image: Implies (0,1) Countable"/></div>
+</div>
+
+The paradox that
+<span class="boldjz code">R<sub class="sub_sup_size">[0,1]</sub></span> is both countable and uncountable arises
+from the assumption that <span class="code">Y</span> is countable.
+Therefore <span class="code">Y</span> is uncountable.
+
+<div class="spaced1">&nbsp;</div>
+<div  class="indent smalljz italicjz display">
+Copyright 2023, by J Adrian Zimmer [http://jazimmer.net]
+</div>
+
+
+</div></body><script>function() { var elts = document.getElementsByClassName('page'); for( let i in elts ) { elts[i].setAttribute('class','topMargin') } }()</script></html>
