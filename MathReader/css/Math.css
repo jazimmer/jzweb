@@ -1,0 +1,143 @@
+body {
+   font-family:"Times New Roman", Times, serif;
+   font-size:100%;
+   line-height:125%;
+   max-width:800px;
+}
+
+div,h1,h2,h3,h4,h5,h6,ol,ul,img {
+   position:relative;
+   margin-top:0ex;
+   margin-bottom;0ex;
+}
+
+h1 { 
+   text-align:center;
+   line-height:110%
+}
+
+h4{
+   margin-bottom:0;
+}
+
+h1.extra {
+   font-size:1.25em;
+   margin-top:-1.8ex;
+   margin-bottom:0ex;
+}
+
+h5.by {
+   margin-top:1.6ex;
+   margin-bottom:0ex;
+   text-align:center;
+   font-size:0.95em;
+}
+
+h2.first {
+   margin-top:2.5ex;
+   margin-bottom:2.6ex; 
+}
+
+h2.next {
+   break-before:page;
+   margin-top:4ex;
+   margin-bottom:2ex; 
+}
+
+.spaced2 {
+   margin-top:2ex;
+   margin-bottom:0ex;
+}
+
+.spaced1,ul,ol {
+   margin-top:1.3ex;
+   margin-bottom:1.1ex;
+}
+
+.spaced0 {
+  margin-top:-1.85ex;
+  margin-bottom:0;
+}
+
+img{
+   margin-left:2em;
+   text-align:center
+}
+
+
+li {
+   font-family:"Times New Roman", Times, serif;
+   font-size:0.95em;
+   margin-top:1.85ex;
+   line-height:1.8ex;
+}
+
+.no-bullet {
+   list-style-type:none;
+   list-style-position:outside;
+}
+
+div.ln {
+   margin-top:-1.3ex;
+   margin-bottom:-1.3ex;
+   padding:0;
+}
+
+.half_display {
+   margin-top:2ex;
+   margin-bottom:0ex;
+}
+
+.display {
+}
+
+.indent {
+   padding-left:2em;
+   padding-right:0.75em;
+   margin-top:2ex;
+   margin-bottom:2ex;
+}
+
+.code_block {
+   white-space:pre;
+   margin-top:-1ex;
+   font-family: "Courier New", monospace;
+   font-size:0.94em; 
+}
+
+.cmxFont {
+   font-family:"Comic Sans MS", cursive, sans-serif;
+   font-weight:500;
+   font-size:0.95em;
+}
+
+.code {
+   white-space:nowrap;
+   font-family: "Courier New", monospace;
+   font-size:0.94em; 
+}
+
+
+.smalljz {
+   font-size:0.8em; 
+}
+
+.sub_sup_size {
+   font-size:0.7em; 
+}
+
+.largejz {
+   font-size:1.4em; 
+}
+
+
+.italicjz {
+  font-family: serif;
+  font-style:italic;
+}
+
+.boldjz {
+  font-family: sans-serif;
+  font-weight:bold;
+}
+
