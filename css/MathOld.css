@@ -8,7 +8,7 @@ body {
 div,h1,h2,h3,h4,h5,h6,ol,ul,img {
    position:relative;
    margin-top:0ex;
-   margin-bottom;0ex;
+   margin-bottom:0ex;
 }
 
 h1 { 
@@ -45,12 +45,12 @@ h2.next {
 }
 
 .spaced2 {
-   margin-top:2ex;
+   margin-top:2.5ex;
    margin-bottom:0ex;
 }
 
 .spaced1,ul,ol {
-   margin-top:1.3ex;
+   margin-top:2ex;
    margin-bottom:1.1ex;
 }
 
@@ -60,6 +60,7 @@ h2.next {
 }
 
 img{
+   display:block;
    margin-left:2em;
    text-align:center
 }
@@ -86,9 +87,6 @@ div.ln {
 .half_display {
    margin-top:2ex;
    margin-bottom:0ex;
-}
-
-.display {
 }
 
 .indent {
